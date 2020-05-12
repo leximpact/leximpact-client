@@ -26,6 +26,7 @@ async function start() {
     res.set("Content-Type", "text/plain").send("");
   });
   server.use("/", express.static(path.join(__dirname, "public")));
+  server.use("/dotations/*", express.static(path.join(__dirname, "public")));
   server.use("/static", express.static(path.join(__dirname, "static")));
   // Ouverture de la popin de confirmation de connexion
   // depuis l'URL /connection/:token

@@ -252,3 +252,4 @@ report.*.json
 # NextJS files
 .next
 build
+public
