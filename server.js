@@ -31,7 +31,7 @@ async function start() {
   ];
   // eslint-disable-next-line no-restricted-syntax
   for (const route of angularRoutes) {
-    server.use(route, express.static(path.join(__dirname, "public")));
+    server.use(route, express.static(path.join(process.cwd(), "public")));
   }
   server.use("/static", express.static(path.join(__dirname, "static")));
   // Ouverture de la popin de confirmation de connexion
