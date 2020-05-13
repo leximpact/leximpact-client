@@ -27,6 +27,7 @@ async function start() {
   });
   const angularRoutes = [
     "/",
+    "/dotations",
     "/dotations/*",
   ];
   // eslint-disable-next-line no-restricted-syntax
