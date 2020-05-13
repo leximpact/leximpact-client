@@ -1,26 +1,48 @@
 version: 2
 jobs:
-  build:
+  test_angular:
+    working_directory: ~/angular-app
     docker:
-      - image: node:12
-
+      - image: circleci/node:12-browsers
     steps:
       - checkout
-
       - restore_cache:
-          key: v1-node12-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v1-node12-angular-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+        name: Install dependencies
+        command: |
+          npm install -g npm@6.13
+          npm install
+      - save_cache:
+          key: v1-node12-angular-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
+  test_next:
+    docker:
+      - image: node:12
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-node12-next-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
           command: |
             npm install -g npm@6.13
             npm install
-
       - save_cache:
-          key: v1-node12-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v1-node12-next-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-
       - run:
           name: Run tests
           command: npm test
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test_angular
+      - test_next
