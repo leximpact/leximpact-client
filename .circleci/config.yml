@@ -12,13 +12,13 @@ jobs:
           name: Install dependencies
           command: |
             sudo npm install -g npm@6.13
-            npm install
+            cd angular-app && npm install
       - save_cache:
           key: v1-node12-angular-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
-            - ./node_modules
-      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+            - ./angular-app/node_modules
+      - run: cd angular-app && npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      - run: cd angular-app && npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
   test_next:
     docker:
