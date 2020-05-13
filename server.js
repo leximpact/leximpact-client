@@ -25,8 +25,14 @@ async function start() {
   server.get("/bbbc03c2d698ea7ec1194fab549115f1.txt", (req, res) => {
     res.set("Content-Type", "text/plain").send("");
   });
-  server.use("/", express.static(path.join(__dirname, "public")));
-  server.use("/dotations/*", express.static(path.join(__dirname, "public")));
+  const angularRoutes = [
+    "/",
+    "/dotations/*",
+  ];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const route of angularRoutes) {
+    server.use(route, express.static(path.join(__dirname, "public")));
+  }
   server.use("/static", express.static(path.join(__dirname, "static")));
   // Ouverture de la popin de confirmation de connexion
   // depuis l'URL /connection/:token
