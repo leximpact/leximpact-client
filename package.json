@@ -15,7 +15,7 @@
     "build:client": "NODE_ENV=production next build",
     "build:server": "NODE_ENV=production babel server.js --out-dir build/dist",
     "build": "npm run build:client && npm run build:server",
-    "scalingo-prebuild": "npm run build && cd angular-app && npm install && npm run build",
+    "scalingo-prebuild": "npm run build && cd angular-app && npm install && npm install --only=dev && npm run build",
     "start": "NODE_ENV=production node build/dist/server.js",
     "code:check": "eslint -c .eslintrc.json --ext .js,.jsx --ignore-path .gitignore .",
     "code:fix": "eslint --fix -c .eslintrc.json --ext .js,.jsx --ignore-path .gitignore .",
