@@ -13,12 +13,6 @@ const styles = () => ({
     padding: 15,
     paddingTop: 5,
   },
-  legende: {
-    color: "#909090",
-    fontFamily: "Lato",
-    fontSize: 12,
-    marginBottom: 10,
-  },
 });
 
 class SimpleCardImpactImpots extends PureComponent {
@@ -47,25 +41,38 @@ class SimpleCardImpactImpots extends PureComponent {
 
     return (
       <div className={classes.container}>
-        <Typography className={classes.legende}>
-          <span>Impôt sur le revenu par an</span>
-        </Typography>
-        {
-          isLoading
-            ? <CircularProgress color="secondary" />
-            : (
-              <div className={styles2.result}>
-                <Parameter
-                  amendementTitle={amendementTitle}
-                  amendementValue={-resultats.apres}
-                  baseValue={-resultats.avant}
-                  editable={false}
-                  plfTitle={plfTitle}
-                  plfValue={resultats.plf === null ? resultats.plf : -resultats.plf} />
-                €
+        <div className={styles2.container}>
+          <div>
+            <div className={styles2.legende}>Impôt sur le revenu par an</div>
+            {
+              isLoading
+                ? <CircularProgress color="secondary" />
+                : (
+                  <div className={styles2.result}>
+                    <Parameter
+                      amendementTitle={amendementTitle}
+                      amendementValue={-resultats.apres}
+                      baseValue={-resultats.avant}
+                      editable={false}
+                      plfTitle={plfTitle}
+                      plfValue={resultats.plf === null ? resultats.plf : -resultats.plf} />
+                    €
+                  </div>
+                )
+            }
+          </div>
+          <div>
+            <div className={styles2.legende}>Nbre de parts</div>
+            <div className={styles2.part}>
+              <div>
+                2
               </div>
-            )
-        }
+              <div className={styles2.amendement}>
+                2,5
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

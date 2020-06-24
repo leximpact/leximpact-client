@@ -1,3 +1,50 @@
+@import 'styles/variables';
+
+.container {
+  display: flex;
+  flex-direction: row;
+
+  > div:first-child {
+    flex: 1;
+  }
+
+  > div:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.legende {
+  color: $light-grey-text-color;
+  font-family: $default-font-family;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.part {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+
+  > div {
+    align-self: flex-end;
+
+    background: no-repeat center/100% url('/icons/part.svg');
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $default-font-family;
+    font-weight: bold;
+  }
+
+  > .amendement {
+    margin-left: -10px;
+    background: no-repeat center/100% url('/icons/amendement-part.svg');
+  }
+}
+
 .result {
   font-size: 40px;
   font-family: Lato;
