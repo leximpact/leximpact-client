@@ -1,10 +1,8 @@
 import Cookies from "js-cookie";
 
-import { TOKEN_NAME } from "../set-auth-cookie";
+import { TOKEN_NAME } from "../../set-auth-cookie";
 
-const logOut = () => {
+export const logOut = () => {
   Cookies.remove(TOKEN_NAME);
   document.location.reload();
 };
-
-export default logOut;

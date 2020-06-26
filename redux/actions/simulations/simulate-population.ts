@@ -1,10 +1,10 @@
 import request from "../../../components/utils/request";
-import connexionTokenLogout from "../connexion-token-logout";
+import { connexionTokenLogout } from "../auth";
 import { formatReforme } from "../format-reforme";
 import { loadingEtatComplete, loadingEtatError, loadingEtatStart } from "../loading-etat";
 import showLogoutPopin from "../popin-logout";
 
-let currentTimestamp = null;
+let currentTimestamp: any = null;
 
 const TOKEN_ERROR_POSSIBLE_MESSAGES = [
   "Token invalid : not Decodable",
