@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 
 import casTypes from "./cas-types";
-import disabledEtat from "./disabled-etat";
 import display from "./display";
 import loadingEtat from "./loading-etat";
 import { parameters } from "./parameters";
@@ -10,7 +9,6 @@ import token from "./token";
 
 export default combineReducers({
   casTypes,
-  disabledEtat,
   display,
   loadingEtat,
   parameters,
