@@ -7,7 +7,6 @@ import loadingEtat from "./loading-etat";
 import { parameters } from "./parameters";
 import results from "./results";
 import token from "./token";
-import totalPop from "./total-pop";
 
 export default combineReducers({
   casTypes,
@@ -17,5 +16,4 @@ export default combineReducers({
   parameters,
   results,
   token,
-  totalPop,
 });
