@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { fetchSimPop, simulateCasTypes } from "../../../redux/actions";
+import { simulateCasTypes, simulatePopulation } from "../../../redux/actions";
 import { RootState } from "../../../types";
 import GagnantsPerdantsCard from "./gagnants-perdants-component";
 
@@ -17,7 +17,7 @@ const mapStateToProps = ({ loadingEtat, results }: RootState) => {
 
 const mapDispatchToProps = dispatch => ({
   onClickSimPop: () => {
-    dispatch(fetchSimPop());
+    dispatch(simulatePopulation());
     dispatch(simulateCasTypes());
   },
 });

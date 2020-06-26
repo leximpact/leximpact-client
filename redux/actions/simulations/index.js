@@ -4,3 +4,6 @@ export {
   SIMULATE_CAS_TYPES_REQUEST,
   SIMULATE_CAS_TYPES_SUCCESS,
 } from "./simulate-cas-types";
+export {
+  default as simulatePopulation,
+} from "./simulate-population";

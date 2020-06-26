@@ -1,8 +1,8 @@
-import request from "../../components/utils/request";
-import connexionTokenLogout from "./connexion-token-logout";
-import { formatReforme } from "./format-reforme";
-import { loadingEtatComplete, loadingEtatError, loadingEtatStart } from "./loading-etat";
-import showLogoutPopin from "./popin-logout";
+import request from "../../../components/utils/request";
+import connexionTokenLogout from "../connexion-token-logout";
+import { formatReforme } from "../format-reforme";
+import { loadingEtatComplete, loadingEtatError, loadingEtatStart } from "../loading-etat";
+import showLogoutPopin from "../popin-logout";
 
 let currentTimestamp = null;
 
@@ -11,7 +11,7 @@ const TOKEN_ERROR_POSSIBLE_MESSAGES = [
   "Token has expired",
 ];
 
-const fetchSimPop = () => async (dispatch, getState) => {
+const simulatePopulation = () => async (dispatch, getState) => {
   dispatch(loadingEtatStart());
   currentTimestamp = Date.now().toString();
   const { parameters, token } = getState();
@@ -40,4 +40,4 @@ const fetchSimPop = () => async (dispatch, getState) => {
   }
 };
 
-export default fetchSimPop;
+export default simulatePopulation;

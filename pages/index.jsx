@@ -14,7 +14,8 @@ import PopinManager from "../components/PopinManager";
 import SimulationPage from "../components/simulation-page";
 import withRoot from "../lib/withRoot";
 import {
-  disabledEtat, fetchSimPop, showAddCasTypesPopin, simulateCasTypes,
+  disabledEtat, showAddCasTypesPopin, simulateCasTypes,
+  simulatePopulation,
 } from "../redux/actions";
 
 const mapStateToProps = ({ token }) => ({
@@ -28,7 +29,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(disabledEtat());
   },
   simulatePopulation: () => {
-    dispatch(fetchSimPop());
+    dispatch(simulatePopulation());
     dispatch(simulateCasTypes());
   },
 });
