@@ -1,6 +1,8 @@
-import { cloneDeep } from "lodash";
+import { SIMULATE_CAS_TYPES_REQUEST, SIMULATE_CAS_TYPES_SUCCESS } from "../../actions";
+// eslint-disable-next-line no-unused-vars
+import { AsyncItems } from "../async-items.interface";
 
-import { SIMULATE_CAS_TYPES_FAILURE, SIMULATE_CAS_TYPES_REQUEST, SIMULATE_CAS_TYPES_SUCCESS } from "../../actions";
+type State = AsyncItems<any>;
 
 const apres = [0, -1336, -1068, 0, -1723, -820];
 const avant = [0, -1336, -1068, 0, -1723, -820];
@@ -8,8 +10,7 @@ const avant = [0, -1336, -1068, 0, -1723, -820];
 // Create a map of objects which key is the index of the array.
 const toIndexedObject = arr => arr.reduce((acc, v, i) => ({ ...acc, [i]: v }), {});
 
-const initialState = {
-  didInvalidate: false,
+const initialState: State = {
   isFetching: false,
   items: {
     apres: toIndexedObject(apres),
@@ -17,27 +18,18 @@ const initialState = {
   },
 };
 
-function casTypes(state = initialState, action) {
+function casTypes(state: State = initialState, action): State {
   switch (action.type) {
   case SIMULATE_CAS_TYPES_REQUEST:
     return {
       ...state,
-      didInvalidate: false,
       isFetching: true,
     };
   case SIMULATE_CAS_TYPES_SUCCESS:
     return {
-      didInvalidate: false,
-      isFetching: false,
-      items: cloneDeep(action.data),
-    };
-  case SIMULATE_CAS_TYPES_FAILURE:
-    // The console.log is temporary.
-    console.log(action.error); // eslint-disable-line no-console
-    return {
       ...state,
-      didInvalidate: true,
       isFetching: false,
+      items: action.data,
     };
   case "onCreateCasType":
     const nextKey = Object.keys(state.items.avant).length;

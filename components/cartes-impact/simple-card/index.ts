@@ -1,9 +1,11 @@
 import { connect } from "react-redux";
 
 import { removeCasType, showEditCasTypesPopin, simulateCasTypes } from "../../../redux/actions";
+// eslint-disable-next-line no-unused-vars
+import { RootState } from "../../../redux/reducers";
 import SimpleCard from "./simple-card-component";
 
-const mapStateToProps = ({ casTypes, results }, { index }) => {
+const mapStateToProps = ({ casTypes, results }: RootState, { index }) => {
   const { isFetching, items } = results.casTypes;
   const { name } = casTypes[index];
   const descCasType = casTypes[index];
