@@ -7,7 +7,7 @@ import { parameters } from "./parameters";
 import results from "./results";
 import token from "./token";
 
-export default combineReducers({
+const rootReducer = combineReducers({
   casTypes,
   display,
   loadingEtat,
@@ -15,3 +15,7 @@ export default combineReducers({
   results,
   token,
 });
+
+export default rootReducer;
+
+export type RootState = ReturnType<typeof rootReducer>;

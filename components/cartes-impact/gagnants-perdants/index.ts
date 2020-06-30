@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { simulateCasTypes, simulatePopulation } from "../../../redux/actions";
-import { RootState } from "../../../types";
+import { RootState } from "../../../redux/reducers";
 import GagnantsPerdantsCard from "./gagnants-perdants-component";
 
 const mapStateToProps = ({ loadingEtat, results }: RootState) => {

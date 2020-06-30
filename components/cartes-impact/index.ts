@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 
+import { RootState } from "../../redux/reducers";
 import ImpactComponent from "./impact-component";
-import { RootState } from "../../types";
 
 const mapStateToProps = ({
   casTypes,
   display,
-  token,
   results,
+  token,
 }: RootState) => {
   const isUserLogged = Boolean(token);
   return {
