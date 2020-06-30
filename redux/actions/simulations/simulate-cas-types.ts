@@ -67,9 +67,9 @@ export const simulateCasTypes = () => (dispatch, getState) => {
       // Convert the number arrays into an object that is easier to use.
       const casTypeResults: CasTypeResult[] = Object.keys(payload.res_brut.apres).map(key => ({
         ir: {
-          amendement: payload.res_brut.apres[key],
-          base: payload.res_brut.avant[key],
-          plf: payload.res_brut.plf ? payload.res_brut.plf[key] : undefined,
+          amendement: Math.abs(payload.res_brut.apres[key]),
+          base: Math.abs(payload.res_brut.avant[key]),
+          plf: payload.res_brut.plf ? Math.abs(payload.res_brut.plf[key]) : undefined,
         },
         nbreParts: {
           amendement: payload.nbreParts.apres[key],

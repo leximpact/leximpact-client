@@ -18,10 +18,14 @@ class SimpleCardImpactImpots extends PureComponent {
   render() {
     const { classes, isLoading, resultats } = this.props;
 
-    const DiffAmendPLF = (-resultats.apres + resultats.avant > 0 ? "+" : "-")
-      + formatNumber(Math.round(Math.abs(-resultats.apres + resultats.plf)));
-    const DiffPlFCodeEx = (-resultats.plf + resultats.avant > 0 ? "+" : "-")
-      + formatNumber(Math.round(Math.abs(-resultats.plf + resultats.avant)));
+    const DiffAmendPLF = formatNumber(
+      resultats.ir.amendement - resultats.ir.plf,
+      { sign: true },
+    );
+    const DiffPlFCodeEx = formatNumber(
+      resultats.ir.plf - resultats.ir.base,
+      { sign: true },
+    );
 
     const plfTitle = (
       <Fragment>
