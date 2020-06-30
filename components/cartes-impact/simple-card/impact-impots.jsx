@@ -50,11 +50,11 @@ class SimpleCardImpactImpots extends PureComponent {
                   <div className={styles2.result}>
                     <Parameter
                       amendementTitle={amendementTitle}
-                      amendementValue={-resultats.apres}
-                      baseValue={-resultats.avant}
+                      amendementValue={resultats.ir.amendement}
+                      baseValue={resultats.ir.base}
                       editable={false}
                       plfTitle={plfTitle}
-                      plfValue={resultats.plf === null ? resultats.plf : -resultats.plf} />
+                      plfValue={resultats.ir.plf} />
                     €
                   </div>
                 )
@@ -64,10 +64,10 @@ class SimpleCardImpactImpots extends PureComponent {
             <div className={styles2.legende}>Nbre de parts</div>
             <div className={styles2.part}>
               <div>
-                2
+                {resultats.nbreParts.base}
               </div>
               <div className={styles2.amendement}>
-                2,5
+                {resultats.nbreParts.amendement}
               </div>
             </div>
           </div>
@@ -80,11 +80,7 @@ class SimpleCardImpactImpots extends PureComponent {
 SimpleCardImpactImpots.propTypes = {
   classes: PropTypes.shape().isRequired,
   isLoading: PropTypes.bool.isRequired,
-  resultats: PropTypes.shape({
-    apres: PropTypes.number.isRequired,
-    avant: PropTypes.number.isRequired,
-    plf: PropTypes.number,
-  }).isRequired,
+  resultats: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(SimpleCardImpactImpots);

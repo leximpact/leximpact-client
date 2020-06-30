@@ -9,11 +9,7 @@ const mapStateToProps = ({ casTypes, results }: RootState, { index }) => {
   const { isFetching, items } = results.casTypes;
   const { name } = casTypes[index];
   const descCasType = casTypes[index];
-  const resultats = {
-    apres: items.apres[index],
-    avant: items.avant[index],
-    plf: items.plf ? items.plf[index] : null,
-  };
+  const resultats = items[index];
   return {
     descCasType,
     isLoading: isFetching,

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 
+// eslint-disable-next-line no-unused-vars
 import { RootState } from "../../redux/reducers";
 import ImpactComponent from "./impact-component";
 

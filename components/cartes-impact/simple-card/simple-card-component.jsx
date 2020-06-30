@@ -295,11 +295,7 @@ SimpleCard.propTypes = {
   handleShowEditCasTypesPopin: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  resultats: PropTypes.shape({
-    apres: PropTypes.number.isRequired,
-    avant: PropTypes.number.isRequired,
-    plf: PropTypes.number,
-  }).isRequired,
+  resultats: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(SimpleCard);

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 
 import { simulateCasTypes, simulatePopulation } from "../../../redux/actions";
+// eslint-disable-next-line no-unused-vars
 import { RootState } from "../../../redux/reducers";
 import GagnantsPerdantsCard from "./gagnants-perdants-component";
 
