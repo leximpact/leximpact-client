@@ -25,7 +25,7 @@ function simulateCasTypesSuccess(data) {
   };
 }
 
-const simulateCasTypes = () => (dispatch, getState) => {
+export const simulateCasTypes = () => (dispatch, getState) => {
   dispatch(simulateCasTypesRequest());
 
   const { casTypes, parameters } = getState();
@@ -39,5 +39,3 @@ const simulateCasTypes = () => (dispatch, getState) => {
     .then(payload => dispatch(simulateCasTypesSuccess(payload.res_brut)))
     .catch(err => dispatch(simulateCasTypesFailure(err)));
 };
-
-export default simulateCasTypes;

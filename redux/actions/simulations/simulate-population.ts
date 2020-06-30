@@ -11,7 +11,7 @@ const TOKEN_ERROR_POSSIBLE_MESSAGES = [
   "Token has expired",
 ];
 
-const simulatePopulation = () => async (dispatch, getState) => {
+export const simulatePopulation = () => async (dispatch, getState) => {
   dispatch(loadingEtatStart());
   currentTimestamp = Date.now().toString();
   const { parameters, token } = getState();
@@ -39,5 +39,3 @@ const simulatePopulation = () => async (dispatch, getState) => {
     }
   }
 };
-
-export default simulatePopulation;
