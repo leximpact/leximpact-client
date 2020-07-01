@@ -69,12 +69,12 @@ export const simulateCasTypes = () => (dispatch, getState) => {
         ir: {
           amendement: Math.abs(payload.res_brut.apres[key]),
           base: Math.abs(payload.res_brut.avant[key]),
-          plf: payload.res_brut.plf ? Math.abs(payload.res_brut.plf[key]) : undefined,
+          plf: payload.res_brut.plf !== undefined ? Math.abs(payload.res_brut.plf[key]) : undefined,
         },
         nbreParts: {
           amendement: payload.nbreParts.apres[key],
           base: payload.nbreParts.avant[key],
-          plf: payload.nbreParts.plf ? payload.nbreParts.plf[key] : undefined,
+          plf: payload.nbreParts.plf !== undefined ? payload.nbreParts.plf[key] : undefined,
         },
       }));
       dispatch(simulateCasTypesSuccess(casTypeResults));
