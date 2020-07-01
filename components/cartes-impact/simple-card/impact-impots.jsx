@@ -27,14 +27,14 @@ class SimpleCardImpactImpots extends PureComponent {
       { sign: true },
     );
 
-    const plfTitle = (
+    const plfTitle = (resultats.ir.plf !== null && resultats.ir.plf !== undefined) ? (
       <Fragment>
         {"Avec le PLF, ce foyer doit "}
         <b>{`${DiffPlFCodeEx}€`}</b>
         {" d'impôts/an qu'avec le code existant"}
       </Fragment>
-    );
-    const amendementTitle = resultats.plf !== null ? (
+    ) : null;
+    const amendementTitle = (resultats.ir.plf !== null && resultats.ir.plf !== undefined) ? (
       <Fragment>
         {"Avec mon amendement, ce foyer doit "}
         <b>{`${DiffAmendPLF}€`}</b>
