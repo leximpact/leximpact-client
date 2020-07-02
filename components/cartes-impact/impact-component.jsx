@@ -13,8 +13,8 @@ class ImpactComponent extends PureComponent {
     const { casTypes, isInformationPanelVisible, isUserLogged } = this.props;
     return (
       <div className={styles.container}>
-        <Grid container spacing={24}>
-          {isInformationPanelVisible && (
+        <Grid container spacing={3}>
+          {isInformationPanelVisible && isUserLogged && (
             <Grid item xs={12}>
               <InformationPanel />
             </Grid>
@@ -30,7 +30,7 @@ class ImpactComponent extends PureComponent {
             </Grid>
           )}
         </Grid>
-        <Grid container spacing={24}>
+        <Grid container spacing={3}>
           {casTypes.map((casType, index) => {
             const itemKey = `react::simple-card-key-index::${index}`;
             return (

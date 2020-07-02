@@ -5,15 +5,14 @@ import { withRouter } from "next/router";
 import { Fragment, PureComponent } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { Articles } from "../components/dotations";
+import { Articles, Results } from "../components/dotations";
 import PopinManager from "../components/PopinManager";
 import SimulationPage from "../components/simulation-page";
 import withRoot from "../lib/withRoot";
-import "../styles/index.scss";
 import { simulateDotations } from "../redux/actions";
 
 const mapDispatchToProps = dispatch => ({
-  simulate: () => dispatch(simulateDotations())
+  simulate: () => dispatch(simulateDotations()),
 });
 
 const connector = connect(null, mapDispatchToProps);
@@ -39,6 +38,7 @@ class DotationPage extends PureComponent<PropsFromRedux> {
               onClick: simulate,
             },
           ]}
+          results={<Results />}
           secondaryButtons={[]}
           showLoginButton={false}
           subTitle1="Dotations"
