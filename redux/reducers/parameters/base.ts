@@ -39,11 +39,11 @@ export const BASE_DEFAULT_STATE: ParametersState = {
             coefMultiplicateurRevitalisationRurale: 1.3,
             pourcentageAttributionMin: 90,
             pourcentageAttributionMax: 120,
-            plafonnementPopulation: {
-              500: 100,
-              1000: 500,
-              2250: 1500,
-            },
+            // plafonnementPopulation: {
+            //   500: 100,
+            //   1000: 500,
+            //   2250: 1500,
+            // },
           },
         },
         // Article L2334-22 du CGCT

@@ -36,9 +36,9 @@ export interface ParametersState {
             coefMultiplicateurRevitalisationRurale: number;
             pourcentageAttributionMin: number;
             pourcentageAttributionMax: number;
-            plafonnementPopulation: {
-              [recensement: number]: number;
-            }
+            // plafonnementPopulation: {
+            //   [recensement: number]: number;
+            // }
           }
         }
         // Article L2334-22 du CGCT
