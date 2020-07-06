@@ -8,10 +8,7 @@ import { formatNumber } from "../../utils";
 import styles2 from "./impact-impots.module.scss";
 
 const styles = () => ({
-  container: {
-    padding: 15,
-    paddingTop: 5,
-  },
+
 });
 
 class SimpleCardImpactImpots extends PureComponent {
