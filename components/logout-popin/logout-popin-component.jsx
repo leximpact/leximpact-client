@@ -32,11 +32,6 @@ const styles = {
 };
 
 class LogoutPopinComponent extends PureComponent {
-  componentDidMount() {
-    const { fetchMetadataCasTypesHandler } = this.props;
-    fetchMetadataCasTypesHandler();
-  }
-
   render() {
     const { classes, onClosePopin } = this.props;
     return (
@@ -66,7 +61,6 @@ class LogoutPopinComponent extends PureComponent {
 
 LogoutPopinComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
-  fetchMetadataCasTypesHandler: PropTypes.func.isRequired,
   onClosePopin: PropTypes.func.isRequired,
 };
 

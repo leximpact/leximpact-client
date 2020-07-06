@@ -13,7 +13,6 @@ import { SimulationMenuBar } from "./simulation-menu";
 import styles from "./SimulationPage.module.scss";
 
 interface Props {
-  initializeAppllicationStoreFromAPI: () => void;
   useMobileView: boolean;
   topic: keyof ParametersState;
   title: string;
@@ -46,11 +45,6 @@ export class SimulationPage extends PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = { indextab: 0 };
-  }
-
-  componentDidMount() {
-    const { initializeAppllicationStoreFromAPI } = this.props;
-    initializeAppllicationStoreFromAPI();
   }
 
   handleOnChangeIndex = (event, indextab) => {

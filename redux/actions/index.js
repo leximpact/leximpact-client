@@ -9,7 +9,6 @@ export { default as showEnSavoirPlusPopin } from "./popin-show-en-savoir-plus";
 export { default as showConnexionPopin } from "./popin-show-connexion";
 export { default as addTranche } from "./articles-add-tranche";
 export { default as removeTranche } from "./articles-remove-tranche";
-export { default as fetchMetadataCasTypes } from "./api-metdata-cas-types";
 export { default as createCasType } from "./cas-type-create";
 export { default as updateCasType } from "./cas-type-update";
 export { default as removeCasType } from "./cas-type-remove";
