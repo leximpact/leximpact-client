@@ -1,17 +1,21 @@
 import { connect } from "react-redux";
 
 import {
+  addCasType,
   closeCurrentPopin,
-  createCasType,
   simulateCasTypes,
   updateCasType,
 } from "../../redux/actions";
+// eslint-disable-next-line no-unused-vars
+import { RootState } from "../../redux/reducers";
+// eslint-disable-next-line no-unused-vars
+import { CasTypeDescription } from "../../redux/reducers/descriptions/cas-types";
 import AjouterCasTypesComponent from "./ajouter-cas-types-component";
 
-const randomGender = () => Math.random() < 0.49;
+const randomGender = () => (Math.random() < 0.49 ? 0 : 1);
 
 const DEFAULT_PERSON_VALUES = {
-  acienCombattant: 0,
+  ancienCombattant: 0,
   chargePartagee: 0,
   gender: randomGender(),
   invalide: 0,
@@ -21,7 +25,7 @@ const DEFAULT_PERSON_VALUES = {
   veufVeuve: 0,
 };
 
-const DEFAULT_CAS_TYPES = {
+const DEFAULT_CAS_TYPES: CasTypeDescription = {
   lieuResidence: 0,
   name: "Foyer fiscal type",
   nbCouple: 1,
@@ -33,11 +37,11 @@ const DEFAULT_CAS_TYPES = {
   revenusNetMensuel: 500,
 };
 
-const mapStateToProps = ({ casTypes }, { index }) => {
+const mapStateToProps = ({ descriptions }: RootState, { index }) => {
   const defaultPersonValue = { ...DEFAULT_PERSON_VALUES };
   let casTypesInitialValues = { ...DEFAULT_CAS_TYPES };
   if (index >= 0) {
-    casTypesInitialValues = casTypes[index];
+    casTypesInitialValues = descriptions.casTypes[index];
   }
   return {
     casTypesInitialValues,
@@ -50,7 +54,7 @@ const mapDispatchToProps = (dispatch, { index }) => ({
     if (index >= 0) {
       dispatch(updateCasType(values, index));
     } else {
-      dispatch(createCasType(values));
+      dispatch(addCasType(values));
     }
     dispatch(closeCurrentPopin());
     dispatch(simulateCasTypes());

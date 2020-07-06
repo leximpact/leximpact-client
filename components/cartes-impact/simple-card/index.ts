@@ -5,10 +5,10 @@ import { removeCasType, showEditCasTypesPopin, simulateCasTypes } from "../../..
 import { RootState } from "../../../redux/reducers";
 import SimpleCard from "./simple-card-component";
 
-const mapStateToProps = ({ casTypes, results }: RootState, { index }) => {
+const mapStateToProps = ({ descriptions, results }: RootState, { index }) => {
   const { isFetching, items } = results.casTypes;
-  const { name } = casTypes[index];
-  const descCasType = casTypes[index];
+  const { name } = descriptions.casTypes[index];
+  const descCasType = descriptions.casTypes[index];
   const resultats = {
     apres: items.apres[index],
     avant: items.avant[index],
