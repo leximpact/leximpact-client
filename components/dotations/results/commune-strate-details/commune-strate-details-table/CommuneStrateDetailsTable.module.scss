@@ -68,18 +68,31 @@
 }
 
 
-.dsr {
+.oneline {
   tr:nth-child(odd) {
     background-color: $light-grey-bg-color;
   }
 }
 
-.dsrAndDsu {
+.twolines {
   tr:nth-child(4n+2) {
     background-color: $light-grey-bg-color;
   }  
   
   tr:nth-child(4n+1) {
+    background-color: $light-grey-bg-color;
+  }  
+}
+
+.threelines {
+  tr:nth-child(6n+3) {
+    background-color: $light-grey-bg-color;
+  }  
+  tr:nth-child(6n+2) {
+    background-color: $light-grey-bg-color;
+  }  
+  
+  tr:nth-child(6n+1) {
     background-color: $light-grey-bg-color;
   }  
 }

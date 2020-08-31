@@ -1,4 +1,5 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
+import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 import { Fragment, PureComponent } from "react";
@@ -44,6 +45,7 @@ class CommuneType extends PureComponent<Props> {
     } = this.props;
     const url = new URLSearchParams(window.location.search);
     const isDsuVisible = url.has("dsu");
+    const isDfVisible = url.has("df");
     return (
       <Card
         colored
@@ -93,6 +95,22 @@ class CommuneType extends PureComponent<Props> {
                     <div className={styles.text}>
                       <Eligibilite dotation="dsu" index={index} />
                       <DotationParHab dotation="dsu" index={index} />
+                    </div>
+                  </div>
+                )}
+                {isDfVisible && (
+                  <div className={styles.dotation}>
+                    <div className={styles.icons}>
+                      <div>
+                        <BusinessCenterIcon />
+                      </div>
+                      <div>
+                        <DotationDiff dotation="df" index={index} />
+                      </div>
+                      <div />
+                    </div>
+                    <div className={styles.text}>
+                      <DotationParHab dotation="df" index={index} />
                     </div>
                   </div>
                 )}

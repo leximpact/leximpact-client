@@ -1,4 +1,5 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
+import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 import { Fragment, PureComponent } from "react";
@@ -30,11 +31,25 @@ type Props = PropsFromRedux & {
 
 }
 
+function getClassName(n: number): string {
+  if (n === 1) {
+    return styles.oneline;
+  }
+  if (n === 2) {
+    return styles.twolines;
+  }
+  if (n === 3) {
+    return styles.threelines;
+  }
+  throw new Error("Unexpected number");
+}
+
 class CommuneStrateDetailsTable extends PureComponent<Props> {
   render() {
     const { isFetching, strates } = this.props;
     const url = new URLSearchParams(window.location.search);
     const isDsuVisible = url.has("dsu");
+    const isDfVisible = url.has("df");
     return (
       <div className={styles.container}>
         <table className={styles.table}>
@@ -66,12 +81,12 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
             </tr>
           </thead>
           {!isFetching && (
-            <tbody className={isDsuVisible ? styles.dsrAndDsu : styles.dsr}>
+            <tbody className={getClassName(1 + Number(isDsuVisible) + Number(isDfVisible))}>
               {
                 strates.map((strate, index) => (
                   <Fragment>
-                    <tr key={strate.description.habitants * 2}>
-                      <th rowSpan={isDsuVisible ? 2 : 1} scope="row">
+                    <tr key={strate.description.habitants * 3}>
+                      <th rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)} scope="row">
                         {
                           strate.description.habitants === -1 ? (
                             <Fragment>
@@ -88,15 +103,15 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                         }
 
                       </th>
-                      <td rowSpan={isDsuVisible ? 2 : 1}>
+                      <td rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}>
                         <TrendArrow value={strate.baseToAmendement?.diffDotationMoyenneParHab} />
                       </td>
-                      <td className={styles.light} rowSpan={isDsuVisible ? 2 : 1}>
+                      <td className={styles.light} rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}>
                         {formatNumber(strate.description.partPopTotale, { decimals: 0 })}
                         {" "}
                         %
                       </td>
-                      <td className={styles.light} rowSpan={isDsuVisible ? 2 : 1}>
+                      <td className={styles.light} rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}>
                         {formatNumber(
                           strate.description.potentielFinancierMoyenParHab,
                           { decimals: 2 },
@@ -126,7 +141,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                     </tr>
                     {
                       isDsuVisible && (
-                        <tr key={strate.description.habitants * 2 + 1}>
+                        <tr key={strate.description.habitants * 3 + 1}>
                           <td>
                             <LocationCityIcon />
                           </td>
@@ -145,6 +160,32 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                             <ResultValues
                               decimals={0}
                               path={`dotations.state.communes.dsu.strates.${index}.partDotationTotale`} />
+                            {" "}
+                            %
+                          </td>
+                        </tr>
+                      )
+                    }
+                    {
+                      isDfVisible && (
+                        <tr key={strate.description.habitants * 3 + 2}>
+                          <td>
+                            <BusinessCenterIcon />
+                          </td>
+                          <td>
+                            toutes
+                          </td>
+                          <td>
+                            <ResultValues
+                              decimals={2}
+                              path={`dotations.state.communes.df.strates.${index}.dotationMoyenneParHab`} />
+                            {" "}
+                            €
+                          </td>
+                          <td>
+                            <ResultValues
+                              decimals={0}
+                              path={`dotations.state.communes.df.strates.${index}.partDotationTotale`} />
                             {" "}
                             %
                           </td>
