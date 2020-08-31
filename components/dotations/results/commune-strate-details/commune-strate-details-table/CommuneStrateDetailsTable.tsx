@@ -106,12 +106,18 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                       <td rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}>
                         <TrendArrow value={strate.baseToAmendement?.diffDotationMoyenneParHab} />
                       </td>
-                      <td className={styles.light} rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}>
+                      <td
+                        className={styles.light}
+                        rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}
+                      >
                         {formatNumber(strate.description.partPopTotale, { decimals: 0 })}
                         {" "}
                         %
                       </td>
-                      <td className={styles.light} rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}>
+                      <td
+                        className={styles.light}
+                        rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}
+                      >
                         {formatNumber(
                           strate.description.potentielFinancierMoyenParHab,
                           { decimals: 2 },
