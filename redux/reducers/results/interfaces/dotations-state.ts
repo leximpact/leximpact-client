@@ -32,5 +32,18 @@ export interface DotationsState {
         dotationParHab: number;
       }[]
     }
+    df: {
+      eligibles: number;
+      strates: {
+        // Dotation moyenne par habitant
+        dotationMoyenneParHab: number;
+        // Part des dotations accordées à cette strate dans la dotation totale.
+        partDotationTotale: number;
+      }[],
+      communes: {
+        code: string;
+        dotationParHab: number;
+      }[]
+    }
   }
 }

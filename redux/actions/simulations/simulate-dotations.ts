@@ -125,6 +125,7 @@ interface RequestDotationsState {
           augmentationMax: number;
       }
     }
+    df: {}
   }
 }
 
@@ -151,7 +152,7 @@ interface ResponseBody {
           partDotationTotale: number;
         }[],
         communes: {
-          code: string; // OR id, I'm ok with both.
+          code: string;
           eligible: boolean;
           dotationParHab: number;
         }[]
@@ -167,8 +168,21 @@ interface ResponseBody {
           partDotationTotale: number;
         }[],
         communes: {
-          code: string; // OR id, I'm ok with both.
+          code: string;
           eligible: boolean;
+          dotationParHab: number;
+        }[]
+      }
+      df: {
+        eligibles: number;
+        strates: {
+          // Dotation moyenne par habitant
+          dotationMoyenneParHab: number;
+          // Part des dotations accordées à cette strate dans la dotation totale.
+          partDotationTotale: number;
+        }[],
+        communes: {
+          code: string;
           dotationParHab: number;
         }[]
       }
@@ -306,12 +320,21 @@ export const simulateDotations = () => (dispatch, getState) => {
         // eslint-disable-next-line no-param-reassign
         strate.partDotationTotale *= 100;
       });
+
+      /* User DSR for DSU values. */
       // eslint-disable-next-line no-param-reassign
       payload.amendement.communes.dsu = payload.amendement.communes.dsr;
       // eslint-disable-next-line no-param-reassign
       payload.base.communes.dsu = payload.base.communes.dsr;
       // eslint-disable-next-line no-param-reassign
       payload.baseToAmendement.communes.dsu = payload.baseToAmendement.communes.dsr;
+
+      /* User DSR for DF values. */
+      // eslint-disable-next-line no-param-reassign
+      payload.amendement.communes.df = payload.amendement.communes.dsr;
+      // eslint-disable-next-line no-param-reassign
+      payload.base.communes.df = payload.base.communes.dsr;
+
       dispatch(simulateDotationsSuccess(payload));
     })
     .catch(err => dispatch(simulateDotationsFailure(err)));

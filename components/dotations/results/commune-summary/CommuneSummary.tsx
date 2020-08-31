@@ -14,7 +14,11 @@ import {
 import styles from "./CommuneSummary.module.scss";
 import { EligibiliteSpot } from "./eligibilite-spot";
 
-const mapStateToProps = ({ results }: RootState, { dotation }: { dotation: keyof DotationsState["communes"] }) => ({
+interface Props {
+  dotation: Exclude<keyof DotationsState["communes"], "df">;
+}
+
+const mapStateToProps = ({ results }: RootState, { dotation }: Props) => ({
   amendement: {
     nouvellementEligibles: results.baseToAmendement
       .dotations.state?.communes[dotation].nouvellementEligibles,
@@ -36,10 +40,6 @@ const mapStateToProps = ({ results }: RootState, { dotation }: { dotation: keyof
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>
-
-type Props = PropsFromRedux & {
-  dotation: keyof DotationsState["communes"];
-}
 
 function renderSubCardContent(plf: number|undefined, amendement: number|undefined): JSX.Element {
   return (
@@ -67,7 +67,7 @@ function renderSubCardContent(plf: number|undefined, amendement: number|undefine
   );
 }
 
-class CommuneSummary extends PureComponent<Props> {
+class CommuneSummary extends PureComponent<PropsFromRedux & Props> {
   render() {
     const {
       amendement, dotation, isFetching, plf,
