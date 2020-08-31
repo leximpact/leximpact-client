@@ -93,5 +93,6 @@ export interface DotationsState {
           augmentationMax: number;
       }
     }
+    df: {}
   }
 }

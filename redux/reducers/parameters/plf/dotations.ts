@@ -107,6 +107,7 @@ export const PLF_DOTATIONS_DEFAULT_STATE: DotationsState = {
         augmentationMax: 4000000,
       },
     },
+    df: {},
   },
 };
 
