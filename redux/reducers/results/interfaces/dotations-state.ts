@@ -33,7 +33,6 @@ export interface DotationsState {
       }[]
     }
     df: {
-      eligibles: number;
       strates: {
         // Dotation moyenne par habitant
         dotationMoyenneParHab: number;

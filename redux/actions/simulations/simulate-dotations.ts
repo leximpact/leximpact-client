@@ -174,7 +174,6 @@ interface ResponseBody {
         }[]
       }
       df: {
-        eligibles: number;
         strates: {
           // Dotation moyenne par habitant
           dotationMoyenneParHab: number;
