@@ -305,28 +305,25 @@ export const simulateDotations = () => (dispatch, getState) => {
   return request
     .post("/dotations", body)
     .then((payload: ResponseBody) => {
-      payload.amendement.communes.dsr.strates.forEach((strate) => {
-        // eslint-disable-next-line no-param-reassign
-        strate.partDotationTotale *= 100;
-      });
-      if (payload.plf) {
-        payload.plf.communes.dsr.strates.forEach((strate) => {
+      function parsePayload(dotation: keyof ResponseBody["amendement"]["communes"]): void {
+        payload.amendement.communes[dotation].strates.forEach((strate) => {
+          // eslint-disable-next-line no-param-reassign
+          strate.partDotationTotale *= 100;
+        });
+        if (payload.plf) {
+          payload.plf.communes[dotation].strates.forEach((strate) => {
+            // eslint-disable-next-line no-param-reassign
+            strate.partDotationTotale *= 100;
+          });
+        }
+        payload.base.communes[dotation].strates.forEach((strate) => {
           // eslint-disable-next-line no-param-reassign
           strate.partDotationTotale *= 100;
         });
       }
-      payload.base.communes.dsr.strates.forEach((strate) => {
-        // eslint-disable-next-line no-param-reassign
-        strate.partDotationTotale *= 100;
-      });
 
-      /* User DSR for DSU values. */
-      // eslint-disable-next-line no-param-reassign
-      payload.amendement.communes.dsu = payload.amendement.communes.dsr;
-      // eslint-disable-next-line no-param-reassign
-      payload.base.communes.dsu = payload.base.communes.dsr;
-      // eslint-disable-next-line no-param-reassign
-      payload.baseToAmendement.communes.dsu = payload.baseToAmendement.communes.dsr;
+      parsePayload("dsr");
+      parsePayload("dsu");
 
       /* User DSR for DF values. */
       // eslint-disable-next-line no-param-reassign

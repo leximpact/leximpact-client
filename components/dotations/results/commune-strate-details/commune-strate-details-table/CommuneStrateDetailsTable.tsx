@@ -32,9 +32,6 @@ type Props = PropsFromRedux & {
 }
 
 function getClassName(n: number): string {
-  if (n === 1) {
-    return styles.oneline;
-  }
   if (n === 2) {
     return styles.twolines;
   }
@@ -48,7 +45,6 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
   render() {
     const { isFetching, strates } = this.props;
     const url = new URLSearchParams(window.location.search);
-    const isDsuVisible = url.has("dsu");
     const isDfVisible = url.has("df");
     return (
       <div className={styles.container}>
@@ -81,12 +77,12 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
             </tr>
           </thead>
           {!isFetching && (
-            <tbody className={getClassName(1 + Number(isDsuVisible) + Number(isDfVisible))}>
+            <tbody className={getClassName(2 + Number(isDfVisible))}>
               {
                 strates.map((strate, index) => (
                   <Fragment>
                     <tr key={strate.description.habitants * 3}>
-                      <th rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)} scope="row">
+                      <th rowSpan={2 + Number(isDfVisible)} scope="row">
                         {
                           strate.description.habitants === -1 ? (
                             <Fragment>
@@ -103,12 +99,12 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                         }
 
                       </th>
-                      <td rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}>
+                      <td rowSpan={2 + Number(isDfVisible)}>
                         <TrendArrow value={strate.baseToAmendement?.diffDotationMoyenneParHab} />
                       </td>
                       <td
                         className={styles.light}
-                        rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}
+                        rowSpan={2 + Number(isDfVisible)}
                       >
                         {formatNumber(strate.description.partPopTotale, { decimals: 0 })}
                         {" "}
@@ -116,7 +112,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                       </td>
                       <td
                         className={styles.light}
-                        rowSpan={1 + Number(isDsuVisible) + Number(isDfVisible)}
+                        rowSpan={2 + Number(isDfVisible)}
                       >
                         {formatNumber(
                           strate.description.potentielFinancierMoyenParHab,
@@ -145,59 +141,53 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                         %
                       </td>
                     </tr>
-                    {
-                      isDsuVisible && (
-                        <tr key={strate.description.habitants * 3 + 1}>
-                          <td>
-                            <LocationCityIcon />
-                          </td>
-                          <td>
-                            <ResultValues
-                              path={`dotations.state.communes.dsu.strates.${index}.eligibles`} />
-                          </td>
-                          <td>
-                            <ResultValues
-                              decimals={2}
-                              path={`dotations.state.communes.dsu.strates.${index}.dotationMoyenneParHab`} />
-                            {" "}
-                            €
-                          </td>
-                          <td>
-                            <ResultValues
-                              decimals={0}
-                              path={`dotations.state.communes.dsu.strates.${index}.partDotationTotale`} />
-                            {" "}
-                            %
-                          </td>
-                        </tr>
-                      )
-                    }
-                    {
-                      isDfVisible && (
-                        <tr key={strate.description.habitants * 3 + 2}>
-                          <td>
-                            <BusinessCenterIcon />
-                          </td>
-                          <td>
-                            toutes
-                          </td>
-                          <td>
-                            <ResultValues
-                              decimals={2}
-                              path={`dotations.state.communes.df.strates.${index}.dotationMoyenneParHab`} />
-                            {" "}
-                            €
-                          </td>
-                          <td>
-                            <ResultValues
-                              decimals={0}
-                              path={`dotations.state.communes.df.strates.${index}.partDotationTotale`} />
-                            {" "}
-                            %
-                          </td>
-                        </tr>
-                      )
-                    }
+                    <tr key={strate.description.habitants * 3 + 1}>
+                      <td>
+                        <LocationCityIcon />
+                      </td>
+                      <td>
+                        <ResultValues
+                          path={`dotations.state.communes.dsu.strates.${index}.eligibles`} />
+                      </td>
+                      <td>
+                        <ResultValues
+                          decimals={2}
+                          path={`dotations.state.communes.dsu.strates.${index}.dotationMoyenneParHab`} />
+                        {" "}
+                        €
+                      </td>
+                      <td>
+                        <ResultValues
+                          decimals={0}
+                          path={`dotations.state.communes.dsu.strates.${index}.partDotationTotale`} />
+                        {" "}
+                        %
+                      </td>
+                    </tr>
+                    {isDfVisible && (
+                      <tr key={strate.description.habitants * 3 + 2}>
+                        <td>
+                          <BusinessCenterIcon />
+                        </td>
+                        <td>
+                        toutes
+                        </td>
+                        <td>
+                          <ResultValues
+                            decimals={2}
+                            path={`dotations.state.communes.df.strates.${index}.dotationMoyenneParHab`} />
+                          {" "}
+                        €
+                        </td>
+                        <td>
+                          <ResultValues
+                            decimals={0}
+                            path={`dotations.state.communes.df.strates.${index}.partDotationTotale`} />
+                          {" "}
+                        %
+                        </td>
+                      </tr>
+                    )}
                   </Fragment>
                 ))
               }
