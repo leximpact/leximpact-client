@@ -93,7 +93,7 @@ export class Articles extends PureComponent {
           </PrimaryExpandablePanel>
           {isMontantsVisible && (
             <PrimaryExpandablePanel
-              title="Montant des dotations">
+              title="Montants des dotations">
               {/* <SecondaryExpandablePanel
                 expanded
                 subTitle="Article L1613-1 du CGCT"
