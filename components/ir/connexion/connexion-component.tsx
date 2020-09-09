@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import VPNKeyIcon from "@material-ui/icons/VpnKey";
 import { FORM_ERROR } from "final-form";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
 import request from "../../common/utils/request";
@@ -65,7 +64,17 @@ const styles = theme => ({
   },
 });
 
-class Connexion extends PureComponent {
+interface Props {
+  classes: any;
+  onClosePopin: (...args: any[]) => any;
+}
+
+interface State {
+  isLoading: boolean;
+  hasBeenSubmitWithSuccess: any;
+}
+
+class Connexion extends PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = { hasBeenSubmitWithSuccess: false, isLoading: false };
@@ -132,9 +141,4 @@ class Connexion extends PureComponent {
   }
 }
 
-Connexion.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  onClosePopin: PropTypes.func.isRequired,
-};
-
-export default withStyles(styles)(Connexion);
+export default withStyles(styles as any)(Connexion);

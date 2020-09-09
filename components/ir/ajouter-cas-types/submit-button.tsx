@@ -1,6 +1,5 @@
 import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
 const styles = theme => ({
@@ -25,7 +24,12 @@ const styles = theme => ({
   },
 });
 
-class SubmitButton extends PureComponent {
+interface Props {
+  classes: any;
+  disabled: boolean;
+}
+
+class SubmitButton extends PureComponent<Props> {
   render() {
     const { classes, disabled } = this.props;
     return (
@@ -43,9 +47,4 @@ class SubmitButton extends PureComponent {
   }
 }
 
-SubmitButton.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  disabled: PropTypes.bool.isRequired,
-};
-
-export default withStyles(styles)(SubmitButton);
+export default withStyles(styles as any)(SubmitButton);

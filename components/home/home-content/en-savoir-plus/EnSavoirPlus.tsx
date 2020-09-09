@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "next/link";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
 import styles2 from "./EnSavoirPlus.module.scss";
@@ -46,7 +45,11 @@ const styles = theme => ({
   },
 });
 
-class EnSavoirPlus extends PureComponent {
+interface Props {
+  classes: any;
+}
+
+class EnSavoirPlus extends PureComponent<Props> {
   render() {
     const { classes } = this.props;
     return (
@@ -125,8 +128,4 @@ class EnSavoirPlus extends PureComponent {
   }
 }
 
-EnSavoirPlus.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
-
-export default withStyles(styles)(EnSavoirPlus);
+export default withStyles(styles as any)(EnSavoirPlus);

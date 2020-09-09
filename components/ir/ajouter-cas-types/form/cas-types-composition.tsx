@@ -6,7 +6,6 @@ import IconButton from "@material-ui/core/IconButton";
 import { withStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 import { Field } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";
@@ -121,9 +120,6 @@ const styles = () => ({
     minWidth: 150,
     width: 150,
   },
-  margedLeft: {
-    marginLeft: 20,
-  },
   title: {
     color: "#565656",
     fontFamily: "Lato",
@@ -147,7 +143,16 @@ const styles = () => ({
   },
 });
 
-class CasTypesComposition extends PureComponent {
+interface Props {
+  classes: any;
+  name: string;
+  persons: {
+    childs: any[];
+    parents: any[];
+  }
+}
+
+class CasTypesComposition extends PureComponent<Props> {
   handleCheckboxChange = input => () => {
     const nextValue = Number(input.value) === 0 ? 1 : 0;
     input.onChange(nextValue);
@@ -206,7 +211,7 @@ class CasTypesComposition extends PureComponent {
     const { parents } = persons;
     const parentsCount = parents.length;
     return (
-      <div key={name} classes={classes.margedLeft}>
+      <div key={name}>
         <div className={classes.icon}>
           {/*  icone du type de personne (enfant/agé/invalide... ) */}
           {this.renderGenderButton(showChild, name, index)}
@@ -306,13 +311,4 @@ class CasTypesComposition extends PureComponent {
   }
 }
 
-CasTypesComposition.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  name: PropTypes.string.isRequired,
-  persons: PropTypes.shape({
-    childs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    parents: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  }).isRequired,
-};
-
-export default withStyles(styles)(CasTypesComposition);
+export default withStyles(styles as any)(CasTypesComposition);

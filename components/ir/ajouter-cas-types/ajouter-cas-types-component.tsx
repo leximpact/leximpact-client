@@ -3,7 +3,6 @@ import IconButton from "@material-ui/core/IconButton";
 import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import arrayMutators from "final-form-arrays";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 import { Form as FinalForm } from "react-final-form";
 
@@ -36,8 +35,16 @@ const styles = () => ({
   },
 });
 
-class AjouterCasTypesComponent extends PureComponent {
-  handlePersonAdd = ({ push }) => (isChild) => {
+interface Props {
+  casTypesInitialValues: any;
+  classes: any;
+  defaultPersonValue: any;
+  onClosePopin: (...args: any[]) => any;
+  onFormSubmitHandler: (...args: any[]) => any;
+}
+
+class AjouterCasTypesComponent extends PureComponent<Props> {
+  handlePersonAdd = ({ push }: any) => (isChild) => {
     const { defaultPersonValue } = this.props;
     const childValue = isChild ? 1 : 0;
     const nextValue = { ...defaultPersonValue, isChild: childValue };
@@ -45,7 +52,7 @@ class AjouterCasTypesComponent extends PureComponent {
     push(`persons.${arrayKey}`, nextValue);
   };
 
-  handlePersonRemove = ({ pop }) => (isChild) => {
+  handlePersonRemove = ({ pop }: any) => (isChild) => {
     const arrayKey = (isChild && "childs") || "parents";
     pop(`persons.${arrayKey}`);
   };
@@ -111,7 +118,7 @@ class AjouterCasTypesComponent extends PureComponent {
                   <CasTypesRevenus name="revenusNetMensuel" />
                 </div>
                 <Divider className={classes.divider} />
-                <SubmitButton disabled={canSubmitForm} isLoading={false} />
+                <SubmitButton disabled={canSubmitForm} />
                 <ErrorSnackbar message={submitError} />
               </form>
             );
@@ -123,12 +130,4 @@ class AjouterCasTypesComponent extends PureComponent {
   }
 }
 
-AjouterCasTypesComponent.propTypes = {
-  casTypesInitialValues: PropTypes.shape().isRequired,
-  classes: PropTypes.shape().isRequired,
-  defaultPersonValue: PropTypes.shape().isRequired,
-  onClosePopin: PropTypes.func.isRequired,
-  onFormSubmitHandler: PropTypes.func.isRequired,
-};
-
-export default withStyles(styles)(AjouterCasTypesComponent);
+export default withStyles(styles as any)(AjouterCasTypesComponent);

@@ -1,18 +1,29 @@
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
 import styles from "./SecondaryExpandablePanel.module.scss";
 
-export class SecondaryExpandablePanel extends PureComponent {
+interface Props {
+  children: JSX.Element;
+  expanded?: boolean;
+  subTitle: string;
+  title: string
+}
+
+interface State {
+  expanded: boolean;
+  id: number;
+}
+
+export class SecondaryExpandablePanel extends PureComponent<Props, State> {
   static lastId = 0;
 
   constructor(props) {
     super(props);
     SecondaryExpandablePanel.lastId += 1;
     const { expanded } = this.props;
-    this.state = { expanded, id: SecondaryExpandablePanel.lastId };
+    this.state = { expanded: expanded || false, id: SecondaryExpandablePanel.lastId };
     this.onExpandedChange = this.onExpandedChange.bind(this);
   }
 
@@ -33,7 +44,7 @@ export class SecondaryExpandablePanel extends PureComponent {
           className={styles.header}
           id={`secondary-panel${id}-header`}
           role="button"
-          tabIndex="0"
+          tabIndex={0}
           onClick={this.onExpandedChange}
           onKeyDown={e => e.key === "Enter" && this.onExpandedChange()}>
           <div className={styles.text}>
@@ -46,7 +57,7 @@ export class SecondaryExpandablePanel extends PureComponent {
             </span>
           </div>
           <div>
-            <span aria-disabled="false" aria-hidden="true" className={styles.btn} type="button">
+            <span aria-disabled="false" aria-hidden="true" className={styles.btn}>
               {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </span>
           </div>
@@ -60,14 +71,3 @@ export class SecondaryExpandablePanel extends PureComponent {
     );
   }
 }
-
-SecondaryExpandablePanel.defaultProps = {
-  expanded: false,
-};
-
-SecondaryExpandablePanel.propTypes = {
-  children: PropTypes.node.isRequired,
-  expanded: PropTypes.bool,
-  subTitle: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};

@@ -1,6 +1,5 @@
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
 import { Field } from "react-final-form";
 
 const styles = () => ({
@@ -15,7 +14,12 @@ const styles = () => ({
   },
 });
 
-function CasTypesName({ classes, name }) {
+interface Props {
+  classes: any;
+  name: string;
+}
+
+function CasTypesName({ classes, name }: Props) {
   return (
     <label htmlFor={name}>
       <span className={classes.title}>Créer mon cas type</span>
@@ -31,9 +35,4 @@ function CasTypesName({ classes, name }) {
   );
 }
 
-CasTypesName.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  name: PropTypes.string.isRequired,
-};
-
-export default withStyles(styles)(CasTypesName);
+export default withStyles(styles as any)(CasTypesName);

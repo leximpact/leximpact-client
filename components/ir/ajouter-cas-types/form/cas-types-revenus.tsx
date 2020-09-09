@@ -3,7 +3,6 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import { withStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import PropTypes from "prop-types";
 import { Fragment } from "react";
 import { Field } from "react-final-form";
 
@@ -56,7 +55,12 @@ const styles = () => ({
 
 const REVENUS_HELP = "Somme des traitements, salaires nets et pensions que le foyer fiscal déclare par an sur sa feuille d'impôt, divisé par le nombre de mois d’une année.";
 
-const CasTypesRevenus = ({ classes, name }) => (
+interface Props {
+  classes: any;
+  name: any;
+}
+
+const CasTypesRevenus = ({ classes, name }: Props) => (
   <label htmlFor={name}>
     <div>
       <Tooltip
@@ -97,9 +101,4 @@ const CasTypesRevenus = ({ classes, name }) => (
   </label>
 );
 
-CasTypesRevenus.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  name: PropTypes.string.isRequired,
-};
-
-export default withStyles(styles)(CasTypesRevenus);
+export default withStyles(styles as any)(CasTypesRevenus);

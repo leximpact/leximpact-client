@@ -3,7 +3,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
 const styles = () => ({
@@ -12,7 +11,25 @@ const styles = () => ({
   },
 });
 
-class MUIDotMenu extends PureComponent {
+interface Props {
+  classes: any;
+  clickHandler: (...args: any[]) => any;
+  id: string;
+  items: {
+    Icon?: (...args: any[]) => any;
+    action: (...args: any[]) => any;
+    disabled?: boolean;
+    key: string;
+    label: string;
+  }[];
+}
+
+interface State {
+  selected: any;
+  anchorEl: any;
+}
+
+class MUIDotMenu extends PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = { anchorEl: null, selected: null };
@@ -86,19 +103,4 @@ class MUIDotMenu extends PureComponent {
   }
 }
 
-MUIDotMenu.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  clickHandler: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      Icon: PropTypes.func,
-      action: PropTypes.func.isRequired,
-      disabled: PropTypes.bool,
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
-
-export default withStyles(styles)(MUIDotMenu);
+export default withStyles(styles as any)(MUIDotMenu);

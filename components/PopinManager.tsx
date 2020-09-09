@@ -3,7 +3,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import { withStyles } from "@material-ui/core/styles/";
 import { flow, get } from "lodash";
 import { withRouter } from "next/router";
-import PropTypes from "prop-types";
 import { Fragment, PureComponent } from "react";
 
 import { closeCurrentPopin } from "../redux/actions";
@@ -38,7 +37,12 @@ const styles = theme => ({
   },
 });
 
-class PopinManager extends PureComponent {
+interface Props {
+  classes: any;
+  router: any;
+}
+
+class PopinManager extends PureComponent<Props> {
   renderConnexion = (popinType) => {
     const { classes } = this.props;
     const showPopin = popinType === "connection";
@@ -117,11 +121,6 @@ class PopinManager extends PureComponent {
     );
   }
 }
-
-PopinManager.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  router: PropTypes.shape().isRequired,
-};
 
 export default flow(
   withStyles(styles),

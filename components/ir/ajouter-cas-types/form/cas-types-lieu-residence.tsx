@@ -4,7 +4,6 @@ import PalmTreeIcon from "@iconify/icons-twemoji/palm-tree";
 import { Icon } from "@iconify/react";
 import Chip from "@material-ui/core/Chip";
 import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
 import { Field } from "react-final-form";
 
 import DoublePalmTreeIcon from "../../../common/icons/double-palm-tree";
@@ -62,7 +61,12 @@ const RESIDENCE_ITEMS = [
   },
 ];
 
-function CasTypesLieuResidence({ classes, name }) {
+interface Props {
+  classes: any;
+  name: any;
+}
+
+function CasTypesLieuResidence({ classes, name }: Props) {
   return (
     <div>
       <span className={classes.title}>Lieu de résidence&nbsp;:</span>
@@ -74,7 +78,7 @@ function CasTypesLieuResidence({ classes, name }) {
             const isSelected = input.value === index;
             const variant = !isSelected ? "outlined" : "default";
             let className = classes.button;
-            let chipProps = { onClick: () => input.onChange(index) };
+            let chipProps: any = { onClick: () => input.onChange(index) };
             if (!clickable) {
               // disable du chip
               chipProps = {};
@@ -99,9 +103,4 @@ function CasTypesLieuResidence({ classes, name }) {
   );
 }
 
-CasTypesLieuResidence.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  name: PropTypes.string.isRequired,
-};
-
-export default withStyles(styles)(CasTypesLieuResidence);
+export default withStyles(styles as any)(CasTypesLieuResidence);
