@@ -60,7 +60,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
               </th>
               <th />
               <th rowSpan={2}>
-                Nombre
+                Proportion
                 <br />
                 de communes éligibles
               </th>
@@ -126,7 +126,9 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                       </td>
                       <td>
                         <ResultValues
-                          path={`dotations.state.communes.dsr.strates.${index}.eligibles`} />
+                          decimals={0}
+                          path={`dotations.state.communes.dsr.strates.${index}.partEligibles`}
+                          symbol="%" />
                       </td>
                       <td>
                         <ResultValues
@@ -147,7 +149,9 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                       </td>
                       <td>
                         <ResultValues
-                          path={`dotations.state.communes.dsu.strates.${index}.eligibles`} />
+                          decimals={0}
+                          path={`dotations.state.communes.dsu.strates.${index}.partEligibles`}
+                          symbol="%" />
                       </td>
                       <td>
                         <ResultValues

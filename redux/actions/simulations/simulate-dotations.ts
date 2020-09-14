@@ -146,6 +146,7 @@ interface ResponseBody {
         strates: {
           // Nombre de communes éligibles
           eligibles: number;
+          partEligibles: number;
           // Dotation moyenne par habitant
           dotationMoyenneParHab: number;
           // Part des dotations accordées à cette strate dans la dotation totale.
@@ -164,6 +165,7 @@ interface ResponseBody {
         strates: {
           // Nombre de communes éligibles
           eligibles: number;
+          partEligibles: number;
           // Dotation moyenne par habitant
           dotationMoyenneParHab: number;
           // Part des dotations accordées à cette strate dans la dotation totale.
@@ -311,16 +313,22 @@ export const simulateDotations = () => (dispatch, getState) => {
         payload.amendement.communes[dotation].strates.forEach((strate) => {
           // eslint-disable-next-line no-param-reassign
           strate.partDotationTotale *= 100;
+          // eslint-disable-next-line no-param-reassign
+          strate.partEligibles *= 100;
         });
         if (payload.plf) {
           payload.plf.communes[dotation].strates.forEach((strate) => {
             // eslint-disable-next-line no-param-reassign
             strate.partDotationTotale *= 100;
+            // eslint-disable-next-line no-param-reassign
+            strate.partEligibles *= 100;
           });
         }
         payload.base.communes[dotation].strates.forEach((strate) => {
           // eslint-disable-next-line no-param-reassign
           strate.partDotationTotale *= 100;
+          // eslint-disable-next-line no-param-reassign
+          strate.partEligibles *= 100;
         });
       }
 
