@@ -172,21 +172,19 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                           <BusinessCenterIcon />
                         </td>
                         <td>
-                        toutes
+                        100 %
                         </td>
                         <td>
                           <ResultValues
                             decimals={2}
-                            path={`dotations.state.communes.df.strates.${index}.dotationMoyenneParHab`} />
-                          {" "}
-                        €
+                            path={`dotations.state.communes.df.strates.${index}.dotationMoyenneParHab`}
+                            symbol="€" />
                         </td>
                         <td>
                           <ResultValues
                             decimals={0}
-                            path={`dotations.state.communes.df.strates.${index}.partDotationTotale`} />
-                          {" "}
-                        %
+                            path={`dotations.state.communes.df.strates.${index}.partDotationTotale`}
+                            symbol="%" />
                         </td>
                       </tr>
                     )}
