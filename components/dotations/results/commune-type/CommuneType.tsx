@@ -13,6 +13,7 @@ import { RootState } from "../../../../redux/reducers";
 import { Commune } from "../../../../redux/reducers/descriptions/dotations";
 import { Card } from "../../../common";
 import styles from "./CommuneType.module.scss";
+import { DotationATerme } from "./dotation-a-terme";
 import { DotationDiff } from "./dotation-diff";
 import { DotationParHab } from "./dotation-par-hab";
 import { DotationTrend } from "./dotation-trend";
@@ -41,7 +42,7 @@ type Props = PropsFromRedux & Commune & {
 class CommuneType extends PureComponent<Props> {
   render() {
     const {
-      departement, habitants, index, isFetching, name, potentielFinancier, remove,
+      departement, habitants, index, isFetching, name, potentielFinancierParHab, remove,
     } = this.props;
     const url = new URLSearchParams(window.location.search);
     const isDfVisible = url.has("df");
@@ -54,7 +55,7 @@ class CommuneType extends PureComponent<Props> {
               <HabitantLabel habitants={habitants} />
             </div>
             <PotentielFinancier
-              potentielFinancier={potentielFinancier}
+              potentielFinancier={potentielFinancierParHab}
             />
           </Fragment>
         )}
@@ -78,6 +79,7 @@ class CommuneType extends PureComponent<Props> {
                   <div className={styles.text}>
                     <Eligibilite dotation="dsr" index={index} />
                     <DotationParHab dotation="dsr" index={index} />
+                    <DotationATerme index={index} />
                   </div>
                 </div>
                 <div className={styles.dotation}>

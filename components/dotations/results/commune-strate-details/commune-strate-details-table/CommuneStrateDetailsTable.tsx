@@ -60,7 +60,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
               </th>
               <th />
               <th rowSpan={2}>
-                Nombre
+                Proportion
                 <br />
                 de communes éligibles
               </th>
@@ -116,29 +116,31 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                       >
                         {formatNumber(
                           strate.description.potentielFinancierMoyenParHab,
-                          { decimals: 2 },
+                          { decimals: 0 },
                         )}
+                        {" "}
+                        €
                       </td>
                       <td>
                         <LocalFloristIcon />
                       </td>
                       <td>
                         <ResultValues
-                          path={`dotations.state.communes.dsr.strates.${index}.eligibles`} />
+                          decimals={0}
+                          path={`dotations.state.communes.dsr.strates.${index}.partEligibles`}
+                          symbol="%" />
                       </td>
                       <td>
                         <ResultValues
                           decimals={2}
-                          path={`dotations.state.communes.dsr.strates.${index}.dotationMoyenneParHab`} />
-                        {" "}
-                        €
+                          path={`dotations.state.communes.dsr.strates.${index}.dotationMoyenneParHab`}
+                          symbol="€" />
                       </td>
                       <td>
                         <ResultValues
                           decimals={0}
-                          path={`dotations.state.communes.dsr.strates.${index}.partDotationTotale`} />
-                        {" "}
-                        %
+                          path={`dotations.state.communes.dsr.strates.${index}.partDotationTotale`}
+                          symbol="%" />
                       </td>
                     </tr>
                     <tr key={strate.description.habitants * 3 + 1}>
@@ -147,21 +149,21 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                       </td>
                       <td>
                         <ResultValues
-                          path={`dotations.state.communes.dsu.strates.${index}.eligibles`} />
+                          decimals={0}
+                          path={`dotations.state.communes.dsu.strates.${index}.partEligibles`}
+                          symbol="%" />
                       </td>
                       <td>
                         <ResultValues
                           decimals={2}
-                          path={`dotations.state.communes.dsu.strates.${index}.dotationMoyenneParHab`} />
-                        {" "}
-                        €
+                          path={`dotations.state.communes.dsu.strates.${index}.dotationMoyenneParHab`}
+                          symbol="€" />
                       </td>
                       <td>
                         <ResultValues
                           decimals={0}
-                          path={`dotations.state.communes.dsu.strates.${index}.partDotationTotale`} />
-                        {" "}
-                        %
+                          path={`dotations.state.communes.dsu.strates.${index}.partDotationTotale`}
+                          symbol="%" />
                       </td>
                     </tr>
                     {isDfVisible && (

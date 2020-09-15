@@ -6,39 +6,21 @@ import { connect, ConnectedProps } from "react-redux";
 import { fetchSimPop, simulateCasTypes, simulateDotations } from "../../../../redux/actions";
 // eslint-disable-next-line no-unused-vars
 import { RootState } from "../../../../redux/reducers";
-import { PlfTooltip, ReformTooltip } from "../../tooltips";
 import { formatNumber } from "../../utils";
 import { NumberInput } from "./number-input";
 import styles from "./Values.module.scss";
 
-function withTooltip(
-  Tooltip: any, title: string|JSX.Element|undefined|null, element: JSX.Element|null,
-): JSX.Element|null {
-  if (title == null || title === undefined) {
-    return element;
-  }
-
-  return (
-    <Tooltip
-      placement="bottom-start"
-      title={title}>
-      {element}
-    </Tooltip>
-  );
-}
-
 /* The |null are added because we have JS files using this component. */
 interface Props {
   amendementInputSize?: "small"|"xl"|null;
-  amendementTitle?: string|JSX.Element|null;
   amendementValue?: number|string;
   baseValue?: number|string|null;
   decimals?: number;
   editable?: boolean,
   onAmendementChange?: (value: number) => void,
   offset?: number;
-  plfTitle?: string|JSX.Element|null;
   plfValue?: number|string|null;
+  symbol?: string;
 }
 
 const mapStateToProps = ({ token }: RootState) => ({
@@ -79,8 +61,8 @@ class Values extends PureComponent<Props & PropsFromRedux> {
 
   render() {
     const {
-      amendementInputSize, amendementTitle, amendementValue, baseValue,
-      decimals, editable, onAmendementChange, plfTitle, plfValue,
+      amendementInputSize, amendementValue, baseValue,
+      decimals, editable, onAmendementChange, plfValue, symbol,
     } = this.props;
 
     let { offset } = this.props;
@@ -93,6 +75,15 @@ class Values extends PureComponent<Props & PropsFromRedux> {
       return value !== null && value !== undefined;
     }
 
+    function isEqual(
+      value1: number|string|null|undefined, value2: number|string|null|undefined,
+    ): boolean {
+      if (typeof value1 === "number" && typeof value2 === "number") {
+        return formatNumber(value1, { decimals }) === formatNumber(value2, { decimals });
+      }
+      return value1 === value2;
+    }
+
     return (
       <span className={styles.noOverflow}>
         {
@@ -100,12 +91,12 @@ class Values extends PureComponent<Props & PropsFromRedux> {
             && "-"
         }
         {
-          isDefined(baseValue) && baseValue !== plfValue && (
+          isDefined(baseValue) && !isEqual(baseValue, plfValue) && (
             <span className={classNames({
               [styles.baseValue]: true,
-              [styles.replacedWithPlf]: plfValue !== baseValue,
-              [styles.replacedWithAmendement]: plfValue === baseValue
-                && amendementValue !== plfValue,
+              [styles.replacedWithPlf]: !isEqual(plfValue, baseValue),
+              [styles.replacedWithAmendement]: isEqual(plfValue, baseValue)
+                && !isEqual(amendementValue, plfValue),
             })}>
               {typeof baseValue === "string" ? baseValue : formatNumber(baseValue + offset, { decimals })}
             </span>
@@ -113,61 +104,67 @@ class Values extends PureComponent<Props & PropsFromRedux> {
         }
         {
           isDefined(baseValue)
-          && baseValue !== plfValue
+          && !isEqual(baseValue, plfValue)
           && (isDefined(plfValue) || isDefined(amendementValue))
             && <span>&nbsp;&nbsp;</span>
         }
         {
-          isDefined(plfValue) && amendementValue !== plfValue && withTooltip(
-            PlfTooltip,
-            plfTitle,
+          isDefined(plfValue) && !isEqual(amendementValue, plfValue) && (
             <span className={classNames({
-              [styles.baseValue]: baseValue === plfValue,
-              [styles.plfValue]: baseValue !== plfValue,
-              [styles.replacedWithAmendement]: amendementValue !== plfValue,
+              [styles.baseValue]: isEqual(baseValue, plfValue),
+              [styles.plfValue]: !isEqual(baseValue, plfValue),
+              [styles.replacedWithAmendement]: !isEqual(amendementValue, plfValue),
             })}>
               {typeof plfValue === "string" ? plfValue : formatNumber(plfValue + offset, { decimals })}
-            </span>,
+            </span>
           )
         }
         {
           isDefined(plfValue)
-          && amendementValue !== plfValue
+          && !isEqual(amendementValue, plfValue)
           && isDefined(amendementValue)
           && <span>&nbsp;&nbsp;</span>
         }
         {
-          // eslint-disable-next-line no-nested-ternary
-          isDefined(amendementValue) && withTooltip(ReformTooltip, amendementTitle, editable
-            ? (
-              typeof amendementValue === "number" ? (
-                <NumberInput
-                  className={classNames({
-                    [styles.baseValue]: amendementValue === plfValue && plfValue === baseValue,
-                    [styles.plfValue]: amendementValue === plfValue && plfValue !== baseValue,
-                    [styles.amendementValue]: amendementValue !== plfValue,
-                    // Sizes
-                    [styles.amendementInput]: true,
-                    [styles.smallInput]: amendementInputSize === "small",
-                    [styles.xlInput]: amendementInputSize === "xl",
-                  })}
-                  value={amendementValue + offset}
-                  onChange={onAmendementChange
-                    ? value => onAmendementChange(value - (offset as number))
-                    : (() => {})
-                  }
-                  onEnter={this.runSimulation} />
-              ) : null
-            )
-            : (
-              <span className={classNames({
-                [styles.baseValue]: amendementValue === plfValue && plfValue === baseValue,
-                [styles.plfValue]: amendementValue === plfValue && plfValue !== baseValue,
-                [styles.amendementValue]: amendementValue !== plfValue,
-              })}>
-                {typeof amendementValue === "string" ? amendementValue : formatNumber(amendementValue + offset, { decimals })}
-              </span>
-            ))
+          isDefined(amendementValue) && (
+            <span>
+              {
+              // eslint-disable-next-line no-nested-ternary
+                editable ? (
+                  typeof amendementValue === "number" ? (
+                    <NumberInput
+                      className={classNames({
+                        [styles.baseValue]: isEqual(amendementValue, plfValue)
+                          && isEqual(plfValue, baseValue),
+                        [styles.plfValue]: isEqual(amendementValue, plfValue)
+                          && !isEqual(plfValue, baseValue),
+                        [styles.amendementValue]: !isEqual(amendementValue, plfValue),
+                        // Sizes
+                        [styles.amendementInput]: true,
+                        [styles.smallInput]: amendementInputSize === "small",
+                        [styles.xlInput]: amendementInputSize === "xl",
+                      })}
+                      value={amendementValue + offset}
+                      onChange={onAmendementChange
+                        ? value => onAmendementChange(value - (offset as number))
+                        : (() => {})
+                      }
+                      onEnter={this.runSimulation} />
+                  ) : null
+                ) : (
+                  <span className={classNames({
+                    [styles.baseValue]: isEqual(amendementValue, plfValue)
+                      && isEqual(plfValue, baseValue),
+                    [styles.plfValue]: isEqual(amendementValue, plfValue)
+                      && !isEqual(plfValue, baseValue),
+                    [styles.amendementValue]: !isEqual(amendementValue, plfValue),
+                  })}>
+                    {typeof amendementValue === "string" ? amendementValue : formatNumber(amendementValue + offset, { decimals })}
+                  </span>
+                )}
+              {symbol && ` ${symbol}`}
+            </span>
+          )
         }
       </span>
     );
