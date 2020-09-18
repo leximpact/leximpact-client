@@ -88,7 +88,7 @@ export const PLF_DOTATIONS_DEFAULT_STATE: DotationsState = {
         popMinSeuilHaut: 10000,
         rapportPotentielFinancier: 2.5,
         pourcentageRangSeuilBas: 10,
-        pourcentageRangSeuilHaut: 66.66,
+        pourcentageRangSeuilHaut: 66.67,
         // Article L2334-17 du CGCT
         indiceSynthetique: {
           ponderationPotentielFinancier: 30,
