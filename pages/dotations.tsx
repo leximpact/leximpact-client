@@ -27,12 +27,13 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 class DotationPage extends PureComponent<PropsFromRedux> {
   componentDidMount() {
-    const { addCommunesTypes, addFakePlf } = this.props;
+    const { addCommunesTypes, addFakePlf, simulate } = this.props;
     const url = new URLSearchParams(window.location.search);
     if (url.has("fauxplf")) {
       addFakePlf();
     }
     addCommunesTypes();
+    simulate();
   }
 
   render() {
