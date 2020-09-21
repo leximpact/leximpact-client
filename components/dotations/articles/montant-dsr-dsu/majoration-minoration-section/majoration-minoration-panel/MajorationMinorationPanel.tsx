@@ -1,10 +1,13 @@
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
 // import Checkbox from "@material-ui/core/Checkbox";
 import { PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
 
 import { updateParameter } from "../../../../../../redux/actions";
+// eslint-disable-next-line no-unused-vars
+import { RootState } from "../../../../../../redux/reducers";
 import { ItemExpandablePanel, Values } from "../../../../../common";
 import styles from "./MajorationMinorationPanel.module.scss";
 
@@ -13,90 +16,97 @@ interface Props {
 }
 
 interface State {
-  value: number;
+  dsr: number;
+  dsu: number;
 }
 
+const mapStateToProps = ({ parameters }: RootState) => ({
+  plfDsr: parameters.plf.dotations.montants.dsr.variation,
+  plfDsu: parameters.plf.dotations.montants.dsu.variation,
+});
+
 const mapDispatchToProps = dispatch => ({
-  addVariation: value => {
-    dispatch(updateParameter("dotations.montants.dsr.variation", value));
-    dispatch(updateParameter("dotations.montants.dsu.variation", value));
+  addVariations: (dsr: number, dsu: number) => {
+    dispatch(updateParameter("dotations.montants.dsr.variation", dsr));
+    dispatch(updateParameter("dotations.montants.dsu.variation", dsu));
   }
 });
 
-const connector = connect(() => ({}), mapDispatchToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 class MajorationMinorationPanel extends PureComponent<PropsFromRedux & Props, State> {
-  constructor(props) {
+  constructor(props: PropsFromRedux & Props) {
     super(props);
     this.state = {
-      value: 90,
+      dsr: props.plfDsr,
+      dsu: props.plfDsu,
     };
-    this.changeValue = this.changeValue.bind(this);
+    this.changeDsr = this.changeDsr.bind(this);
+    this.changeDsu = this.changeDsu.bind(this);
     this.add = this.add.bind(this);
   }
 
-  changeValue(value: number) {
-    this.setState({ value });
+  changeDsr(dsr: number) {
+    this.setState({ dsr });
+  }
+
+  changeDsu(dsu: number) {
+    this.setState({ dsu });
   }
 
   add() {
-    const { addVariation, type } = this.props;
-    const { value } = this.state;
-    addVariation(type === "majoration" ? value : -value);
+    const { addVariations, type } = this.props;
+    const { dsr, dsu } = this.state;
+    if (type === "majoration") {
+      addVariations(dsr, dsu);
+    } else {
+      addVariations(-dsr, -dsu);
+    }
   }
 
   render() {
     const { type } = this.props;
-    const { value } = this.state;
+    const { dsr, dsu } = this.state;
     return (
       <div>
         <br />
         <ItemExpandablePanel title={`Ajouter une ${type} DSR/DSU en 2021`}>
           <div className={styles.container}>
             <div>
-              {/* <div>
-                <Checkbox
-                  checked
-                  color="primary"
-                  onChange={() => { }}
-                />
-                {`${type === "majoration" ? "majorer" : "minorer"}
-                la dotation de solidarité rurale (DSR)`}
-              </div> */}
-              <div className={styles.values}>
-              de
-                {" "}
-                <Values
-                  editable
-                  amendementInputSize="small"
-                  amendementValue={value}
-                  onAmendementChange={this.changeValue}
-                />
-                {" "}
-              millions d&apos;euros chacune
-              </div>
-              {/* <div>
-                <Checkbox
-                  checked
-                  color="primary"
-                  onChange={() => { }}
-                />
+              <div>
                 {`${type === "majoration" ? "majorer" : "minorer"}
                 la dotation de solidarité urbaine (DSU)`}
               </div>
               <div className={styles.values}>
-              de
+                de
                 {" "}
                 <Values
                   editable
                   amendementInputSize="small"
-                  amendementValue={90}
-                  baseValue={90} />
+                  amendementValue={dsu}
+                  onAmendementChange={this.changeDsu}
+                />
                 {" "}
-              millions d&apos;euros
-              </div> */}
+                millions d&apos;euros
+              </div>
+              <div>
+                {`${type === "majoration" ? "majorer" : "minorer"}
+                la dotation de solidarité rurale (DSR)`}
+              </div>
+              <div className={styles.values}>
+                de
+                {" "}
+                <Values
+                  editable
+                  amendementInputSize="small"
+                  amendementValue={dsr}
+                  onAmendementChange={this.changeDsr}
+                />
+                {" "}
+                millions d&apos;euros
+              </div>
               <div className={styles.btn}>
                 <Button color="primary" variant="contained" onClick={this.add}>Valider</Button>
               </div>
