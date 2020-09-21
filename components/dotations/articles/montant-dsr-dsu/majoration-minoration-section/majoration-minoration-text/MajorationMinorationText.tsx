@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
   removeVariation: () => {
     dispatch(updateParameter("dotations.montants.dsr.variation", 0));
     dispatch(updateParameter("dotations.montants.dsu.variation", 0));
-  }
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -35,20 +35,20 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
 class MajorationMinorationText extends PureComponent<PropsFromRedux> {
-
-  inMillions(n: number): string {
+  static inMillions(n: number): string {
     return `${formatNumber(Math.sign(n) * n)} million${Math.abs(n) > 1 ? "s" : ""}`;
   }
 
-  getMontantsText(dsr: number, dsu: number): string {
+  static getMontantsText(dsr: number, dsu: number): string {
     // The two amounts should havve the same sign.
     if ((dsr >= 0 && dsu < 0) || (dsu >= 0 && dsr < 0)) {
-      return 'Une erreur est survenue. Merci de contacter leximpact@an.fr.';
+      return "Une erreur est survenue. Merci de contacter leximpact@an.fr.";
     }
+    // eslint-disable-next-line prefer-template
     return (dsr >= 0 ? "augmentent au moins" : "baissent")
       + (dsr !== dsu ? ", respectivement, de " : " de ")
       + this.inMillions(dsu)
-      + (dsr !== dsu ? " et de " + this.inMillions(dsr) : "")
+      + (dsr !== dsu ? ` et de ${this.inMillions(dsr)}` : "")
       + " d'euros"
       + (dsr === dsu ? " chacun" : "");
   }
@@ -57,7 +57,8 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
     const { amendement, plf, removeVariation } = this.props;
     const plfHasVariations = plf.dsr !== 0 || plf.dsu !== 0;
     const amendementHasVariations = amendement.dsr !== 0 || amendement.dsu !== 0;
-    const plfAndAmendementAreDifferent = (plf.dsr !== amendement.dsr) || (plf.dsu !== amendement.dsu);
+    const plfAndAmendementAreDifferent = (plf.dsr !== amendement.dsr)
+      || (plf.dsu !== amendement.dsu);
 
     return (
       <div>
@@ -87,7 +88,7 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
               [styles.replacedWithAmendement]: plfAndAmendementAreDifferent,
               [styles.bold]: true,
             })}>
-              {this.getMontantsText(plf.dsr, plf.dsu)}
+              {MajorationMinorationText.getMontantsText(plf.dsr, plf.dsu)}
             </span>
           )
         }
@@ -98,7 +99,7 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
               [styles.bold]: true,
             })}>
               {" "}
-              {this.getMontantsText(amendement.dsr, amendement.dsu)}
+              {MajorationMinorationText.getMontantsText(amendement.dsr, amendement.dsu)}
             </span>
           )
         }

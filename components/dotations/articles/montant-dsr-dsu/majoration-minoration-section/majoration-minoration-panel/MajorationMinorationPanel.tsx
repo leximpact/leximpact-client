@@ -1,6 +1,4 @@
 import Button from "@material-ui/core/Button";
-import Checkbox from "@material-ui/core/Checkbox";
-// import Checkbox from "@material-ui/core/Checkbox";
 import { PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
@@ -29,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
   addVariations: (dsr: number, dsu: number) => {
     dispatch(updateParameter("dotations.montants.dsr.variation", dsr));
     dispatch(updateParameter("dotations.montants.dsu.variation", dsu));
-  }
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
