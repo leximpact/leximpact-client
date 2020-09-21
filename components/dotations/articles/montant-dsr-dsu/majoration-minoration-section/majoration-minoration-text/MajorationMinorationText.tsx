@@ -40,8 +40,8 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
   }
 
   static getMontantsText(dsr: number, dsu: number): string {
-    // The two amounts should havve the same sign.
-    if ((dsr >= 0 && dsu < 0) || (dsu >= 0 && dsr < 0)) {
+    // The two amounts should have the same sign.
+    if ((dsr > 0 && dsu < 0) || (dsu > 0 && dsr < 0)) {
       return "Une erreur est survenue. Merci de contacter leximpact@an.fr.";
     }
     // eslint-disable-next-line prefer-template
