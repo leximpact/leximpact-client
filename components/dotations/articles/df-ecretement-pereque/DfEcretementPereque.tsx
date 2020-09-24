@@ -1,15 +1,18 @@
 import { Fragment, PureComponent } from "react";
 
 import { ExpandablePanelSubTitle, ExpandableText, ParameterValues } from "../../../common";
+import styles from "./DfEcretementPereque.module.scss";
 
 export class DfEcretementPereque extends PureComponent {
   render() {
     // Article L2334-20 du CGCT
     return (
       <Fragment>
+        <div className={styles.articleName}>
+          Art. L2334-7 du CGCT III. § 5
+        </div>
         <ExpandablePanelSubTitle
-          subTitle="§ 5"
-          title="Périmètre des communes concernées"
+          title="Communes non concernées par l&apos;écrêtement"
         />
         A compter de 2015, les communes dont le potentiel fiscal par habitant
         est inférieur à
@@ -24,6 +27,9 @@ export class DfEcretementPereque extends PureComponent {
         dotation forfaitaire égale à celle calculée en application du présent III.
         <br />
         <br />
+        <ExpandablePanelSubTitle
+          title="Communes concernées par l&apos;écrêtement"
+        />
         Pour les communes dont le potentiel fiscal par habitant est supérieur ou
         égal à
         {" "}
@@ -55,8 +61,7 @@ export class DfEcretementPereque extends PureComponent {
         <br />
         <br />
         <ExpandablePanelSubTitle
-          subTitle="§ 5"
-          title="Conditions d&apos;application"
+          title="Conditions d&apos;application par l&apos;écrêtement"
         />
         Cette minoration ne peut être supérieure à
         {" "}

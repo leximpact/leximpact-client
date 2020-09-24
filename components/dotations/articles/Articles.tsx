@@ -96,11 +96,7 @@ export class Articles extends PureComponent {
               expanded
               icon={<BusinessCenterIcon />}
               title="Dotation forfaitaire (DF)">
-              <SecondaryExpandablePanel
-                subTitle="Article L2334-7 du CGCT - III."
-                title="Règles de péréquation par écrêtement">
-                <DfEcretementPereque />
-              </SecondaryExpandablePanel>
+              <DfEcretementPereque />
             </PrimaryExpandablePanel>
           )}
         </div>
