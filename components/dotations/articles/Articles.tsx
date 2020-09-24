@@ -51,24 +51,6 @@ export class Articles extends PureComponent {
               <DsrFractionCible />
             </SecondaryExpandablePanel>
           </PrimaryExpandablePanel>
-          {isDfVisible && (
-            <PrimaryExpandablePanel
-              expanded
-              icon={<BusinessCenterIcon />}
-              title="Dotation forfaitaire (DF)">
-              <SecondaryExpandablePanel
-                expanded
-                subTitle="Article L2334-7 du CGCT - III."
-                title="Répartition">
-                <DfReglesGenerales />
-              </SecondaryExpandablePanel>
-              <SecondaryExpandablePanel
-                subTitle="Article L2334-7 du CGCT - III."
-                title="Règles de péréquation par écrêtement">
-                <DfEcretementPereque />
-              </SecondaryExpandablePanel>
-            </PrimaryExpandablePanel>
-          )}
           <PrimaryExpandablePanel
             expanded
             help="dsu"
@@ -90,6 +72,24 @@ export class Articles extends PureComponent {
               <DsuIndice />
             </SecondaryExpandablePanel>
           </PrimaryExpandablePanel>
+          {isDfVisible && (
+            <PrimaryExpandablePanel
+              expanded
+              icon={<BusinessCenterIcon />}
+              title="Dotation forfaitaire (DF)">
+              <SecondaryExpandablePanel
+                expanded
+                subTitle="Article L2334-7 du CGCT - III."
+                title="Répartition">
+                <DfReglesGenerales />
+              </SecondaryExpandablePanel>
+              <SecondaryExpandablePanel
+                subTitle="Article L2334-7 du CGCT - III."
+                title="Règles de péréquation par écrêtement">
+                <DfEcretementPereque />
+              </SecondaryExpandablePanel>
+            </PrimaryExpandablePanel>
+          )}
           <PrimaryExpandablePanel
             title="Montant des dotations">
             {/* <SecondaryExpandablePanel
