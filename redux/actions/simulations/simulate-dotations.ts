@@ -343,9 +343,23 @@ export const simulateDotations = () => (dispatch, getState) => {
 
       /* User DSR for DF values. */
       // eslint-disable-next-line no-param-reassign
-      payload.amendement.communes.df = payload.amendement.communes.dsr;
+      payload.amendement.communes.df = {
+        communes: payload.amendement.communes.dsr.communes.map(
+          ({ code }) => ({ code, dotationParHab: 0 }),
+        ),
+        strates: payload.amendement.communes.dsr.strates.map(
+          () => ({ dotationMoyenneParHab: 0, partDotationTotale: 0 }),
+        ),
+      };
       // eslint-disable-next-line no-param-reassign
-      payload.base.communes.df = payload.base.communes.dsr;
+      payload.base.communes.df = {
+        communes: payload.base.communes.dsr.communes.map(
+          ({ code }) => ({ code, dotationParHab: 0 }),
+        ),
+        strates: payload.base.communes.dsr.strates.map(
+          () => ({ dotationMoyenneParHab: 0, partDotationTotale: 0 }),
+        ),
+      };
 
       dispatch(simulateDotationsSuccess(payload));
     })
