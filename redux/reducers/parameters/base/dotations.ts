@@ -102,7 +102,12 @@ export const BASE_DOTATIONS_DEFAULT_STATE: DotationsState = {
         augmentationMax: 4000000,
       },
     },
-    df: {},
+    df: {
+      ecretement:{
+        potentielFiscalLimite: 0.75,
+        pourcentageRecettesMax: 0.01,
+      }
+    },
   },
 };
 

@@ -125,7 +125,12 @@ interface RequestDotationsState {
           augmentationMax: number;
       }
     }
-    df: {}
+    df: {
+      ecretement:{
+        potentielFiscalLimite: number;
+        pourcentageRecettesMax: number;
+      }
+    }
   }
 }
 
