@@ -1,5 +1,4 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
-import HomeIcon from "@material-ui/icons/Home";
 import { PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
@@ -49,7 +48,6 @@ function renderSubCardContent(plf: number|undefined, amendement: number|undefine
           ? (
             <div className={styles.plf}>
               {plf}
-              <HomeIcon fontSize="default" />
             </div>
           )
           : null
@@ -59,7 +57,6 @@ function renderSubCardContent(plf: number|undefined, amendement: number|undefine
           ? (
             <div className={styles.amendement}>
               {amendement}
-              <HomeIcon fontSize="default" />
             </div>
           ) : null
       }

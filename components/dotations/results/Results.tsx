@@ -37,7 +37,7 @@ class Results extends PureComponent<Props> {
                 name={INFORMATION_PANEL_NAME}
                 title="Les montants des dotations calculées ci-dessous sont des estimations."
               >
-                Les dotations de LexImpact s’appuient sur les données de l’année 2019. Elles
+                Les dotations de LexImpact s’appuient sur les données de l’année 2020. Elles
                 peuvent donc différer des montants effectivement perçus l’année prochaine.
                 Seuls les montants calculés par la DGCL font foi.
               </InformationPanel>
@@ -51,7 +51,7 @@ class Results extends PureComponent<Props> {
           <Grid item lg={4} md={6} sm={6} xl={3} xs={12}>
             <CommuneSummary dotation="dsu" />
           </Grid>
-          <Grid item lg={8} md={12} sm={6} xl={6} xs={12}>
+          <Grid item lg={12} md={12} sm={6} xl={6} xs={12}>
             <CommuneStrateDetails />
           </Grid>
         </Grid>

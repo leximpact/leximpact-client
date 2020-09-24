@@ -37,6 +37,12 @@ export class TrendHelpWindow extends PureComponent {
               identiques.
             </li>
           </ul>
+          <em>
+            A ce jour, la tendance tient compte uniquement de la DSU et de la DSR. Elle ne
+            prend pas en considération une baisse éventuelle de la dotation forfaitaire.
+            En effet, une augmentation des montants de la DSR et/ou de la DSU peut
+            s&apos;accompagner d&apos;une baisse de la DF par écrêtement.
+          </em>
         </div>
       </HelpWindow>
     );
