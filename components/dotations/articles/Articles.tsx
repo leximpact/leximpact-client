@@ -5,7 +5,6 @@ import { Fragment, PureComponent } from "react";
 
 import { PrimaryExpandablePanel, SecondaryExpandablePanel } from "../../common";
 import { DfEcretementPereque } from "./df-ecretement-pereque";
-import { DfReglesGenerales } from "./df-regles-generales";
 import { DsrEligibilite } from "./dsr-eligibilite";
 import { DsrFractionBourgCentre } from "./dsr-fraction-bourg-centre";
 import { DsrFractionCible } from "./dsr-fraction-cible";
@@ -97,12 +96,6 @@ export class Articles extends PureComponent {
               expanded
               icon={<BusinessCenterIcon />}
               title="Dotation forfaitaire (DF)">
-              <SecondaryExpandablePanel
-                expanded
-                subTitle="Article L2334-7 du CGCT - III."
-                title="Répartition">
-                <DfReglesGenerales />
-              </SecondaryExpandablePanel>
               <SecondaryExpandablePanel
                 subTitle="Article L2334-7 du CGCT - III."
                 title="Règles de péréquation par écrêtement">

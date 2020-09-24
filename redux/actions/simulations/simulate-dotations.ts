@@ -290,6 +290,7 @@ function convertRates(dotations: RequestDotationsState): RequestDotationsState {
     "communes.dsu.eligibilite.indiceSynthetique.ponderationLogementsSociaux",
     "communes.dsu.eligibilite.indiceSynthetique.ponderationAideAuLogement",
     "communes.dsu.eligibilite.indiceSynthetique.ponderationRevenu",
+    "communes.df.ecretement.pourcentageRecettesMax",
   ];
   paths.forEach((path) => {
     result = updateIn(result, path.split("."), rate => rate / 100);
