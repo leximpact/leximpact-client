@@ -37,7 +37,7 @@ export class MontantDsrDsu extends PureComponent {
         <br />
         <ExpandablePanelSubTitle
           subTitle="§ 3 à 6"
-          title="Variation annuelle de la DSR et de la DSU" />
+          title="Variation annuelle de la DSU et de la DSR" />
         À compter de 2004, la variation annuelle du solde de la dotation d&apos;aménagement
         est répartie par le comité des finances locales
         {" "}

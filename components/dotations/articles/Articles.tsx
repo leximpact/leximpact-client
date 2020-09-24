@@ -41,7 +41,7 @@ export class Articles extends PureComponent {
             </SecondaryExpandablePanel> */}
             <SecondaryExpandablePanel
               subTitle="Article L2334-13 du CGCT"
-              title="Montants de la DSR et de la DSU">
+              title="Montants de la DSU et de la DSR">
               <MontantDsrDsu />
             </SecondaryExpandablePanel>
           </PrimaryExpandablePanel>

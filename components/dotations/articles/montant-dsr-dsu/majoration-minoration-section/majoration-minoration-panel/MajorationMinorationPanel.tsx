@@ -70,7 +70,7 @@ class MajorationMinorationPanel extends PureComponent<PropsFromRedux & Props, St
     return (
       <div>
         <br />
-        <ItemExpandablePanel title={`Ajouter une ${type} DSR/DSU en 2021`}>
+        <ItemExpandablePanel title={`Ajouter une ${type} DSU/DSR en 2021`}>
           <div className={styles.container}>
             <div>
               <div>
