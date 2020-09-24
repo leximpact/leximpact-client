@@ -2,7 +2,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
-import NotInterestedIcon from "@material-ui/icons/NotInterested";
 import { Fragment, PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
@@ -184,9 +183,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                         <td>
                           <BusinessCenterIcon />
                         </td>
-                        <td>
-                          <NotInterestedIcon fontSize="small" />
-                        </td>
+                        <td />
                         <td>
                           <ResultValues
                             decimals={2}
