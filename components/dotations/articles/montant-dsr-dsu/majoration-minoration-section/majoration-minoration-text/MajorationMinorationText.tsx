@@ -12,14 +12,21 @@ import { Button } from "../../../../../ir/articles/buttons";
 import styles from "./MajorationMinorationText.module.scss";
 
 const mapStateToProps = ({ parameters }: RootState) => ({
-  amendement: parameters.amendement.dotations.montants.dsrAndDsu.variation,
-  plf: parameters.plf.dotations.montants.dsrAndDsu.variation,
+  amendement: {
+    dsr: parameters.amendement.dotations.montants.dsr.variation,
+    dsu: parameters.amendement.dotations.montants.dsu.variation,
+  },
+  plf: {
+    dsr: parameters.plf.dotations.montants.dsr.variation,
+    dsu: parameters.plf.dotations.montants.dsu.variation,
+  },
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeVariation: () => dispatch(
-    updateParameter("dotations.montants.dsrAndDsu.variation", 0),
-  ),
+  removeVariation: () => {
+    dispatch(updateParameter("dotations.montants.dsr.variation", 0));
+    dispatch(updateParameter("dotations.montants.dsu.variation", 0));
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -28,16 +35,39 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
 class MajorationMinorationText extends PureComponent<PropsFromRedux> {
+  static inMillions(n: number): string {
+    return `${formatNumber(Math.sign(n) * n)} million${Math.abs(n) > 1 ? "s" : ""}`;
+  }
+
+  static getMontantsText(dsr: number, dsu: number): string {
+    // The two amounts should have the same sign.
+    if ((dsr > 0 && dsu < 0) || (dsu > 0 && dsr < 0)) {
+      return "Une erreur est survenue. Merci de contacter leximpact@an.fr.";
+    }
+    // eslint-disable-next-line prefer-template
+    return (dsr >= 0 ? "augmentent au moins" : "baissent")
+      + (dsr !== dsu ? ", respectivement, de " : " de ")
+      + this.inMillions(dsu)
+      + (dsr !== dsu ? ` et de ${this.inMillions(dsr)}` : "")
+      + " d'euros"
+      + (dsr === dsu ? " chacun" : "");
+  }
+
   render() {
     const { amendement, plf, removeVariation } = this.props;
+    const plfHasVariations = plf.dsr !== 0 || plf.dsu !== 0;
+    const amendementHasVariations = amendement.dsr !== 0 || amendement.dsu !== 0;
+    const plfAndAmendementAreDifferent = (plf.dsr !== amendement.dsr)
+      || (plf.dsu !== amendement.dsu);
+
     return (
       <div>
         {
-          (plf !== 0 || amendement !== 0) && (
+          (plfHasVariations || amendementHasVariations) && (
             <span className={classNames({
-              [styles.plfValue]: plf !== 0,
-              [styles.amendementValue]: plf === 0,
-              [styles.replacedWithAmendement]: amendement === 0,
+              [styles.plfValue]: plfHasVariations,
+              [styles.amendementValue]: !plfHasVariations,
+              [styles.replacedWithAmendement]: !amendementHasVariations,
             })}>
               <br />
               <span className={styles.bold}>
@@ -52,59 +82,41 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
           )
         }
         {
-          plf !== 0 && (
+          plfHasVariations && (
             <span className={classNames({
               [styles.plfValue]: true,
-              [styles.replacedWithAmendement]: amendement !== plf,
+              [styles.replacedWithAmendement]: plfAndAmendementAreDifferent,
               [styles.bold]: true,
             })}>
-              {plf > 0 ? "augmentent au moins" : "baissent"}
-              {" "}
-              de
-              {" "}
-              {formatNumber(Math.sign(plf) * plf)}
-              {" "}
-              million
-              {Math.abs(plf) > 1 ? "s" : ""}
-              {" "}
-              d&apos;euros
+              {MajorationMinorationText.getMontantsText(plf.dsr, plf.dsu)}
             </span>
           )
         }
         {
-          amendement !== 0 && plf !== amendement && (
+          amendementHasVariations && plfAndAmendementAreDifferent && (
             <span className={classNames({
               [styles.amendementValue]: true,
               [styles.bold]: true,
             })}>
               {" "}
-              {amendement > 0 ? "augmentent au moins" : "baissent"}
-              {" "}
-              de
-              {" "}
-              {formatNumber(Math.sign(amendement) * amendement)}
-              {" "}
-              million
-              {Math.abs(amendement) > 1 ? "s" : ""}
-              {" "}
-              d&apos;euros
+              {MajorationMinorationText.getMontantsText(amendement.dsr, amendement.dsu)}
             </span>
           )
         }
         {
-          (plf !== 0 || amendement !== 0) && (
+          (plfHasVariations || amendementHasVariations) && (
             <span className={classNames({
-              [styles.plfValue]: plf !== 0,
-              [styles.amendementValue]: plf === 0,
-              [styles.replacedWithAmendement]: amendement === 0,
+              [styles.plfValue]: plfHasVariations,
+              [styles.amendementValue]: !plfHasVariations,
+              [styles.replacedWithAmendement]: !amendementHasVariations,
             })}>
               {" "}
-              chacun par rapport aux montants mis en répartition en 2020.
+              par rapport aux montants mis en répartition en 2020.
             </span>
           )
         }
         {
-          amendement !== 0 && (
+          amendementHasVariations && (
             <Fragment>
               <br />
               <br />

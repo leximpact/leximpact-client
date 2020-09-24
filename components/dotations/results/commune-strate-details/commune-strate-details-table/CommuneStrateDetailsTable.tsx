@@ -51,7 +51,11 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                 <br />
                 de communes éligibles
               </th>
-              <th rowSpan={2}>Dotation moyenne par habitant</th>
+              <th rowSpan={2}>
+                Dotation moyenne
+                <br />
+                par habitant
+              </th>
               <th rowSpan={2}>
                 Répartition
                 <br />
@@ -59,8 +63,16 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
               </th>
             </tr>
             <tr>
-              <th>Proportion population par strate</th>
-              <th>Potentiel financier moyen par hab.</th>
+              <th>
+                Proportion population
+                <br />
+                par strate
+              </th>
+              <th>
+                Potentiel financier moyen
+                <br />
+                par hab.
+              </th>
             </tr>
           </thead>
           {!isFetching && (

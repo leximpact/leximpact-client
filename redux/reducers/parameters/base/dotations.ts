@@ -7,7 +7,10 @@ export const BASE_DOTATIONS_DEFAULT_STATE: DotationsState = {
   // Article L1613-1 du CGCT
   montants: {
     dgf: 26846874416,
-    dsrAndDsu: {
+    dsr: {
+      variation: 0,
+    },
+    dsu: {
       variation: 0,
     },
   },
