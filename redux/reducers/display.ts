@@ -8,7 +8,7 @@ interface State {
 
 const DEFAULT_STATE: State = {
   currentHelpWindow: null,
-  currentInformationPanels: ["ir", "dotations"],
+  currentInformationPanels: ["ir", "dotations", "Refaction Outre-Mer"],
 };
 
 export function display(state = DEFAULT_STATE, action: Action): State {

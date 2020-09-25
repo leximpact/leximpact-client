@@ -1,26 +1,12 @@
 import classicalBuilding from "@iconify/icons-twemoji/classical-building";
 import warningIcon from "@iconify/icons-twemoji/warning";
 import { Icon } from "@iconify/react";
-import { withStyles } from "@material-ui/core/styles";
 import { Fragment, PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
 
-import { ParameterValues } from "../../../common";
-
-const styles = () => ({
-  warningOutremer: {
-    backgroundColor: "#FFAC33",
-    borderRadius: "4px",
-    color: "#000000",
-    fontFamily: "Lato",
-    fontSize: "12px",
-    fontWeight: "regular",
-    margin: "10px",
-    padding: "10px",
-    width: "95%",
-  },
-});
+import { InformationPanel, ParameterValues } from "../../../common";
+import styles from "./Alinea3.module.scss";
 
 interface Props {
   classes: any;
@@ -37,20 +23,23 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 class Alinea3 extends PureComponent<PropsFromRedux & Props> {
   render() {
     const {
-      classes,
       isUserLogged,
     } = this.props;
     return (
       <Fragment>
         {isUserLogged ? (
-          <div className={classes.warningOutremer}>
-            <Icon icon={warningIcon} />
-            <Icon icon={classicalBuilding} />
-            <span>
-              La modification des paramètres de la décote outre-mer est
-              actuellement uniquement prise en compte pour le calcul de l&apos;impôt des
-              foyers fiscaux types.
-            </span>
+          <div className={styles.message}>
+            <InformationPanel name="Refaction Outre-Mer" title="Réfaction Outre-Mer">
+              <Icon icon={warningIcon} />
+              {" "}
+              <Icon icon={classicalBuilding} />
+              {" "}
+              <span>
+                La modification des paramètres de la décote outre-mer est
+                actuellement uniquement prise en compte pour le calcul de l&apos;impôt des
+                foyers fiscaux types.
+              </span>
+            </InformationPanel>
           </div>
         ) : null}
         3. Le montant de l&apos;impôt résultant de l&apos;application des
@@ -93,6 +82,6 @@ class Alinea3 extends PureComponent<PropsFromRedux & Props> {
   }
 }
 
-const ConnectedComponent = connector(withStyles(styles as any)(Alinea3));
+const ConnectedComponent = connector(Alinea3);
 
 export { ConnectedComponent as Alinea3 };
