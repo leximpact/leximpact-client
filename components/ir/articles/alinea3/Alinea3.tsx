@@ -2,8 +2,11 @@ import classicalBuilding from "@iconify/icons-twemoji/classical-building";
 import warningIcon from "@iconify/icons-twemoji/warning";
 import { Icon } from "@iconify/react";
 import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
 import { Fragment, PureComponent } from "react";
+// eslint-disable-next-line no-unused-vars
+import { connect, ConnectedProps } from "react-redux";
+
+import { ParameterValues } from "../../../common";
 
 const styles = () => ({
   warningOutremer: {
@@ -19,10 +22,21 @@ const styles = () => ({
   },
 });
 
-class ArticleAlinea3 extends PureComponent {
+interface Props {
+  classes: any;
+}
+
+const mapStateToProps = ({ token }) => ({
+  isUserLogged: Boolean(token),
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+class Alinea3 extends PureComponent<PropsFromRedux & Props> {
   render() {
     const {
-      baseOutputInput,
       classes,
       isUserLogged,
     } = this.props;
@@ -42,21 +56,35 @@ class ArticleAlinea3 extends PureComponent {
         3. Le montant de l&apos;impôt résultant de l&apos;application des
         dispositions précédentes est réduit de
         {" "}
-        {baseOutputInput("plafond_qf.abat_dom.taux_GuadMarReu")}
+        <ParameterValues
+          editable
+          amendementInputSize="small"
+          path="impot_revenu.plafond_qf.abat_dom.taux_GuadMarReu"
+        />
         {" "}
         %, dans la limite de
         {" "}
-        {baseOutputInput("plafond_qf.abat_dom.plaf_GuadMarReu")}
+        <ParameterValues
+          editable
+          path="impot_revenu.plafond_qf.abat_dom.plaf_GuadMarReu"
+        />
         {" "}
         € pour les
         contribuables domiciliés dans les départements de la Guadeloupe, de
         la Martinique et de la Réunion ; cette réduction est égale à
         {" "}
-        {baseOutputInput("plafond_qf.abat_dom.taux_GuyMay")}
+        <ParameterValues
+          editable
+          amendementInputSize="small"
+          path="impot_revenu.plafond_qf.abat_dom.taux_GuyMay"
+        />
         {" "}
         %, dans la limite de
         {" "}
-        {baseOutputInput("plafond_qf.abat_dom.plaf_GuyMay")}
+        <ParameterValues
+          editable
+          path="impot_revenu.plafond_qf.abat_dom.plaf_GuyMay"
+        />
         {" "}
         €, pour les contribuables domiciliés dans les départements de la
         Guyane et de Mayotte ;
@@ -65,10 +93,6 @@ class ArticleAlinea3 extends PureComponent {
   }
 }
 
-ArticleAlinea3.propTypes = {
-  baseOutputInput: PropTypes.func.isRequired,
-  classes: PropTypes.shape().isRequired,
-  isUserLogged: PropTypes.bool.isRequired,
-};
+const ConnectedComponent = connector(withStyles(styles as any)(Alinea3));
 
-export default withStyles(styles)(ArticleAlinea3);
+export { ConnectedComponent as Alinea3 };
