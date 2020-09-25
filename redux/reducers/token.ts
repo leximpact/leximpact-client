@@ -1,8 +1,10 @@
+type State = string | null;
+
 // le default state est rempli grace a la lib "redux-cookies-middleware"
 // voir le fichier "./reudx/make-application-state.js"
-const DEFAULT_STATE = null;
+const DEFAULT_STATE: State = null;
 
-const token = (state = DEFAULT_STATE, action) => {
+const token = (state: State = DEFAULT_STATE, action): State => {
   switch (action.type) {
   case "onConnexionTokenLogout":
     return null;
