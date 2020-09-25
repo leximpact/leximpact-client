@@ -35,23 +35,29 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
 class MajorationMinorationText extends PureComponent<PropsFromRedux> {
+  static isMajoration(dsr: number, dsu: number): boolean {
+    return dsr > 0 || dsu > 0;
+  }
+
   static inMillions(n: number): string {
     return `${formatNumber(Math.sign(n) * n)} million${Math.abs(n) > 1 ? "s" : ""}`;
   }
 
   static getMontantsText(dsr: number, dsu: number): string {
-    // The two amounts should have the same sign.
-    if ((dsr > 0 && dsu < 0) || (dsu > 0 && dsr < 0)) {
-      return "Une erreur est survenue. Merci de contacter leximpact@an.fr.";
-    }
     // eslint-disable-next-line prefer-template
-    return (dsr >= 0 ? "augmentent au moins" : "baissent")
+    return (this.isMajoration(dsr, dsu) ? "augmentent au moins" : "baissent")
       + (dsr !== dsu ? ", respectivement, de " : " de ")
       + this.inMillions(dsu)
       + (dsr !== dsu ? ` et de ${this.inMillions(dsr)}` : "")
       + " d'euros"
       + (dsr === dsu ? " chacun" : "");
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  variationsHaveNotTheSameSign({ dsr, dsu }: { dsr: number, dsu: number }): boolean {
+    return (dsr > 0 && dsu < 0) || (dsu > 0 && dsr < 0);
+  }
+
 
   render() {
     const { amendement, plf, removeVariation } = this.props;
@@ -62,6 +68,15 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
 
     return (
       <div>
+        {
+          (this.variationsHaveNotTheSameSign(amendement) || this.variationsHaveNotTheSameSign(plf))
+            && (
+              <strong>
+                Une erreur est survenue. Merci de rafraîchir la page
+                et de contacter leximpact@an.fr.
+              </strong>
+            )
+        }
         {
           (plfHasVariations || amendementHasVariations) && (
             <span className={classNames({
