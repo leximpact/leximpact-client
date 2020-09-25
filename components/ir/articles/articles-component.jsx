@@ -5,27 +5,19 @@ import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 
 import {
-  BaseInputOutput,
   ExpandableText,
-  FormulaOutput,
   PrimaryExpandablePanel,
   SecondaryExpandablePanel,
   Values,
 } from "../../common";
 import fillArrayWith from "../../common/utils/array/fillArrayWith";
-import Alinea3 from "./article-alinea-3";
-import Alinea4a from "./article-alinea-4a";
+import { Alinea4a } from "./alinea-4a";
+import { Alinea3 } from "./alinea3";
 import styles from "./articles.module.scss";
 import { Button } from "./buttons";
 import { Plafonds, ReglesGenerales, ReglesSpecifiques } from "./quotient-familial";
 
 class ArticlesComponent extends React.Component {
-  renderBaseOutputInput = name => <BaseInputOutput name={name} />;
-
-  renderFormulaOutput = (name, facteur = 1) => (
-    <FormulaOutput facteur={facteur} name={name} />
-  );
-
   gimmeIRPartsOfArticle = (i) => {
     const {
       amendement,
@@ -201,7 +193,7 @@ class ArticlesComponent extends React.Component {
               subTitle="Articles 197 - I.2"
               title="Plafonds"
             >
-              <Plafonds baseOutputInput={this.renderBaseOutputInput} />
+              <Plafonds />
             </SecondaryExpandablePanel>
             <SecondaryExpandablePanel
               subTitle="Articles 194 et 195"
@@ -214,16 +206,13 @@ class ArticlesComponent extends React.Component {
             subTitle="Article 197 du CGI - I.3"
             title="Réfaction outre-mer"
           >
-            <Alinea3 baseOutputInput={this.renderBaseOutputInput} />
+            <Alinea3 />
           </PrimaryExpandablePanel>
           <PrimaryExpandablePanel
             subTitle="Article 197 du CGI - I.4a"
             title="Décote"
           >
-            <Alinea4a
-              baseOutputInput={this.renderBaseOutputInput}
-              formulaOutputInput={this.renderFormulaOutput}
-            />
+            <Alinea4a />
           </PrimaryExpandablePanel>
         </div>
       </Fragment>

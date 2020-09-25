@@ -1,5 +1,6 @@
 import CloseIcon from "@material-ui/icons/Close";
-import React, { PureComponent } from "react";
+// eslint-disable-next-line no-unused-vars
+import React, { PureComponent, ReactChild } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
 
@@ -9,7 +10,7 @@ import { RootState } from "../../../redux/reducers";
 import styles from "./InformationPanel.module.scss";
 
 interface Props {
-  children:|string;
+  children: ReactChild | ReactChild[];
   title: string;
   name: string;
 }
