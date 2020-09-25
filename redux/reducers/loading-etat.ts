@@ -1,6 +1,8 @@
-const DEFAULT_STATE = "computed";
+type State = "loading"|"computed"|"disabled";
 
-const loadingEtat = (state = DEFAULT_STATE, action) => {
+const DEFAULT_STATE: State = "computed";
+
+const loadingEtat = (state: State = DEFAULT_STATE, action): State => {
   switch (action.type) {
   case "onLoadingEtatStart":
     return "loading";
