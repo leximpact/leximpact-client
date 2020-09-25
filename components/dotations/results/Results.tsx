@@ -32,7 +32,7 @@ class Results extends PureComponent<Props> {
       <div className={styles.container}>
         {isInformationPanelVisible && (
           <Grid container spacing={3}>
-            <Grid item lg={8} md={12} sm={12} xl={9} xs={12}>
+            <Grid item lg={12} xl={8}>
               <InformationPanel
                 name={INFORMATION_PANEL_NAME}
                 title="Les montants des dotations calculées ci-dessous sont des estimations."
