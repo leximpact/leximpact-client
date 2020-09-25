@@ -35,15 +35,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
 class MajorationMinorationText extends PureComponent<PropsFromRedux> {
-  static isMajoration(dsr: number, dsu: number): boolean {
-    return dsr > 0 || dsu > 0;
-  }
-
-  static inMillions(n: number): string {
-    return `${formatNumber(Math.sign(n) * n)} million${Math.abs(n) > 1 ? "s" : ""}`;
-  }
-
-  static getMontantsText(dsr: number, dsu: number): string {
+  getMontantsText(dsr: number, dsu: number): string {
     // eslint-disable-next-line prefer-template
     return (this.isMajoration(dsr, dsu) ? "augmentent au moins" : "baissent")
       + (dsr !== dsu ? ", respectivement, de " : " de ")
@@ -53,11 +45,18 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
       + (dsr === dsu ? " chacun" : "");
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  isMajoration(dsr: number, dsu: number): boolean {
+    return dsr > 0 || dsu > 0;
+  }
+
+  inMillions(n: number): string {
+    return `${formatNumber(Math.sign(n) * n)} million${Math.abs(n) > 1 ? "s" : ""}`;
+  }
+
+
   variationsHaveNotTheSameSign({ dsr, dsu }: { dsr: number, dsu: number }): boolean {
     return (dsr > 0 && dsu < 0) || (dsu > 0 && dsr < 0);
   }
-
 
   render() {
     const { amendement, plf, removeVariation } = this.props;
@@ -103,7 +102,7 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
               [styles.replacedWithAmendement]: plfAndAmendementAreDifferent,
               [styles.bold]: true,
             })}>
-              {MajorationMinorationText.getMontantsText(plf.dsr, plf.dsu)}
+              {this.getMontantsText(plf.dsr, plf.dsu)}
             </span>
           )
         }
@@ -114,7 +113,7 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
               [styles.bold]: true,
             })}>
               {" "}
-              {MajorationMinorationText.getMontantsText(amendement.dsr, amendement.dsu)}
+              {this.getMontantsText(amendement.dsr, amendement.dsu)}
             </span>
           )
         }
@@ -129,6 +128,32 @@ class MajorationMinorationText extends PureComponent<PropsFromRedux> {
               par rapport aux montants mis en répartition en 2020.
             </span>
           )
+        }
+        {
+          plfHasVariations && this.isMajoration(plf.dsr, plf.dsu) && (
+            <span className={classNames({
+              [styles.plfValue]: true,
+              [styles.replacedWithAmendement]: !this.isMajoration(amendement.dsr, amendement.dsu),
+            })}>
+              {" "}
+              Cette augmentation est financée par les minorations prévues
+              à l&apos;article L. 2334-7-1.
+            </span>
+          )
+        }
+        {
+          amendementHasVariations
+            && !this.isMajoration(plf.dsr, plf.dsu)
+            && this.isMajoration(amendement.dsr, amendement.dsu)
+            && (
+              <span className={classNames({
+                [styles.amendementValue]: true,
+              })}>
+                {" "}
+                Cette augmentation est financée par les minorations prévues
+                à l&apos;article L. 2334-7-1.
+              </span>
+            )
         }
         {
           amendementHasVariations && (
