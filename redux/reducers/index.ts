@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 
 import { descriptions } from "./descriptions";
-import disabledEtat from "./disabled-etat";
 import { display } from "./display";
 import loadingEtat from "./loading-etat";
 import { parameters } from "./parameters";
@@ -10,7 +9,6 @@ import token from "./token";
 
 const rootReducer = combineReducers({
   descriptions,
-  disabledEtat,
   display,
   loadingEtat,
   parameters,
