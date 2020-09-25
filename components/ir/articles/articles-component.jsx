@@ -7,24 +7,19 @@ import React, { Fragment } from "react";
 import {
   BaseInputOutput,
   ExpandableText,
-  FormulaOutput,
   PrimaryExpandablePanel,
   SecondaryExpandablePanel,
   Values,
 } from "../../common";
 import fillArrayWith from "../../common/utils/array/fillArrayWith";
+import { Alinea4a } from "./alinea-4a";
 import Alinea3 from "./article-alinea-3";
-import Alinea4a from "./article-alinea-4a";
 import styles from "./articles.module.scss";
 import { Button } from "./buttons";
 import { Plafonds, ReglesGenerales, ReglesSpecifiques } from "./quotient-familial";
 
 class ArticlesComponent extends React.Component {
   renderBaseOutputInput = name => <BaseInputOutput name={name} />;
-
-  renderFormulaOutput = (name, facteur = 1) => (
-    <FormulaOutput facteur={facteur} name={name} />
-  );
 
   gimmeIRPartsOfArticle = (i) => {
     const {
@@ -220,10 +215,7 @@ class ArticlesComponent extends React.Component {
             subTitle="Article 197 du CGI - I.4a"
             title="Décote"
           >
-            <Alinea4a
-              baseOutputInput={this.renderBaseOutputInput}
-              formulaOutputInput={this.renderFormulaOutput}
-            />
+            <Alinea4a />
           </PrimaryExpandablePanel>
         </div>
       </Fragment>
