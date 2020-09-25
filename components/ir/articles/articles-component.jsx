@@ -18,7 +18,6 @@ import { Button } from "./buttons";
 import { Plafonds, ReglesGenerales, ReglesSpecifiques } from "./quotient-familial";
 
 class ArticlesComponent extends React.Component {
-
   gimmeIRPartsOfArticle = (i) => {
     const {
       amendement,

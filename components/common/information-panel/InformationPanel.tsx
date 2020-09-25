@@ -1,4 +1,5 @@
 import CloseIcon from "@material-ui/icons/Close";
+// eslint-disable-next-line no-unused-vars
 import React, { PureComponent, ReactChild } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
