@@ -1,5 +1,5 @@
 const updateReformeByName = (name, prevValue) => {
-  let type = null;
+  let type: string|null = null;
   const value = prevValue === "" ? 0 : prevValue;
 
   const shouldUpdateSeuil = name.substring(0, 5) === "seuil";

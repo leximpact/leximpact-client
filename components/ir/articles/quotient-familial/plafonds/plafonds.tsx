@@ -1,17 +1,18 @@
-import PropTypes from "prop-types";
 import { Fragment, PureComponent } from "react";
+
+import { ParameterValues } from "../../../../common";
 
 export class Plafonds extends PureComponent {
   render() {
-    const {
-      baseOutputInput,
-    } = this.props;
     return (
       <Fragment>
         2. La réduction d&apos;impôt résultant de l&apos;application du
         quotient familial ne peut excéder
         {" "}
-        {baseOutputInput("plafond_qf.maries_ou_pacses")}
+        <ParameterValues
+          editable
+          path="impot_revenu.plafond_qf.maries_ou_pacses"
+        />
         {" "}
         € par demi-part ou
         la moitié de cette somme par quart de part s&apos;ajoutant à une
@@ -24,7 +25,10 @@ export class Plafonds extends PureComponent {
         l&apos;article 194, la réduction d&apos;impôt correspondant à la
         part accordée au titre du premier enfant à charge est limitée à
         {" "}
-        {baseOutputInput("plafond_qf.celib_enf")}
+        <ParameterValues
+          editable
+          path="impot_revenu.plafond_qf.celib_enf"
+        />
         {" "}
         €. Lorsque les
         contribuables entretiennent uniquement des enfants dont la charge
@@ -37,7 +41,10 @@ export class Plafonds extends PureComponent {
         dispositions des a, b et e du 1 de l&apos;article 195, ne peut
         excéder
         {" "}
-        {baseOutputInput("plafond_qf.celib")}
+        <ParameterValues
+          editable
+          path="impot_revenu.plafond_qf.celib"
+        />
         {" "}
         € ;
         <br />
@@ -46,7 +53,10 @@ export class Plafonds extends PureComponent {
         a, b, c, d, d bis, e et f du 1 ainsi que des 2 à 6 de l&apos;article
         195 ont droit à une réduction d&apos;impôt égale à
         {" "}
-        {baseOutputInput("plafond_qf.reduc_postplafond")}
+        <ParameterValues
+          editable
+          path="impot_revenu.plafond_qf.reduc_postplafond"
+        />
         {" "}
         €
         pour chacune de ces demi-parts lorsque la réduction de leur
@@ -60,7 +70,10 @@ export class Plafonds extends PureComponent {
         en application du I de l&apos;article 194 ont droit à une réduction
         d&apos;impôt égale à
         {" "}
-        {baseOutputInput("plafond_qf.reduc_postplafond_veuf")}
+        <ParameterValues
+          editable
+          path="impot_revenu.plafond_qf.reduc_postplafond_veuf"
+        />
         {" "}
         € pour cette
         part supplémentaire lorsque la réduction de leur cotisation
@@ -72,7 +85,3 @@ export class Plafonds extends PureComponent {
     );
   }
 }
-
-Plafonds.propTypes = {
-  baseOutputInput: PropTypes.func.isRequired,
-};

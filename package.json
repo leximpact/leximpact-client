@@ -18,9 +18,7 @@
     "start": "NODE_ENV=production node build/dist/server.js",
     "code:check": "eslint -c .eslintrc.json --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
     "code:fix": "eslint --fix -c .eslintrc.json --ext .js,.jsx,.ts,.tsx  --ignore-path .gitignore .",
-    "code:format": "prettier-eslint --write '**/*.{js,jsx,ts,tsx}' --ignore-path .gitignore",
     "test": "jest",
-    "cleanup": "rm -rf ./node_modules",
     "update-snapshots": "jest --updateSnapshot"
   },
   "dependencies": {
@@ -94,8 +92,6 @@
     "jest-cli": "^25.4.0",
     "nodemon": "^1.19.4",
     "postcss": "^7.0.27",
-    "prettier-eslint": "^9.0.1",
-    "prettier-eslint-cli": "^5.0.0",
     "typescript": "^3.8.3"
   },
   "engines": {
