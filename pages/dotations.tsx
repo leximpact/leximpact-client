@@ -10,6 +10,7 @@ import { SimulationPage } from "../components/common";
 import {
   Articles,
   DfHelpWindow,
+  DfMontantHelpWindow,
   DsrHelpWindow,
   DsuHelpWindow,
   MontantsDsrHelpWindow,
@@ -70,6 +71,7 @@ class DotationPage extends PureComponent<PropsFromRedux> {
         />
         <PopinManager />
         <DfHelpWindow />
+        <DfMontantHelpWindow />
         <DsrHelpWindow />
         <DsuHelpWindow />
         <MontantsDsrHelpWindow />

@@ -11,7 +11,7 @@ import { removeCommuneType } from "../../../../redux/actions";
 import { RootState } from "../../../../redux/reducers";
 // eslint-disable-next-line no-unused-vars
 import { Commune } from "../../../../redux/reducers/descriptions/dotations";
-import { Card } from "../../../common";
+import { Card, HelpButton } from "../../../common";
 import styles from "./CommuneType.module.scss";
 import { DotationATerme } from "./dotation-a-terme";
 import { DotationDiff } from "./dotation-diff";
@@ -107,6 +107,8 @@ class CommuneType extends PureComponent<Props> {
                   </div>
                   <div className={styles.text}>
                     <DotationParHab dotation="df" index={index} />
+                    {" "}
+                    <HelpButton name="df-montant" />
                   </div>
                 </div>
               </Fragment>
