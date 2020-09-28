@@ -31,16 +31,6 @@ type Props = PropsFromRedux & {
 
 }
 
-function getClassName(n: number): string {
-  if (n === 2) {
-    return styles.twolines;
-  }
-  if (n === 3) {
-    return styles.threelines;
-  }
-  throw new Error("Unexpected number");
-}
-
 class CommuneStrateDetailsTable extends PureComponent<Props> {
   render() {
     const { isFetching, strates } = this.props;
@@ -89,7 +79,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
             </tr>
           </thead>
           {!isFetching && (
-            <tbody className={getClassName(2 + Number(isDfVisible))}>
+            <tbody className={styles.threelines}>
               {
                 strates.map((strate, index) => (
                   <Fragment>
