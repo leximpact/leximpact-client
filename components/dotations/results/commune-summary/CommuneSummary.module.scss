@@ -1,32 +1,19 @@
-@import 'styles/variables';
-
-.total {
-  font-size: 40px;
-  margin-bottom: 15px;
-}
-
-.subCardContent {
-  display: flex;
-  justify-content: space-around;
-  font-weight: bold;
-  padding-top: 10px;
-
-  .plf {
-    color: $plf-color;
-  }
-
-  .amendement {
-    background-color: $amendement-bg-color;
-  }
-
-  .plf, .amendement {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-    padding: 2px;
-  }
-}
-
 .image {
   height: 40px;
+}
+
+.container {
+  display: flex;
+
+  .column {
+    flex: 1;
+  }
+
+  .column:first-child {
+    padding-right: 15px;
+  }
+
+  .column:last-child {
+    padding-left: 15px;
+  }
 }
