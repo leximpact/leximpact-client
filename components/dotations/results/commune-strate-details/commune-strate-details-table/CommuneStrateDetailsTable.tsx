@@ -34,8 +34,6 @@ type Props = PropsFromRedux & {
 class CommuneStrateDetailsTable extends PureComponent<Props> {
   render() {
     const { isFetching, strates } = this.props;
-    const url = new URLSearchParams(window.location.search);
-    const isDfVisible = url.has("df");
     return (
       <div className={styles.container}>
         <table className={styles.table}>
@@ -84,7 +82,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                 strates.map((strate, index) => (
                   <Fragment>
                     <tr key={strate.description.habitants * 3}>
-                      <th rowSpan={2 + Number(isDfVisible)} scope="row">
+                      <th rowSpan={3} scope="row">
                         {
                           strate.description.habitants === -1 ? (
                             <Fragment>
@@ -101,12 +99,12 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                         }
 
                       </th>
-                      <td rowSpan={2 + Number(isDfVisible)}>
+                      <td rowSpan={3}>
                         <TrendArrow value={strate.baseToAmendement?.diffDotationMoyenneParHab} />
                       </td>
                       <td
                         className={styles.light}
-                        rowSpan={2 + Number(isDfVisible)}
+                        rowSpan={3}
                       >
                         {formatNumber(strate.description.partPopTotale, { decimals: 0 })}
                         {" "}
@@ -114,7 +112,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                       </td>
                       <td
                         className={styles.light}
-                        rowSpan={2 + Number(isDfVisible)}
+                        rowSpan={3}
                       >
                         {formatNumber(
                           strate.description.potentielFinancierMoyenParHab,
@@ -168,26 +166,24 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                           symbol="%" />
                       </td>
                     </tr>
-                    {isDfVisible && (
-                      <tr key={strate.description.habitants * 3 + 2}>
-                        <td>
-                          <BusinessCenterIcon />
-                        </td>
-                        <td />
-                        <td>
-                          <ResultValues
-                            decimals={2}
-                            path={`dotations.state.communes.df.strates.${index}.dotationMoyenneParHab`}
-                            symbol="€" />
-                        </td>
-                        <td>
-                          <ResultValues
-                            decimals={0}
-                            path={`dotations.state.communes.df.strates.${index}.partDotationTotale`}
-                            symbol="%" />
-                        </td>
-                      </tr>
-                    )}
+                    <tr key={strate.description.habitants * 3 + 2}>
+                      <td>
+                        <BusinessCenterIcon />
+                      </td>
+                      <td />
+                      <td>
+                        <ResultValues
+                          decimals={2}
+                          path={`dotations.state.communes.df.strates.${index}.dotationMoyenneParHab`}
+                          symbol="€" />
+                      </td>
+                      <td>
+                        <ResultValues
+                          decimals={0}
+                          path={`dotations.state.communes.df.strates.${index}.partDotationTotale`}
+                          symbol="%" />
+                      </td>
+                    </tr>
                   </Fragment>
                 ))
               }
