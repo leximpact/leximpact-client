@@ -1,0 +1,10 @@
+@import 'styles/variables';
+
+.bold {
+  font-weight: bold;
+}
+
+.replacedWithPlf {
+  text-decoration: line-through;
+  text-decoration-color: $plf-color;
+}

@@ -2,6 +2,7 @@ import { Fragment, PureComponent } from "react";
 
 import { ExpandablePanelSubTitle, ExpandableText } from "../../../common";
 import { MajorationMinorationSection } from "./majoration-minoration-section";
+import styles from "./MontantDsrDsu.module.scss";
 
 export class MontantDsrDsu extends PureComponent {
   render() {
@@ -48,10 +49,19 @@ export class MontantDsrDsu extends PureComponent {
         quand elles existent.
         </ExpandableText>
         <br />
-        En 2020, les montants mis en répartition au titre de la dotation de solidarité urbaine
-        et de cohésion sociale et de la dotation de solidarité rurale augmentent au moins de
-        90 millions d&apos;euros chacun par rapport aux montants mis en répartition en 2019.
-        Cette augmentation est financée par les minorations prévues à l&apos;article L. 2334-7-1.
+        <span className={styles.replacedWithPlf}>
+          <span className={styles.bold}>En 2020,</span>
+          {" "}
+          les montants mis en répartition au titre de la dotation de solidarité urbaine
+          et de cohésion sociale et de la dotation de solidarité rurale
+          {" "}
+          <span className={styles.bold}>
+            augmentent au moins de 90 millions d&apos;euros chacun
+          </span>
+          {" "}
+          par rapport aux montants mis en répartition en 2019.
+          Cette augmentation est financée par les minorations prévues à l&apos;article L. 2334-7-1.
+        </span>
         <MajorationMinorationSection />
         <br />
         À compter de 2012, le montant mis en répartition au titre de la dotation
