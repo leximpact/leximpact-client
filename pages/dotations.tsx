@@ -8,8 +8,14 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { SimulationPage } from "../components/common";
 import {
-  Articles, DsrHelpWindow,
-  DsuHelpWindow, MontantsDsrHelpWindow, PotentielFinancierHelpWindow, Results, TrendHelpWindow,
+  Articles,
+  DfHelpWindow,
+  DsrHelpWindow,
+  DsuHelpWindow,
+  MontantsDsrHelpWindow,
+  PotentielFinancierHelpWindow,
+  Results,
+  TrendHelpWindow,
 } from "../components/dotations";
 import PopinManager from "../components/PopinManager";
 import withRoot from "../lib/withRoot";
@@ -63,6 +69,7 @@ class DotationPage extends PureComponent<PropsFromRedux> {
           topic="dotations"
         />
         <PopinManager />
+        <DfHelpWindow />
         <DsrHelpWindow />
         <DsuHelpWindow />
         <MontantsDsrHelpWindow />

@@ -90,6 +90,7 @@ export class Articles extends PureComponent {
             </SecondaryExpandablePanel>
           </PrimaryExpandablePanel>
           <PrimaryExpandablePanel
+            help="df"
             icon={<BusinessCenterIcon />}
             title="Dotation forfaitaire (DF)">
             <DfEcretementPereque />
