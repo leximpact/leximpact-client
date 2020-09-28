@@ -32,7 +32,7 @@ class Results extends PureComponent<Props> {
       <div className={styles.container}>
         {isInformationPanelVisible && (
           <Grid container spacing={3}>
-            <Grid item lg={8} md={12} sm={12} xl={9} xs={12}>
+            <Grid item lg={12} xl={8}>
               <InformationPanel
                 name={INFORMATION_PANEL_NAME}
                 title="Les montants des dotations calculées ci-dessous sont des estimations."
@@ -45,17 +45,17 @@ class Results extends PureComponent<Props> {
           </Grid>
         )}
         <Grid container spacing={3}>
-          <Grid item lg={4} md={6} sm={6} xl={3} xs={12}>
-            <CommuneSummary dotation="dsr" />
-          </Grid>
-          <Grid item lg={4} md={6} sm={6} xl={3} xs={12}>
-            <CommuneSummary dotation="dsu" />
-          </Grid>
-          <Grid item lg={12} md={12} sm={6} xl={6} xs={12}>
+          <Grid item lg={12} xl={8}>
             <CommuneStrateDetails />
           </Grid>
-        </Grid>
-        <Grid container spacing={3}>
+          <Grid item lg={8} md={12} sm={12} xl={4} xs={12}>
+            <CommuneSummary />
+          </Grid>
+          <Grid item lg={4} md={6} sm={6} xl={3} xs={12}>
+            <CommuneSearch />
+          </Grid>
+          {/* </Grid>
+        <Grid container spacing={3}> */}
           {communesTypes.map((communeType, index) => (
             <Grid key={communeType.code} item lg={4} md={6} sm={6} xl={3} xs={12}>
               <CommuneType
@@ -68,9 +68,6 @@ class Results extends PureComponent<Props> {
               />
             </Grid>
           ))}
-          <Grid item lg={4} md={6} sm={6} xl={3} xs={12}>
-            <CommuneSearch />
-          </Grid>
         </Grid>
       </div>
     );
