@@ -2,6 +2,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
+import classNames from "classnames";
 import { Fragment, PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
@@ -105,10 +106,14 @@ class CommuneType extends PureComponent<Props> {
                     </div>
                     <div />
                   </div>
-                  <div className={styles.text}>
+                  <div className={classNames({
+                    [styles.df]: true,
+                    [styles.text]: true,
+                  })}>
                     <DotationParHab dotation="df" index={index} />
-                    {" "}
-                    <HelpButton name="df-montant" />
+                    <div>
+                      <HelpButton warning name="df-montant" />
+                    </div>
                   </div>
                 </div>
               </Fragment>

@@ -1,3 +1,4 @@
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
@@ -7,7 +8,8 @@ import { showHelpWindow } from "../../../redux/actions";
 import styles from "./HelpButton.module.scss";
 
 interface Props {
-  name: string
+  name: string;
+  warning?: boolean;
 }
 
 const mapStateToProps = () => ({});
@@ -22,7 +24,14 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 class HelpButton extends PureComponent<PropsFromRedux & Props> {
   render() {
-    const { showHelp } = this.props;
+    const { showHelp, warning } = this.props;
+    if (warning) {
+      return (
+        <ErrorOutlineIcon
+          className={styles.btn}
+          onClick={showHelp} />
+      );
+    }
     return (
       <HelpOutlineIcon
         className={styles.btn}
