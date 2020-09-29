@@ -26,31 +26,7 @@ export function dotations(
       state: null,
     };
   case "SIMULATE_DOTATIONS_SUCCESS":
-    // TODO: remove this when the PLF is enabled.
-    // const { base, baseToPlf, plf } = action.dotations;
-    // if (!plf || !baseToPlf) {
-    //   return {
-    //     isFetching: false,
-    //     state: null,
-    //   };
-    // }
-    const { base } = action.dotations;
-    const baseToPlf = {
-      communes: {
-        dsr: {
-          nouvellementEligibles: 0,
-          plusEligibles: 0,
-          toujoursEligibles: 0,
-        },
-        dsu: {
-          nouvellementEligibles: 0,
-          plusEligibles: 0,
-          toujoursEligibles: 0,
-        },
-      },
-    };
-    const plf = base;
-
+    const { base, baseToPlf, plf } = action.dotations;
     const dsr: DotationsDiffState["communes"]["dsr"] = {
       ...baseToPlf.communes.dsr,
       communes: plf.communes.dsr.communes.map((commune, index) => ({
