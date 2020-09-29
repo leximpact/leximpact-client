@@ -34,7 +34,7 @@ interface ResponseBody {
     avant: {
       [index: number]: number;
     }
-    plf?: {
+    plf: {
       [index: number]: number;
     },
   },
@@ -43,7 +43,7 @@ interface ResponseBody {
     apres: {
       [index: number]: number;
     },
-    plf?: {
+    plf: {
       [index: number]: number;
     },
     avant: {
@@ -53,7 +53,7 @@ interface ResponseBody {
   total: {
     apres: number;
     avant: number;
-    plf?: number;
+    plf: number;
   }
 }
 
