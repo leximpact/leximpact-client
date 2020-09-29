@@ -27,12 +27,10 @@ export function ir(
   case "SIMULATE_CAS_TYPES_SUCCESS":
     return {
       isFetching: false,
-      // TODO: remove this when the PLF is enabled.
-      // state: action.data.plf,
       state: {
-        casTypes: Object.keys(action.data.nbreParts.avant).map(key => ({
-          impotAnnuel: Math.abs(action.data.res_brut.avant[key]),
-          parts: action.data.nbreParts.avant[key],
+        casTypes: Object.keys(action.data.nbreParts.plf).map(key => ({
+          impotAnnuel: Math.abs(action.data.res_brut.plf[key]),
+          parts: action.data.nbreParts.plf[key],
         })),
       },
     };
