@@ -29,9 +29,7 @@ export function dotations(
   case "SIMULATE_DOTATIONS_SUCCESS":
     return {
       isFetching: false,
-      // TODO: remove this when the PLF is enabled.
-      // state: action.dotations.plf,
-      state: action.dotations.base,
+      state: action.dotations.plf,
     };
   case "REMOVE_COMMUNE_TYPE":
     if (state.state === null) {
