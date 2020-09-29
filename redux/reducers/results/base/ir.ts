@@ -2,6 +2,7 @@ import {
   // eslint-disable-next-line no-unused-vars
   Action,
 } from "../../../actions";
+import { convertCasTypes } from "../common";
 // eslint-disable-next-line no-unused-vars
 import { AsyncState, IRState } from "../interfaces";
 
@@ -28,10 +29,7 @@ export function ir(
     return {
       isFetching: false,
       state: {
-        casTypes: Object.keys(action.data.nbreParts.avant).map(key => ({
-          impotAnnuel: Math.abs(action.data.res_brut.avant[key]),
-          parts: action.data.nbreParts.avant[key],
-        })),
+        casTypes: convertCasTypes(action.data, "avant"),
       },
     };
   case "REMOVE_CAS_TYPE":

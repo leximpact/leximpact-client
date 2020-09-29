@@ -197,7 +197,7 @@ interface ResponseBody {
     }
   }
   base: ResponseBody["amendement"]
-  plf?: ResponseBody["amendement"]
+  plf: ResponseBody["amendement"]
   baseToAmendement: {
     communes: {
       dsr: {
@@ -212,7 +212,7 @@ interface ResponseBody {
       }
     }
   }
-  baseToPlf?: ResponseBody["baseToAmendement"]
+  baseToPlf: ResponseBody["baseToAmendement"]
 }
 
 export interface SimulateDotationsSuccessAction {

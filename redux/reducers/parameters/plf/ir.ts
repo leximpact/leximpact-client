@@ -3,7 +3,7 @@ import { IRState } from "../interfaces";
 
 export const PLF_IR_DEFAULT_STATE: IRState = {
   bareme: {
-    seuils: [10064, 25659, 73369, 157806],
+    seuils: [10084, 25710, 73516, 158122],
     taux: [11, 30, 41, 45],
   },
   calculNombreParts: {
@@ -43,8 +43,8 @@ export const PLF_IR_DEFAULT_STATE: IRState = {
     ],
   },
   decote: {
-    seuil_celib: 777,
-    seuil_couple: 1286,
+    seuil_celib: 779,
+    seuil_couple: 1289,
     taux: 45.25,
   },
   plafond_qf: {
@@ -54,11 +54,11 @@ export const PLF_IR_DEFAULT_STATE: IRState = {
       taux_GuadMarReu: 30,
       taux_GuyMay: 40,
     },
-    celib: 936,
-    celib_enf: 3697,
-    maries_ou_pacses: 1567,
-    reduc_postplafond: 1562,
-    reduc_postplafond_veuf: 1745,
+    celib: 938,
+    celib_enf: 3704,
+    maries_ou_pacses: 1570,
+    reduc_postplafond: 1565,
+    reduc_postplafond_veuf: 1748,
   },
 };
 

@@ -13,10 +13,10 @@ export const PLF_DOTATIONS_DEFAULT_STATE: DotationsState = {
   montants: {
     dgf: 26846874416,
     dsr: {
-      variation: 0,
+      variation: 90,
     },
     dsu: {
-      variation: 0,
+      variation: 90,
     },
   },
   communes: {
