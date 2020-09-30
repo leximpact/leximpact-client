@@ -319,47 +319,37 @@ export const simulateDotations = () => (dispatch, getState) => {
         payload.amendement.communes[dotation].strates.forEach((strate) => {
           // eslint-disable-next-line no-param-reassign
           strate.partDotationTotale *= 100;
-          // eslint-disable-next-line no-param-reassign
-          strate.partEligibles *= 100;
+          // eslint-disable-next-line
+          if (strate.hasOwnProperty("partEligibles")) {
+            // eslint-disable-next-line no-param-reassign
+            strate.partEligibles *= 100;
+          }
         });
         if (payload.plf) {
           payload.plf.communes[dotation].strates.forEach((strate) => {
             // eslint-disable-next-line no-param-reassign
             strate.partDotationTotale *= 100;
-            // eslint-disable-next-line no-param-reassign
-            strate.partEligibles *= 100;
+            // eslint-disable-next-line
+            if (strate.hasOwnProperty("partEligibles")) {
+              // eslint-disable-next-line no-param-reassign
+              strate.partEligibles *= 100;
+            }
           });
         }
         payload.base.communes[dotation].strates.forEach((strate) => {
           // eslint-disable-next-line no-param-reassign
           strate.partDotationTotale *= 100;
-          // eslint-disable-next-line no-param-reassign
-          strate.partEligibles *= 100;
+          // eslint-disable-next-line
+          if (strate.hasOwnProperty("partEligibles")) {
+            // eslint-disable-next-line no-param-reassign
+            strate.partEligibles *= 100;
+          }
         });
       }
 
       parsePayload("dsr");
       parsePayload("dsu");
-
-      /* User DSR for DF values. */
-      // eslint-disable-next-line no-param-reassign
-      payload.amendement.communes.df = {
-        communes: payload.amendement.communes.dsr.communes.map(
-          ({ code }) => ({ code, dotationParHab: 0 }),
-        ),
-        strates: payload.amendement.communes.dsr.strates.map(
-          () => ({ dotationMoyenneParHab: 0, partDotationTotale: 0 }),
-        ),
-      };
-      // eslint-disable-next-line no-param-reassign
-      payload.base.communes.df = {
-        communes: payload.base.communes.dsr.communes.map(
-          ({ code }) => ({ code, dotationParHab: 0 }),
-        ),
-        strates: payload.base.communes.dsr.strates.map(
-          () => ({ dotationMoyenneParHab: 0, partDotationTotale: 0 }),
-        ),
-      };
+      parsePayload("df");
 
       dispatch(simulateDotationsSuccess(payload));
     })

@@ -112,7 +112,7 @@ class CommuneType extends PureComponent<Props> {
                   })}>
                     <DotationParHab dotation="df" index={index} />
                     <div>
-                      <HelpButton warning name="df-montant" />
+                      {/* <HelpButton warning name="df-montant" /> */}
                     </div>
                   </div>
                 </div>
