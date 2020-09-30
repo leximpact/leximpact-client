@@ -34,7 +34,6 @@ export class DfEcretementPereque extends PureComponent {
         égal à
         {" "}
         <ParameterValues
-          editable
           amendementInputSize="small"
           path="dotations.communes.df.ecretement.potentielFiscalLimite" />
         {" "}
@@ -52,7 +51,6 @@ export class DfEcretementPereque extends PureComponent {
         par habitant de la commune et
         {" "}
         <ParameterValues
-          editable
           amendementInputSize="small"
           path="dotations.communes.df.ecretement.potentielFiscalLimite" />
         {" "}
