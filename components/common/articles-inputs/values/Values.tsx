@@ -21,6 +21,7 @@ interface Props {
   offset?: number;
   plfValue?: number|string|null;
   symbol?: string;
+  background?: "part";
 }
 
 const mapStateToProps = ({ token }: RootState) => ({
@@ -61,7 +62,7 @@ class Values extends PureComponent<Props & PropsFromRedux> {
 
   render() {
     const {
-      amendementInputSize, amendementValue, baseValue,
+      amendementInputSize, amendementValue, background, baseValue,
       decimals, editable, onAmendementChange, plfValue, symbol,
     } = this.props;
 
@@ -93,6 +94,7 @@ class Values extends PureComponent<Props & PropsFromRedux> {
         {
           isDefined(baseValue) && !isEqual(baseValue, plfValue) && (
             <span className={classNames({
+              [styles.part]: background === "part",
               [styles.baseValue]: true,
               [styles.replacedWithPlf]: !isEqual(plfValue, baseValue),
               [styles.replacedWithAmendement]: isEqual(plfValue, baseValue)
@@ -111,6 +113,7 @@ class Values extends PureComponent<Props & PropsFromRedux> {
         {
           isDefined(plfValue) && !isEqual(amendementValue, plfValue) && (
             <span className={classNames({
+              [styles.part]: background === "part",
               [styles.baseValue]: isEqual(baseValue, plfValue),
               [styles.plfValue]: !isEqual(baseValue, plfValue),
               [styles.replacedWithAmendement]: !isEqual(amendementValue, plfValue),
@@ -153,6 +156,7 @@ class Values extends PureComponent<Props & PropsFromRedux> {
                   ) : null
                 ) : (
                   <span className={classNames({
+                    [styles.part]: background === "part",
                     [styles.baseValue]: isEqual(amendementValue, plfValue)
                       && isEqual(plfValue, baseValue),
                     [styles.plfValue]: isEqual(amendementValue, plfValue)

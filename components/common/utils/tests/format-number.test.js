@@ -29,4 +29,11 @@ describe("formatNumber", () => {
 
     expect(actual).toBe(expected);
   });
+
+  test("should separate thousands with spaces (decimal numbers).", () => {
+    const expected = "1 000 000,64 899";
+    const actual = formatNumber(1000000.64899);
+
+    expect(actual).toBe(expected);
+  });
 });

@@ -46,7 +46,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                 {/* <br />
                 <span className={styles.link}>[replier ces colonnes]</span> */}
               </th>
-              <th />
+              <th rowSpan={2} />
               <th rowSpan={2}>
                 Proportion
                 <br />

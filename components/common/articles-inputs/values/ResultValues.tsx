@@ -17,6 +17,7 @@ type Props = PropsFromRedux & {
   path: string;
   amendementInputSize?: "small"|"xl";
   symbol?: string;
+  background?: "part";
 }
 
 function ResultValues(props: Props) {
