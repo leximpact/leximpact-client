@@ -4,9 +4,27 @@
   font-weight: bold;
 }
 
+.part {
+  height: 46px;
+  width: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.baseValue.part {
+  background: center/100% url("/static/images/base-part.svg") no-repeat;
+}
+
 .plfValue {
   font-weight: bold;
   color: $plf-color;
+}
+
+.plfValue.part {
+  color: black;
+  background: center/100% url("/static/images/plf-part.svg") no-repeat;
 }
 
 .replacedWithPlf {
@@ -36,6 +54,10 @@
   padding: 0.1rem;
   margin: -0.1rem;
   background-color: $amendement-bg-color;
+}
+
+.amendementValue.part {
+  background: center/100% url("/static/images/amendement-part.svg") no-repeat;
 }
 
 .noOverflow > span {

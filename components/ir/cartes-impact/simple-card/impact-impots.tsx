@@ -65,7 +65,7 @@ class SimpleCardImpactImpots extends PureComponent<PropsFromRedux & Props> {
         <div>
           <div className={styles.legend}>Nbre de parts</div>
           <div className={styles.part}>
-            <ResultValues path={`ir.state.casTypes.${index}.parts`} />
+            <ResultValues background="part" path={`ir.state.casTypes.${index}.parts`} />
           </div>
         </div>
       </div>

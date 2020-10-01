@@ -11,6 +11,7 @@
   > div:last-child {
     display: flex;
     flex-direction: column;
+    max-width: 100px;
   }
 }
 
@@ -18,7 +19,7 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  padding-top: 15px;
+  padding-top: 5px;
 }
 
 .result {
