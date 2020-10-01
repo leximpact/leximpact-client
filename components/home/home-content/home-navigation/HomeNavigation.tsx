@@ -20,6 +20,11 @@ export class HomeNavigation extends PureComponent {
           <img alt="" src="/icons/picto-dotations-communes.png" />
           sur les dotations aux communes
         </button>
+        <div>
+          <a href="https://doodle.com/mm/equipeleximpact/permanence">
+            Prendre un rendez-vous avec LexImpact
+          </a>
+        </div>
       </div>
     );
   }
