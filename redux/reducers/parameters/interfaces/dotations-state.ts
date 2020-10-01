@@ -96,5 +96,11 @@ export interface DotationsState {
           augmentationMax: number;
       }
     }
+    df: {
+      ecretement:{
+        potentielFiscalLimite: number;
+        pourcentageRecettesMax: number;
+      }
+    }
   }
 }

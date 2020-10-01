@@ -47,16 +47,27 @@ export function dotations(
         ),
       })),
     };
+    const df: DotationsDiffState["communes"]["df"] = {
+      communes: plf.communes.df.communes.map((commune, index) => ({
+        code: commune.code,
+        diffDotationParHab: (
+          plf.communes.df.communes[index].dotationParHab
+          - base.communes.df.communes[index].dotationParHab
+        ),
+      })),
+    };
     return {
       isFetching: false,
       state: {
         communes: {
+          df,
           dgf: {
             communes: dsr.communes.map((commune, index) => ({
               code: commune.code,
               diffDotationParHab: (
                 dsr.communes[index].diffDotationParHab
                 + dsu.communes[index].diffDotationParHab
+                + df.communes[index].diffDotationParHab
               ),
             })),
             strates: plf.communes.dsr.strates.map((_, index) => ({
@@ -64,10 +75,12 @@ export function dotations(
                 (
                   plf.communes.dsr.strates[index].dotationMoyenneParHab
                   + plf.communes.dsu.strates[index].dotationMoyenneParHab
+                  + plf.communes.df.strates[index].dotationMoyenneParHab
                 )
                 - (
                   base.communes.dsr.strates[index].dotationMoyenneParHab
                   + base.communes.dsu.strates[index].dotationMoyenneParHab
+                  + base.communes.df.strates[index].dotationMoyenneParHab
                 ),
             })),
           },

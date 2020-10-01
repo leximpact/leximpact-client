@@ -110,6 +110,12 @@ export const PLF_DOTATIONS_DEFAULT_STATE: DotationsState = {
         augmentationMax: 4000000,
       },
     },
+    df: {
+      ecretement: {
+        potentielFiscalLimite: 0.75,
+        pourcentageRecettesMax: 1,
+      },
+    },
   },
 };
 

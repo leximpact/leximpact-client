@@ -4,7 +4,7 @@ import styles from "./ExpandablePanelSubTitle.module.scss";
 
 interface Props {
   title: string;
-  subTitle: string;
+  subTitle?: string;
 }
 
 export class ExpandablePanelSubTitle extends PureComponent<Props> {
@@ -14,12 +14,14 @@ export class ExpandablePanelSubTitle extends PureComponent<Props> {
       <div className={styles.container}>
         <div className={styles.text}>
           <span className={styles.title}>{title}</span>
-          <span className={styles.subTitle}>
-            {" "}
+          {subTitle && (
+            <span className={styles.subTitle}>
+              {" "}
             -
-            {" "}
-            {subTitle}
-          </span>
+              {" "}
+              {subTitle}
+            </span>
+          )}
         </div>
       </div>
     );

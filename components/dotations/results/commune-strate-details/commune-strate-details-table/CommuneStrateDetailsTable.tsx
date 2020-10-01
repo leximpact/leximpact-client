@@ -1,4 +1,5 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
+import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 import { Fragment, PureComponent } from "react";
@@ -76,12 +77,12 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
             </tr>
           </thead>
           {!isFetching && (
-            <tbody className={styles.twolines}>
+            <tbody className={styles.threelines}>
               {
                 strates.map((strate, index) => (
                   <Fragment>
-                    <tr key={strate.description.habitants * 2}>
-                      <th rowSpan={2} scope="row">
+                    <tr key={strate.description.habitants * 3}>
+                      <th rowSpan={3} scope="row">
                         {
                           strate.description.habitants === -1 ? (
                             <Fragment>
@@ -98,15 +99,21 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                         }
 
                       </th>
-                      <td rowSpan={2}>
+                      <td rowSpan={3}>
                         <TrendArrow value={strate.baseToAmendement?.diffDotationMoyenneParHab} />
                       </td>
-                      <td className={styles.light} rowSpan={2}>
+                      <td
+                        className={styles.light}
+                        rowSpan={3}
+                      >
                         {formatNumber(strate.description.partPopTotale, { decimals: 0 })}
                         {" "}
                         %
                       </td>
-                      <td className={styles.light} rowSpan={2}>
+                      <td
+                        className={styles.light}
+                        rowSpan={3}
+                      >
                         {formatNumber(
                           strate.description.potentielFinancierMoyenParHab,
                           { decimals: 0 },
@@ -136,7 +143,7 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                           symbol="%" />
                       </td>
                     </tr>
-                    <tr key={strate.description.habitants * 2 + 1}>
+                    <tr key={strate.description.habitants * 3 + 1}>
                       <td>
                         <LocationCityIcon />
                       </td>
@@ -156,6 +163,24 @@ class CommuneStrateDetailsTable extends PureComponent<Props> {
                         <ResultValues
                           decimals={0}
                           path={`dotations.state.communes.dsu.strates.${index}.partDotationTotale`}
+                          symbol="%" />
+                      </td>
+                    </tr>
+                    <tr key={strate.description.habitants * 3 + 2}>
+                      <td>
+                        <BusinessCenterIcon />
+                      </td>
+                      <td />
+                      <td>
+                        <ResultValues
+                          decimals={2}
+                          path={`dotations.state.communes.df.strates.${index}.dotationMoyenneParHab`}
+                          symbol="€" />
+                      </td>
+                      <td>
+                        <ResultValues
+                          decimals={0}
+                          path={`dotations.state.communes.df.strates.${index}.partDotationTotale`}
                           symbol="%" />
                       </td>
                     </tr>

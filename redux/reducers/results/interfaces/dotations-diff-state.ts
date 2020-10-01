@@ -18,7 +18,13 @@ export interface DotationsDiffState {
         diffDotationParHab: number;
       }[];
     },
-    // DSR & DSU
+    df: {
+      communes: {
+        code: string;
+        diffDotationParHab: number;
+      }[];
+    },
+    // DSR & DSU (& DF)
     dgf: {
       communes: {
         code: string;

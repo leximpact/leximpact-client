@@ -28,6 +28,14 @@
       margin-bottom: 10px;
     }
   }
+
+  .df {
+    display: flex;
+  }
+
+  .df:last-child > * {
+    margin-right: 4px;
+  }
 }
 
 .dotation:last-child {

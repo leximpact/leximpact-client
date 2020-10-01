@@ -8,8 +8,15 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { SimulationPage } from "../components/common";
 import {
-  Articles, DsrHelpWindow,
-  DsuHelpWindow, MontantsDsrHelpWindow, PotentielFinancierHelpWindow, Results, TrendHelpWindow,
+  Articles,
+  DfHelpWindow,
+  DfMontantHelpWindow,
+  DsrHelpWindow,
+  DsuHelpWindow,
+  MontantsDsrHelpWindow,
+  PotentielFinancierHelpWindow,
+  Results,
+  TrendHelpWindow,
 } from "../components/dotations";
 import PopinManager from "../components/PopinManager";
 import withRoot from "../lib/withRoot";
@@ -59,10 +66,12 @@ class DotationPage extends PureComponent<PropsFromRedux> {
           showLoginButton={false}
           subTitle1="Dotations"
           subTitle2="Communes"
-          title="DSR & DSU"
+          title="DGF"
           topic="dotations"
         />
         <PopinManager />
+        <DfHelpWindow />
+        <DfMontantHelpWindow />
         <DsrHelpWindow />
         <DsuHelpWindow />
         <MontantsDsrHelpWindow />

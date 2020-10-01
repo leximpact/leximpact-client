@@ -1,24 +1,43 @@
 import { Fragment, PureComponent } from "react";
 
-import { ExpandablePanelSubTitle, ExpandableText } from "../../../common";
+import { ExpandablePanelSubTitle, ExpandableText, ParameterValues } from "../../../common";
+import styles from "./DfEcretementPereque.module.scss";
 
 export class DfEcretementPereque extends PureComponent {
   render() {
     // Article L2334-20 du CGCT
     return (
       <Fragment>
+        <div className={styles.articleName}>
+          Art. L2334-7 du CGCT III. § 5
+        </div>
         <ExpandablePanelSubTitle
-          subTitle="§ 5"
-          title="Périmètre des communes concernées"
+          title="Communes non concernées par l&apos;écrêtement"
         />
         A compter de 2015, les communes dont le potentiel fiscal par habitant
-        est inférieur à !!!! 0,75 !!!! fois le potentiel fiscal moyen par habitant constaté
+        est inférieur à
+        {" "}
+        <ParameterValues
+          editable
+          amendementInputSize="small"
+          path="dotations.communes.df.ecretement.potentielFiscalLimite" />
+        {" "}
+        fois le potentiel fiscal moyen par habitant constaté
         pour l&apos;ensemble des communes bénéficient d&apos;une attribution au titre de la
         dotation forfaitaire égale à celle calculée en application du présent III.
         <br />
         <br />
+        <ExpandablePanelSubTitle
+          title="Communes concernées par l&apos;écrêtement"
+        />
         Pour les communes dont le potentiel fiscal par habitant est supérieur ou
-        égal à !!!! 0,75 !!!! fois le potentiel fiscal moyen par habitant constaté pour
+        égal à
+        {" "}
+        <ParameterValues
+          amendementInputSize="small"
+          path="dotations.communes.df.ecretement.potentielFiscalLimite" />
+        {" "}
+        fois le potentiel fiscal moyen par habitant constaté pour
         l&apos;ensemble des communes, le montant calculé en application du premier alinéa
         du présent III est diminué, dans les conditions prévues à&nbsp;
         <a
@@ -29,15 +48,28 @@ export class DfEcretementPereque extends PureComponent {
           l&apos;article L. 2334-7-1
         </a>
         , en proportion de leur population et de l&apos;écart relatif entre le potentiel fiscal
-        par habitant de la commune et !!!! 0,75 !!!! fois le potentiel fiscal moyen par habitant
+        par habitant de la commune et
+        {" "}
+        <ParameterValues
+          amendementInputSize="small"
+          path="dotations.communes.df.ecretement.potentielFiscalLimite" />
+        {" "}
+        fois le potentiel fiscal moyen par habitant
         constaté pour l&apos;ensemble des communes.
         <br />
         <br />
         <ExpandablePanelSubTitle
-          subTitle="§ 5"
-          title="Conditions d&apos;application"
+          title="Conditions d&apos;application par l&apos;écrêtement"
         />
-        Cette minoration ne peut être supérieure à !!!! 1 % !!!! des recettes réelles de
+        Cette minoration ne peut être supérieure à
+        {" "}
+        <ParameterValues
+          editable
+          amendementInputSize="small"
+          path="dotations.communes.df.ecretement.pourcentageRecettesMax"
+          symbol="%" />
+        {" "}
+        des recettes réelles de
         fonctionnement de leur budget principal, minorées des&nbsp;
         <ExpandableText>
         atténuations de produits,
