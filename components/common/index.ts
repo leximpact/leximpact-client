@@ -7,4 +7,5 @@ export * from "./help-window";
 export * from "./information-panel";
 export { default as SimulationPage } from "./simulation-page";
 export * from "./tooltips";
+export * from "./tracker";
 export * from "./utils";
