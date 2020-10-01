@@ -8,6 +8,8 @@ export function removeCommuneTypeDiffResults(
   newDsrCommunes.splice(index, 1);
   const newDsuCommunes = [...state.communes.dsu.communes];
   newDsuCommunes.splice(index, 1);
+  const newDfCommunes = [...state.communes.df.communes];
+  newDfCommunes.splice(index, 1);
   const newDgfCommunes = [...state.communes.dgf.communes];
   newDgfCommunes.splice(index, 1);
 
@@ -15,6 +17,10 @@ export function removeCommuneTypeDiffResults(
     ...state,
     communes: {
       ...state.communes,
+      df: {
+        ...state.communes.df,
+        communes: newDfCommunes,
+      },
       dgf: {
         ...state.communes.dgf,
         communes: newDgfCommunes,

@@ -5,12 +5,12 @@ import { connect, ConnectedProps } from "react-redux";
 // eslint-disable-next-line no-unused-vars
 import { RootState } from "../../../../../redux/reducers";
 // eslint-disable-next-line no-unused-vars
-import { DotationsState } from "../../../../../redux/reducers/results";
+import { DotationsDiffState } from "../../../../../redux/reducers/results";
 import styles from "./DotationDiff.module.scss";
 
 interface Props {
   index: number;
-  dotation: keyof DotationsState["communes"];
+  dotation: keyof DotationsDiffState["communes"];
 }
 
 const mapStateToProps = ({ results }: RootState, { dotation, index }: Props) => ({

@@ -17,7 +17,7 @@ import styles from "./CommuneSummarySection.module.scss";
 import { EligibiliteSpot } from "./eligibilite-spot";
 
 interface Props {
-  dotation: keyof DotationsState["communes"]
+  dotation: Exclude<keyof DotationsState["communes"], "df">
 }
 
 const mapStateToProps = ({ results }: RootState, { dotation }: Props) => ({

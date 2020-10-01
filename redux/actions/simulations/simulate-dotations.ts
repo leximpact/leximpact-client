@@ -125,6 +125,12 @@ interface RequestDotationsState {
           augmentationMax: number;
       }
     }
+    df: {
+      ecretement:{
+        potentielFiscalLimite: number;
+        pourcentageRecettesMax: number;
+      }
+    }
   }
 }
 
@@ -173,6 +179,18 @@ interface ResponseBody {
         communes: {
           code: string;
           eligible: boolean;
+          dotationParHab: number;
+        }[]
+      }
+      df: {
+        strates: {
+          // Dotation moyenne par habitant
+          dotationMoyenneParHab: number;
+          // Part des dotations accordées à cette strate dans la dotation totale.
+          partDotationTotale: number;
+        }[],
+        communes: {
+          code: string;
           dotationParHab: number;
         }[]
       }
@@ -272,6 +290,7 @@ function convertRates(dotations: RequestDotationsState): RequestDotationsState {
     "communes.dsu.eligibilite.indiceSynthetique.ponderationLogementsSociaux",
     "communes.dsu.eligibilite.indiceSynthetique.ponderationAideAuLogement",
     "communes.dsu.eligibilite.indiceSynthetique.ponderationRevenu",
+    "communes.df.ecretement.pourcentageRecettesMax",
   ];
   paths.forEach((path) => {
     result = updateIn(result, path.split("."), rate => rate / 100);
@@ -300,27 +319,37 @@ export const simulateDotations = () => (dispatch, getState) => {
         payload.amendement.communes[dotation].strates.forEach((strate) => {
           // eslint-disable-next-line no-param-reassign
           strate.partDotationTotale *= 100;
-          // eslint-disable-next-line no-param-reassign
-          strate.partEligibles *= 100;
+          // eslint-disable-next-line
+          if (strate.hasOwnProperty("partEligibles")) {
+            // eslint-disable-next-line no-param-reassign
+            strate.partEligibles *= 100;
+          }
         });
         if (payload.plf) {
           payload.plf.communes[dotation].strates.forEach((strate) => {
             // eslint-disable-next-line no-param-reassign
             strate.partDotationTotale *= 100;
-            // eslint-disable-next-line no-param-reassign
-            strate.partEligibles *= 100;
+            // eslint-disable-next-line
+            if (strate.hasOwnProperty("partEligibles")) {
+              // eslint-disable-next-line no-param-reassign
+              strate.partEligibles *= 100;
+            }
           });
         }
         payload.base.communes[dotation].strates.forEach((strate) => {
           // eslint-disable-next-line no-param-reassign
           strate.partDotationTotale *= 100;
-          // eslint-disable-next-line no-param-reassign
-          strate.partEligibles *= 100;
+          // eslint-disable-next-line
+          if (strate.hasOwnProperty("partEligibles")) {
+            // eslint-disable-next-line no-param-reassign
+            strate.partEligibles *= 100;
+          }
         });
       }
 
       parsePayload("dsr");
       parsePayload("dsu");
+      parsePayload("df");
 
       dispatch(simulateDotationsSuccess(payload));
     })
