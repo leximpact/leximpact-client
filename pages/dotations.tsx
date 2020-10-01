@@ -6,7 +6,7 @@ import { Fragment, PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
 
-import { SimulationPage } from "../components/common";
+import { SimulationPage, Matomo } from "../components/common";
 import {
   Articles, DsrHelpWindow,
   DsuHelpWindow, MontantsDsrHelpWindow, PotentielFinancierHelpWindow, Results, TrendHelpWindow,
@@ -42,6 +42,7 @@ class DotationPage extends PureComponent<PropsFromRedux> {
       <Fragment>
         <Head>
           <title>LexImpact - Dotations aux communes</title>
+          <Matomo />
         </Head>
         <SimulationPage
           parameters={<Articles />}
