@@ -8,8 +8,13 @@ export class Matomo extends PureComponent {
         dangerouslySetInnerHTML={{
           __html: ` var _paq = window._paq = window._paq || [];
           /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
+          var pagePath = window.location.pathname;
+          var isConnectionPage = pagePath.includes("connection");
+          _paq.push(['setDocumentTitle', isConnectionPage ? pagePath.substring(0, pagePath.lastIndexOf('/')) : pagePath]);
+          if (!isConnectionPage){
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+          };
           (function() {
             var u="https://leximpact.matomo.cloud/";
             _paq.push(['setTrackerUrl', u+'matomo.php']);
