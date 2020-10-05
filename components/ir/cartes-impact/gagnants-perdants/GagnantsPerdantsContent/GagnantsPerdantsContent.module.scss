@@ -2,33 +2,19 @@
 
 $spacing: 8px;
 
-.plf {
-  color: $plf-color;
+.main {
   line-height: 1.5;
 }
 
-.amendement {
-  color: #000000;
-  line-height: 1.5;
-}
-
-.plfValue, .amendementValue {
-  font-weight: bold;
-  font-family: Lato;
+.mainValue {
   font-size: 25px;
 }
 
-.amendementValue {
-  background-color: $amendement-bg-color;
-  padding: 0.1rem;
-}
-
-.plfUnit, .amendementUnit {
-  font-family: Lato;
+.mainUnit {
   font-size: 20px;
 }
 
-.plfIcon, .amendementIcon {
+.mainIcon {
   vertical-align: text-bottom;
 }
 
@@ -40,24 +26,7 @@ $spacing: 8px;
   padding-top: $spacing;
 }
 
-.detailsPlfValue {
-  color: #000000;
-  font-weight: bold;
-  color: $plf-color;
-}
-
-.detailsPlfUnit {
-  color: #000000;
-  font-weight: bold;
-}
-
-.detailsAmendementValue {
-  color: #000000;
-  font-weight: bold;
-  background-color: $amendement-bg-color;
-}
-
-.detailsAmendementUnit {
+.detailsUnit {
   color: #000000;
   font-weight: bold;
 }
