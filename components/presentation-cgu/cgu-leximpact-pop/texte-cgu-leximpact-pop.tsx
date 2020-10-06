@@ -1,24 +1,10 @@
 import Divider from "@material-ui/core/Divider";
-import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
 
-const styles = {
-  dividerSansMarge: {
-    marginTop: "5px",
-  },
-  espaceVide: {
-    height: "20px",
-  },
-  sectionText: {
-    margin: "0 auto",
-    maxWidth: "800px",
-    padding: "30px",
-  },
-};
+import styles from "./texte-cgu-leximpact-pop.module.scss";
 
-function TexteCguLeximpactPop({ classes }) {
+function TexteCguLeximpactPop() {
   return (
-    <section className={classes.sectionText}>
+    <section className={styles.sectionText}>
       <h1>Conditions d&apos;utilisation de la version en accès restreint de LexImpact IR</h1>
 
       <p>
@@ -80,7 +66,7 @@ function TexteCguLeximpactPop({ classes }) {
         .
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Vocabulaire</h2>
       <hr />
@@ -88,7 +74,7 @@ function TexteCguLeximpactPop({ classes }) {
       <p>« Nous » se réfère à l&apos;éditeur de LexImpact IR</p>
       <p>« Vous » se réfère à un·e usager habilité·e de LexImpact IR</p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Utilisation</h2>
       <hr />
@@ -120,7 +106,7 @@ function TexteCguLeximpactPop({ classes }) {
         d&apos;éventuelles attaques par déni de service.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Conditions d&apos;accès au service</h2>
       <hr />
@@ -150,7 +136,7 @@ function TexteCguLeximpactPop({ classes }) {
           et que vous n&apos;arrivez pas à vous connecter à LexImpact IR :
         </b>
       </p>
-      <Divider className={classes.dividerSansMarge} />
+      <Divider className={styles.dividerSansMarge} />
 
       <ol>
         <li>
@@ -190,7 +176,7 @@ function TexteCguLeximpactPop({ classes }) {
           et que vous souhaitez accéder au service :
         </b>
       </p>
-      <Divider className={classes.dividerSansMarge} />
+      <Divider className={styles.dividerSansMarge} />
 
       <ul>
         <li>
@@ -211,7 +197,7 @@ function TexteCguLeximpactPop({ classes }) {
         acceptation d&apos;habilitation.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Vos données</h2>
       <hr />
@@ -248,7 +234,7 @@ function TexteCguLeximpactPop({ classes }) {
         indépendamment des simulations effectuées.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Cookies</h2>
       <hr />
@@ -260,7 +246,7 @@ function TexteCguLeximpactPop({ classes }) {
         après fermeture de votre navigateur et réutilisés lors des prochaines
         visites sur nos sites.
       </p>
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Absence de garantie de service</h2>
       <hr />
@@ -272,7 +258,7 @@ function TexteCguLeximpactPop({ classes }) {
         droit à compensation financière.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Absence de garantie de résultat</h2>
       <hr />
@@ -331,7 +317,7 @@ function TexteCguLeximpactPop({ classes }) {
         Les résultats obtenus sont à considérer comme un ordre de grandeur.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Évolutions</h2>
       <hr />
@@ -360,8 +346,4 @@ function TexteCguLeximpactPop({ classes }) {
   );
 }
 
-TexteCguLeximpactPop.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
-
-export default withStyles(styles)(TexteCguLeximpactPop);
+export default TexteCguLeximpactPop;
