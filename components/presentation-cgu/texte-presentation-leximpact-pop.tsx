@@ -1,26 +1,13 @@
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
-import { withStyles } from "@material-ui/core/styles";
 import Link from "next/link";
-import PropTypes from "prop-types";
 
-const styles = {
-  dividerMarge: {
-    marginTop: "20px",
-  },
+import styles from "./texte-presentation-leximpact-pop.module.scss";
 
-  espaceVide: {
-    height: "20px",
-  },
-  paperItem: {
-    padding: "20px",
-  },
-};
-
-function TextePresentationLeximpactPop({ classes }) {
+function TextePresentationLeximpactPop() {
   return (
-    <Paper className={classes.paperItem}>
+    <Paper className={styles.paperItem}>
       <h2>LexImpact IR en accès restreint</h2>
       <p>
         La version en accès restreint de LexImpact IR est
@@ -37,7 +24,7 @@ function TextePresentationLeximpactPop({ classes }) {
         sur la population et les recettes de l&apos;État.
       </p>
 
-      <Divider className={classes.dividerMarge} />
+      <Divider className={styles.dividerMarge} />
 
       <p>
         Dans le cadre de l&apos;actuel périmètre, limité à&nbsp;l&apos;Article
@@ -63,7 +50,7 @@ function TextePresentationLeximpactPop({ classes }) {
         </li>
       </ul>
 
-      <Divider className={classes.dividerMarge} />
+      <Divider className={styles.dividerMarge} />
 
       <p>
         Les paramètres modifiables dans l&apos;Article 197 du
@@ -78,7 +65,7 @@ function TextePresentationLeximpactPop({ classes }) {
         <li>la réfaction outre-mers.</li>
       </ul>
 
-      <Divider className={classes.dividerMarge} />
+      <Divider className={styles.dividerMarge} />
 
       <p>
         Afin de pouvoir chiffrer les impacts sur le budget de l&apos;État
@@ -95,7 +82,7 @@ function TextePresentationLeximpactPop({ classes }) {
         {" "}
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <Link href="/conditions-d-utilisation-leximpactpop">
         <Button fullWidth color="secondary" size="large" variant="contained">
@@ -107,8 +94,4 @@ function TextePresentationLeximpactPop({ classes }) {
   );
 }
 
-TextePresentationLeximpactPop.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
-
-export default withStyles(styles)(TextePresentationLeximpactPop);
+export default TextePresentationLeximpactPop;
