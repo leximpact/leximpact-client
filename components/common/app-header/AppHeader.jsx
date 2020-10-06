@@ -1,31 +1,67 @@
 import AppBar from "@material-ui/core/AppBar";
+import { withStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
-import styles from "./AppHeader.module.scss";
 import LoginButton from "./login-button";
 import HeaderMenuButton from "./menu-button";
+
+const styles = () => ({
+  bolderMobileTitle: {
+    fontSize: 17,
+    fontWeight: "bold",
+  },
+  bolderTitle: {
+    display: "inline-block",
+    fontSize: 36,
+    fontWeight: "bold",
+  },
+  lighterMobileTitle: {
+    fontSize: 17,
+    fontWeight: "regular",
+  },
+  lighterTitle: {
+    display: "inline-block",
+    fontSize: 36,
+    fontWeight: "lighter",
+  },
+  subTitle: {
+    display: "inline-block",
+    fontSize: "13px",
+    fontWeight: "bold",
+    lineHeight: 1.2,
+    marginLeft: "10px",
+  },
+  titleRoot: {
+    color: "#FFFFFF",
+    fontFamily: "Lato",
+    textTransform: "uppercase",
+  },
+  toolbarRoot: {
+    justifyContent: "space-between",
+  },
+});
 
 class AppHeader extends PureComponent {
   render() {
     const {
-      isUserLogged, showHomeButton, showLoginButton,
+      classes, isUserLogged, showHomeButton, showLoginButton,
       subTitle1, subTitle2, title, useMobileView,
     } = this.props;
     return (
       <AppBar position="relative">
-        <Toolbar className={styles.toolbarRoot}>
+        <Toolbar classes={{ root: classes.toolbarRoot }}>
           {showHomeButton && <HeaderMenuButton isMobile={useMobileView} />}
           {!showHomeButton && <div />}
           {!useMobileView && (
-            <Typography className={styles.titleRoot} component="div">
+            <Typography classes={{ root: classes.titleRoot }} component="div">
               <div>
-                <div className={styles.lighterTitle}>LEXIMPACT&nbsp;</div>
-                {title && <div className={styles.bolderTitle}>{title}</div>}
+                <div className={classes.lighterTitle}>LEXIMPACT&nbsp;</div>
+                {title && <div className={classes.bolderTitle}>{title}</div>}
                 {subTitle1 && (
-                  <div className={styles.subTitle}>
+                  <div className={classes.subTitle}>
                     {subTitle1}
                     <br />
                     {subTitle2}
@@ -35,12 +71,12 @@ class AppHeader extends PureComponent {
             </Typography>
           )}
           {useMobileView && (
-            <Typography className={styles.titleRoot} component="div">
+            <Typography classes={{ root: classes.titleRoot }} component="div">
               <span>
-                <span className={styles.lighterMobileTitle}>
+                <span className={classes.lighterMobileTitle}>
                   LEXIMPACT&nbsp;
                 </span>
-                {title && <span className={styles.bolderMobileTitle}>{title}</span>}
+                {title && <span className={classes.bolderMobileTitle}>{title}</span>}
               </span>
             </Typography>
           )}
@@ -60,6 +96,7 @@ AppHeader.defaultProps = {
 };
 
 AppHeader.propTypes = {
+  classes: PropTypes.shape().isRequired,
   isUserLogged: PropTypes.bool.isRequired,
   showHomeButton: PropTypes.bool,
   showLoginButton: PropTypes.bool.isRequired,
@@ -69,4 +106,4 @@ AppHeader.propTypes = {
   useMobileView: PropTypes.bool.isRequired,
 };
 
-export default AppHeader;
+export default withStyles(styles)(AppHeader);

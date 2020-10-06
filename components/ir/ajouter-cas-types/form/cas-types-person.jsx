@@ -2,12 +2,24 @@ import babyIcon from "@iconify/icons-twemoji/baby";
 import manCurlyHaired from "@iconify/icons-twemoji/man-curly-haired";
 import womanCurlyHaired from "@iconify/icons-twemoji/woman-curly-haired";
 import { Icon } from "@iconify/react";
+import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { PureComponent } from "react";
 import { Field } from "react-final-form";
 
-import styles from "./cas-types-person.module.scss";
 import { MUINumberStepper } from "./mui-extras-components";
+
+const styles = {
+  container: {
+    alignItems: "center",
+    display: "flex",
+    flex: 0,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    justifyContent: "center",
+    margin: "0 12px",
+  },
+};
 
 class CasTypesPerson extends PureComponent {
   handlerInputChange = input => (nextValue) => {
@@ -25,14 +37,14 @@ class CasTypesPerson extends PureComponent {
 
   render() {
     const {
-      isChild, max, min, name,
+      classes, isChild, max, min, name,
     } = this.props;
     let icon = Math.random() < 0.5 ? manCurlyHaired : womanCurlyHaired;
     if (isChild) {
       icon = babyIcon;
     }
     return (
-      <div className={styles.container}>
+      <div className={classes.container}>
         <Field name={name}>
           {({ input }) => (
             <MUINumberStepper
@@ -59,6 +71,7 @@ CasTypesPerson.defaultProps = {
 };
 
 CasTypesPerson.propTypes = {
+  classes: PropTypes.shape().isRequired,
   isChild: PropTypes.bool,
   // label: PropTypes.string.isRequired,
   max: PropTypes.number,
@@ -68,4 +81,4 @@ CasTypesPerson.propTypes = {
   onPersonRemove: PropTypes.func.isRequired,
 };
 
-export default CasTypesPerson;
+export default withStyles(styles)(CasTypesPerson);
