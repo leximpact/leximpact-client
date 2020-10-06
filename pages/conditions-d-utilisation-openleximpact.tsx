@@ -1,4 +1,3 @@
-import { flow } from "lodash";
 import Head from "next/head";
 import { Fragment, PureComponent } from "react";
 
@@ -20,4 +19,4 @@ class PageCGULexOpenImpact extends PureComponent {
   }
 }
 
-export default flow(withRoot)(PageCGULexOpenImpact);
+export default withRoot(PageCGULexOpenImpact);

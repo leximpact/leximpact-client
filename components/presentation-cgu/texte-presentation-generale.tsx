@@ -1,26 +1,10 @@
 import Divider from "@material-ui/core/Divider";
-import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
 
-const styles = {
-  dividerMarge: {
-    marginTop: "20px",
-  },
-  espaceVide: {
-    height: "20px",
-  },
-  sectionText: {
-    margin: "0 auto",
-    maxWidth: "800px",
-    paddingLeft: "30px",
-    paddingRight: "30px",
-    paddingTop: "30px",
-  },
-};
+import styles from "./texte-presentation-generale.module.scss";
 
-function TextePresentationGenerale({ classes }) {
+function TextePresentationGenerale() {
   return (
-    <section className={classes.sectionText}>
+    <section className={styles.sectionText}>
       <h1>
         Présentation du service
         {" "}
@@ -57,7 +41,7 @@ function TextePresentationGenerale({ classes }) {
         vise à s&apos;élargir progressivement.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Service actuel</h2>
       <hr />
@@ -114,20 +98,16 @@ function TextePresentationGenerale({ classes }) {
         </li>
       </ul>
 
-      <Divider className={classes.dividerMarge} />
+      <Divider className={styles.dividerMarge} />
 
       <p>
         Vous trouverez ci-dessous le détail complet des fonctionnalités
         disponibles dans chacune des versions du&nbsp;service :
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
     </section>
   );
 }
 
-TextePresentationGenerale.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
-
-export default withStyles(styles)(TextePresentationGenerale);
+export default TextePresentationGenerale;
