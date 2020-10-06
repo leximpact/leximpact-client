@@ -1,7 +1,6 @@
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { withStyles } from "@material-ui/core/styles";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
@@ -14,28 +13,7 @@ import { RootState } from "../../../../redux/reducers";
 import { ParametersState } from "../../../../redux/reducers/parameters";
 import styles from "./ArticleHeader.module.scss";
 
-const stylesTheme = () => ({
-  menuItemPaper: {
-    backgroundColor: "rgba(255, 255, 255, 1) !important",
-    paddingBottom: "5px",
-    paddingTop: "5px",
-  },
-  refreshIcon: {
-    display: "flex",
-    float: "right !important",
-    marginLeft: "10px",
-  },
-  stylePaperTitreMenu: {
-    backgroundColor: "rgba(255, 255, 255, 1) !important",
-    fontFamily: "Lato",
-    padding: "2px",
-    paddingLeft: "15px",
-    paddingRight: "15px",
-  },
-});
-
-type Props = {
-  classes: any;
+interface Props {
   topic: keyof ParametersState;
 }
 
@@ -75,7 +53,7 @@ class ArticleHeader extends PureComponent<ConnectedProps<typeof connector> & Pro
 
 
   render() {
-    const { classes, displayPLF } = this.props;
+    const { displayPLF } = this.props;
     const { anchorEl } = this.state;
     return (
       <div className={styles.resetParams}>
@@ -93,7 +71,7 @@ class ArticleHeader extends PureComponent<ConnectedProps<typeof connector> & Pro
           id="simple-menu"
           open={Boolean(anchorEl)}
           onClose={this.handleClose}>
-          <div className={classes.stylePaperTitreMenu}>
+          <div className={styles.stylePaperTitreMenu}>
             <span>
               Réinitialiser mon amendement
               <br />
@@ -105,7 +83,7 @@ class ArticleHeader extends PureComponent<ConnectedProps<typeof connector> & Pro
             displayPLF
               ? (
                 <MenuItem
-                  className={classes.menuItemPaper}
+                  className={styles.menuItemPaper}
                   onClick={this.handleClickPlf}>
                   <span>-</span>
                   <span className={styles.plf}>PLF</span>
@@ -115,7 +93,7 @@ class ArticleHeader extends PureComponent<ConnectedProps<typeof connector> & Pro
           }
 
           <MenuItem
-            className={classes.menuItemPaper}
+            className={styles.menuItemPaper}
             onClick={this.handleClickBase}>
             <span>-</span>
             <span className={styles.initial}>
@@ -128,4 +106,4 @@ class ArticleHeader extends PureComponent<ConnectedProps<typeof connector> & Pro
   }
 }
 
-export default withStyles(stylesTheme as any, { withTheme: true })(connector(ArticleHeader));
+export default connector(ArticleHeader);

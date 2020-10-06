@@ -1,0 +1,41 @@
+@import "styles/variables";
+
+.bolderMobileTitle {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.bolderTitle {
+  display: inline-block;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.lighterMobileTitle {
+  font-size: 17px;
+  font-weight: regular;
+}
+
+.lighterTitle {
+  display: inline-block;
+  font-size: 36px;
+  font-weight: lighter;
+}
+
+.subTitle {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-left: 10px;
+}
+
+.titleRoot {
+  color: #FFFFFF;
+  font-family: $default-font-family;
+  text-transform: uppercase;
+}
+
+.toolbarRoot {
+  justify-content: space-between;
+};
