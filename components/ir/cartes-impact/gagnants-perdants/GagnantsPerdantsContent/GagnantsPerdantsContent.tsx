@@ -1,4 +1,3 @@
-import GroupIcon from "@material-ui/icons/Group";
 import { PureComponent } from "react";
 
 import { SubCard, Values } from "../../../../common";
@@ -37,10 +36,6 @@ export class GagnantsPerdantsContent extends PureComponent<Props> {
               <Values amendementValue={inMillions(amendement)} plfValue={inMillions(plf)} />
             </span>
             <span className={styles.mainUnit}> M</span>
-            <GroupIcon
-              className={styles.mainIcon}
-              fontSize="small"
-            />
           </div>
         </div>
         {
