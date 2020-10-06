@@ -1,1 +1,0 @@
-export { MontantDgf } from "./MontantDgf";
