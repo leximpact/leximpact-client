@@ -1,6 +1,6 @@
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { PureComponent } from "react";
+import { createRef, PureComponent } from "react";
 
 import styles from "./SecondaryExpandablePanel.module.scss";
 
@@ -13,29 +13,45 @@ interface Props {
 interface State {
   expanded: boolean;
   id: number;
+  toScroll: boolean;
 }
 
 export class SecondaryExpandablePanel extends PureComponent<Props, State> {
   static lastId = 0;
 
+  containerRef = createRef<HTMLDivElement>();
+
   constructor(props) {
     super(props);
     SecondaryExpandablePanel.lastId += 1;
     const { expanded } = this.props;
-    this.state = { expanded: !!expanded, id: SecondaryExpandablePanel.lastId };
+    this.state = {
+      expanded: !!expanded,
+      id: SecondaryExpandablePanel.lastId,
+      toScroll: false,
+    };
     this.onExpandedChange = this.onExpandedChange.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { toScroll } = this.state;
+    if (toScroll && this.containerRef.current) {
+      this.containerRef.current.scrollIntoView();
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ toScroll: false });
+    }
   }
 
   onExpandedChange() {
     const { expanded } = this.state;
-    this.setState({ expanded: !expanded });
+    this.setState({ expanded: !expanded, toScroll: !expanded });
   }
 
   render() {
     const { children, subTitle, title } = this.props;
     const { expanded, id } = this.state;
     return (
-      <div className={styles.container}>
+      <div ref={this.containerRef} className={styles.container}>
         <div
           aria-controls={`secondary-panel${id}-content`}
           aria-disabled="false"
