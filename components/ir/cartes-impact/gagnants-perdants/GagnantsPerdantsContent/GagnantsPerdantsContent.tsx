@@ -1,7 +1,6 @@
-import GroupIcon from "@material-ui/icons/Group";
-import { Fragment, PureComponent } from "react";
+import { PureComponent } from "react";
 
-import { SubCard } from "../../../../common";
+import { SubCard, Values } from "../../../../common";
 import styles from "./GagnantsPerdantsContent.module.scss";
 
 interface Props {
@@ -14,7 +13,10 @@ interface Props {
   captionAmendement?: number;
 }
 
-function inMillions(n: number): number {
+function inMillions(n: number|undefined): number|undefined {
+  if (n === undefined) {
+    return undefined;
+  }
   return Math.round(n / 100000) / 10;
 }
 
@@ -29,60 +31,25 @@ export class GagnantsPerdantsContent extends PureComponent<Props> {
         title={title}
       >
         <div className={styles.containerImpact}>
-          {
-            typeof plf === "number"
-              ? (
-                <div className={styles.plf}>
-                  <span className={styles.plfValue}>{inMillions(plf)}</span>
-                  <span className={styles.plfUnit}> M</span>
-                  <GroupIcon
-                    className={styles.plfIcon}
-                    fontSize="small"
-                  />
-                </div>
-              )
-              : null
-          }
-          {
-            typeof amendement === "number"
-              ? (
-                <div className={styles.amendement}>
-                  <span className={styles.amendementValue}>{inMillions(amendement)}</span>
-                  <span className={styles.amendementUnit}> M</span>
-                  <GroupIcon
-                    className={styles.amendementIcon}
-                    fontSize="small"
-                  />
-                </div>
-              ) : null
-          }
+          <div className={styles.main}>
+            <span className={styles.mainValue}>
+              <Values amendementValue={inMillions(amendement)} plfValue={inMillions(plf)} />
+            </span>
+            <span className={styles.mainUnit}> M</span>
+          </div>
         </div>
         {
           caption && (typeof amendement === "number" || typeof plf === "number") && (
             <div className={styles.details}>
               dont
               {" "}
-              {
-                typeof captionPlf === "number"
-                  ? (
-                    <Fragment>
-                      <span className={styles.detailsPlfValue}>{inMillions(captionPlf)}</span>
-                      <span className={styles.detailsPlfUnit}> M</span>
-                    </Fragment>
-                  )
-                  : null
-              }
-              {
-                typeof captionAmendement === "number"
-                  ? (
-                    <Fragment>
-                      <span className={styles.detailsAmendementValue}>
-                        {inMillions(captionAmendement)}
-                      </span>
-                      <span className={styles.detailsAmendementUnit}> M</span>
-                    </Fragment>
-                  ) : null
-              }
+              <span>
+                <Values
+                  amendementValue={inMillions(captionAmendement)}
+                  plfValue={inMillions(captionPlf)} />
+              </span>
+              <span className={styles.detailsUnit}> M</span>
+              {" "}
               {caption}
             </div>
           )

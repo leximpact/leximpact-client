@@ -93,10 +93,10 @@ const DEFAULT_STATE: State = {
     },
   ],
   foyersFiscauxTouches: {
-    // avant_to_apres: {
-    //   gagnant: 17934870,
-    //   neutre_zero: 20398107,
-    // },
+    avant_to_apres: {
+      gagnant: 17934870,
+      neutre_zero: 20398107,
+    },
     avant_to_plf: {
       gagnant: 17934870,
       neutre_zero: 20398107,

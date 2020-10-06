@@ -244,7 +244,7 @@ class CarteEtat extends PureComponent<Props> {
         }
         icon={<Icon height="40" icon={classicalBuilding} width="40" />}
         subTitle="par décile de population et par an"
-        title="Recettes de l&apos;État sur l&apos;impôt sur le revenu"
+        title="Recettes de l&apos;État"
       />
     );
   }
