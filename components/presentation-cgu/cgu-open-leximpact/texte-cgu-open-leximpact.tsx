@@ -1,20 +1,8 @@
-import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+import styles from "./texte-cgu-open-leximpact.module.scss";
 
-const styles = {
-  espaceVide: {
-    height: "20px",
-  },
-  sectionText: {
-    margin: "0 auto",
-    maxWidth: "800px",
-    padding: "30px",
-  },
-};
-
-function TexteCguOpenLeximpact({ classes }) {
+function TexteCguOpenLeximpact() {
   return (
-    <section className={classes.sectionText}>
+    <section className={styles.sectionText}>
       <h1>Conditions d&apos;utilisation de LexImpact IR</h1>
 
       <h2>Vocabulaire</h2>
@@ -23,7 +11,7 @@ function TexteCguOpenLeximpact({ classes }) {
       <p>« Nous » se réfère à l&apos;éditeur de LexImpact IR.</p>
       <p>« Vous » se réfère à un·e usager de LexImpact IR.</p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Utilisation</h2>
       <hr />
@@ -59,7 +47,7 @@ function TexteCguOpenLeximpact({ classes }) {
         d&apos;éventuelles attaques par déni de service.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Vos données</h2>
       <hr />
@@ -92,7 +80,7 @@ function TexteCguOpenLeximpact({ classes }) {
         indépendamment des simulations effectuées.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Cookies</h2>
       <hr />
@@ -103,7 +91,7 @@ function TexteCguOpenLeximpact({ classes }) {
         votre ordinateur même après fermeture de votre navigateur et réutilisé lors des prochaines
         visites sur nos sites.
       </p>
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Absence de garantie de service</h2>
       <hr />
@@ -115,7 +103,7 @@ function TexteCguOpenLeximpact({ classes }) {
         compensation financière.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Absence de garantie de résultat</h2>
       <hr />
@@ -155,7 +143,7 @@ function TexteCguOpenLeximpact({ classes }) {
         est disponible.
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Évolutions</h2>
       <hr />
@@ -184,8 +172,4 @@ function TexteCguOpenLeximpact({ classes }) {
   );
 }
 
-TexteCguOpenLeximpact.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
-
-export default withStyles(styles)(TexteCguOpenLeximpact);
+export default TexteCguOpenLeximpact;

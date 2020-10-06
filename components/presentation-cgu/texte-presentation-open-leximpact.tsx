@@ -1,26 +1,13 @@
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
-import { withStyles } from "@material-ui/core/styles";
 import Link from "next/link";
-import PropTypes from "prop-types";
 
-const styles = {
-  dividerMarge: {
-    marginTop: "20px",
-  },
+import styles from "./texte-presentation-open-leximpact.module.scss";
 
-  espaceVide: {
-    height: "20px",
-  },
-  paperItem: {
-    padding: "20px",
-  },
-};
-
-function TextePresentationOpenLeximpact({ classes }) {
+function TextePresentationOpenLeximpact() {
   return (
-    <Paper className={classes.paperItem}>
+    <Paper className={styles.paperItem}>
       <h2>LexImpact IR en accès libre</h2>
       <p>
         La version en accès libre de LexImpact IR permet à&nbsp;toutes et tous
@@ -29,7 +16,7 @@ function TextePresentationOpenLeximpact({ classes }) {
         situation personnelle.
       </p>
 
-      <Divider className={classes.dividerMarge} />
+      <Divider className={styles.dividerMarge} />
 
       <p>
         Dans le cadre de l&apos;actuel périmètre, limité à&nbsp;l&apos;Article
@@ -46,7 +33,7 @@ function TextePresentationOpenLeximpact({ classes }) {
       </ul>
       <p>sur des foyers fiscaux types.</p>
 
-      <Divider className={classes.dividerMarge} />
+      <Divider className={styles.dividerMarge} />
 
       <p>
         Les paramètres modifiables dans l&apos;Article 197 du
@@ -66,7 +53,7 @@ function TextePresentationOpenLeximpact({ classes }) {
         le revenu net à déclarer des foyers fiscaux types prédéfinis sur l&apos;interface.
       </p>
 
-      <Divider className={classes.dividerMarge} />
+      <Divider className={styles.dividerMarge} />
 
       <p>
         L&apos;utilisation de LexImpact est libre, facultative et
@@ -75,7 +62,7 @@ function TextePresentationOpenLeximpact({ classes }) {
         générales d&apos;utilisation (CGU) disponibles ci-après&nbsp;:
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <Link href="/conditions-d-utilisation-openleximpact">
         <Button fullWidth color="secondary" size="large" variant="contained">
@@ -86,8 +73,4 @@ function TextePresentationOpenLeximpact({ classes }) {
   );
 }
 
-TextePresentationOpenLeximpact.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
-
-export default withStyles(styles)(TextePresentationOpenLeximpact);
+export default TextePresentationOpenLeximpact;

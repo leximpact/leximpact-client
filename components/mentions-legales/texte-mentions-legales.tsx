@@ -1,20 +1,8 @@
-import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+import styles from "./texte-mentions-legales.module.scss";
 
-const styles = {
-  espaceVide: {
-    height: "20px",
-  },
-  sectionText: {
-    margin: "0 auto",
-    maxWidth: "800px",
-    padding: "30px",
-  },
-};
-
-function MyComponent({ classes }) {
+function MyComponent() {
   return (
-    <section className={classes.sectionText}>
+    <section className={styles.sectionText}>
       <h1>Mentions légales</h1>
 
       <h2>Éditeur</h2>
@@ -25,7 +13,7 @@ function MyComponent({ classes }) {
       </p>
       <p>126, rue de l&apos;Université - 75355 Paris 07 SP.</p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Site Internet</h2>
       <hr />
@@ -36,7 +24,7 @@ function MyComponent({ classes }) {
 
       <p>Michel Moreau</p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Hébergeur</h2>
       <hr />
@@ -51,7 +39,7 @@ function MyComponent({ classes }) {
         France
       </p>
 
-      <div className={classes.espaceVide} />
+      <div className={styles.espaceVide} />
 
       <h2>Crédits</h2>
       <hr />
@@ -77,8 +65,4 @@ function MyComponent({ classes }) {
   );
 }
 
-MyComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
-
-export default withStyles(styles)(MyComponent);
+export default MyComponent;
