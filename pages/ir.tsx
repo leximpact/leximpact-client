@@ -30,12 +30,12 @@ const mapDispatchToProps = dispatch => ({
   simulateCasTypes: () => {
     dispatch(simulateCasTypes());
     dispatch(disabledEtat());
-    trackEvent("ir", "simulateCasType");
+    trackEvent("ir", "click estimer", "simule avec cas types");
   },
   simulatePopulation: () => {
     dispatch(fetchSimPop());
     dispatch(simulateCasTypes());
-    trackEvent("ir", "simulatePopulation");
+    trackEvent("ir", "click estimer", "simule avec cas types et population");
   },
 });
 

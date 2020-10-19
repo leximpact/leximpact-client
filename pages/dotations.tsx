@@ -27,8 +27,8 @@ const mapDispatchToProps = dispatch => ({
   addCommunesTypes: () => dispatch(initCommunesTypes()),
   addFakePlf: () => dispatch(initFakePlf()),
   simulate: () => {
-    trackEvent("dotations", "simulate");
     dispatch(simulateDotations());
+    trackEvent("dotations", "click estimer", "simule avec communes types et strates");
   },
 });
 

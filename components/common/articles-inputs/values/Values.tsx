@@ -50,16 +50,16 @@ class Values extends PureComponent<Props & PropsFromRedux> {
     if (url.href.includes("/dotations")) {
       // eslint-disable-next-line react/destructuring-assignment
       this.props.simulateDotations();
-      trackEvent("dotations", "enter");
+      trackEvent("dotations", "push enter", "simule avec communes types et strates");
     } else if (url.href.includes("/ir")) {
       // eslint-disable-next-line react/destructuring-assignment
       this.props.simulateIRCasType();
       if (isUserLogged) {
         // eslint-disable-next-line react/destructuring-assignment
         this.props.simulateIRPopulation();
-        trackEvent("ir", "enter-simulatePopulation");
+        trackEvent("ir", "push enter", "simule avec cas types et population");
       } else {
-        trackEvent("ir", "enter-simulateCasType");
+        trackEvent("ir", "push enter", "simule avec cas types");
       }
     }
   }
