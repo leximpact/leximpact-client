@@ -9,6 +9,7 @@ import { Fragment, PureComponent } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import { Matomo, SimulationPage } from "../components/common";
+import { trackEvent } from "../components/common/utils";
 import { Articles, CartesImpact as ImpactCards } from "../components/ir";
 import PopinManager from "../components/PopinManager";
 import withRoot from "../lib/withRoot";
@@ -29,10 +30,12 @@ const mapDispatchToProps = dispatch => ({
   simulateCasTypes: () => {
     dispatch(simulateCasTypes());
     dispatch(disabledEtat());
+    trackEvent("ir", "simulateCasType");
   },
   simulatePopulation: () => {
     dispatch(fetchSimPop());
     dispatch(simulateCasTypes());
+    trackEvent("ir", "simulatePopulation");
   },
 });
 

@@ -7,6 +7,7 @@ import { Fragment, PureComponent } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import { Matomo, SimulationPage } from "../components/common";
+import { trackEvent } from "../components/common/utils";
 import {
   Articles,
   DfHelpWindow,
@@ -25,7 +26,10 @@ import { initCommunesTypes, initFakePlf, simulateDotations } from "../redux/acti
 const mapDispatchToProps = dispatch => ({
   addCommunesTypes: () => dispatch(initCommunesTypes()),
   addFakePlf: () => dispatch(initFakePlf()),
-  simulate: () => dispatch(simulateDotations()),
+  simulate: () => {
+    trackEvent("dotations", "simulate");
+    dispatch(simulateDotations());
+  },
 });
 
 const connector = connect(null, mapDispatchToProps);
