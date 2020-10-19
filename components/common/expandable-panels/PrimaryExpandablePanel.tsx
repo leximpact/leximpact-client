@@ -3,6 +3,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { createRef, PureComponent } from "react";
 
 import { HelpButton } from "../help-button";
+import { getEventCategory, trackEvent } from "../utils";
 import styles from "./PrimaryExpandablePanel.module.scss";
 
 interface Props {
@@ -37,6 +38,10 @@ export class PrimaryExpandablePanel extends PureComponent<Props, State> {
       return;
     }
     this.setState({ expanded: !expanded });
+
+    const eventCategory = getEventCategory();
+    // eslint-disable-next-line react/destructuring-assignment
+    trackEvent(eventCategory, "expand or close panel", this.props.title);
   }
 
   render() {
