@@ -21,7 +21,7 @@ function getEventCategory() {
  * Send event information to matomo tracking service.
  * @param category 'dotations', 'ir' or '?'
  * @param action The user action (button click, key push, ...) that dispatched the event.
- * @param name Event name accordinf to its impact.
+ * @param name Event name according to its impact.
  * @link https://fr.matomo.org/docs/event-tracking/
  */
 function trackEvent(category: string, action: string, name: string) {
