@@ -9,7 +9,7 @@ import { Fragment, PureComponent } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import { Matomo, SimulationPage } from "../components/common";
-import { trackEvent } from "../components/common/utils";
+import { trackEvent } from "../components/common";
 import { Articles, CartesImpact as ImpactCards } from "../components/ir";
 import PopinManager from "../components/PopinManager";
 import withRoot from "../lib/withRoot";
