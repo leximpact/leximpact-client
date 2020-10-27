@@ -6,7 +6,7 @@ import { Fragment, PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
 
-import { SimulationPage, Matomo, trackEvent } from "../components/common";
+import { Matomo, SimulationPage, trackEvent } from "../components/common";
 import {
   Articles,
   DfHelpWindow,
