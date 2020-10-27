@@ -8,7 +8,7 @@ import { Fragment, PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
 
-import { Matomo, SimulationPage } from "../components/common";
+import { Matomo, SimulationPage, trackEvent } from "../components/common";
 import { Articles, CartesImpact as ImpactCards } from "../components/ir";
 import PopinManager from "../components/PopinManager";
 import withRoot from "../lib/withRoot";
@@ -29,10 +29,12 @@ const mapDispatchToProps = dispatch => ({
   simulateCasTypes: () => {
     dispatch(simulateCasTypes());
     dispatch(disabledEtat());
+    trackEvent("ir", "click estimer", "simule avec cas types");
   },
   simulatePopulation: () => {
     dispatch(fetchSimPop());
     dispatch(simulateCasTypes());
+    trackEvent("ir", "click estimer", "simule avec cas types et population");
   },
 });
 

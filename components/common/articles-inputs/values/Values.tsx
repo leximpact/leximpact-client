@@ -6,7 +6,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { fetchSimPop, simulateCasTypes, simulateDotations } from "../../../../redux/actions";
 // eslint-disable-next-line no-unused-vars
 import { RootState } from "../../../../redux/reducers";
-import { formatNumber } from "../../utils";
+import { formatNumber, trackEvent } from "../../utils";
 import { NumberInput } from "./number-input";
 import styles from "./Values.module.scss";
 
@@ -50,12 +50,16 @@ class Values extends PureComponent<Props & PropsFromRedux> {
     if (url.href.includes("/dotations")) {
       // eslint-disable-next-line react/destructuring-assignment
       this.props.simulateDotations();
+      trackEvent("dotations", "push entree", "simule avec communes types et strates");
     } else if (url.href.includes("/ir")) {
       // eslint-disable-next-line react/destructuring-assignment
       this.props.simulateIRCasType();
       if (isUserLogged) {
         // eslint-disable-next-line react/destructuring-assignment
         this.props.simulateIRPopulation();
+        trackEvent("ir", "push entree", "simule avec cas types et population");
+      } else {
+        trackEvent("ir", "push entree", "simule avec cas types");
       }
     }
   }

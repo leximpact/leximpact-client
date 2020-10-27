@@ -2,6 +2,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { createRef, PureComponent } from "react";
 
+import { getEventCategory, trackEvent } from "../utils";
 import styles from "./SecondaryExpandablePanel.module.scss";
 
 interface Props {
@@ -45,6 +46,10 @@ export class SecondaryExpandablePanel extends PureComponent<Props, State> {
   onExpandedChange() {
     const { expanded } = this.state;
     this.setState({ expanded: !expanded, toScroll: !expanded });
+
+    const eventCategory = getEventCategory();
+    // eslint-disable-next-line react/destructuring-assignment
+    trackEvent(eventCategory, "expand or close panel", this.props.title);
   }
 
   render() {

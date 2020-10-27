@@ -6,7 +6,7 @@ import { Fragment, PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
 import { connect, ConnectedProps } from "react-redux";
 
-import { Matomo, SimulationPage } from "../components/common";
+import { Matomo, SimulationPage, trackEvent } from "../components/common";
 import {
   Articles,
   DfHelpWindow,
@@ -25,7 +25,10 @@ import { initCommunesTypes, initFakePlf, simulateDotations } from "../redux/acti
 const mapDispatchToProps = dispatch => ({
   addCommunesTypes: () => dispatch(initCommunesTypes()),
   addFakePlf: () => dispatch(initFakePlf()),
-  simulate: () => dispatch(simulateDotations()),
+  simulate: () => {
+    dispatch(simulateDotations());
+    trackEvent("dotations", "click estimer", "simule avec communes types et strates");
+  },
 });
 
 const connector = connect(null, mapDispatchToProps);
