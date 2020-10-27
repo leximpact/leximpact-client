@@ -17,10 +17,13 @@ interface Props {
 interface State {
   expanded: boolean;
   id: number;
+  toScroll: boolean;
 }
 
 export class PrimaryExpandablePanel extends PureComponent<Props, State> {
   static lastId = 0;
+
+  containerRef = createRef<HTMLDivElement>();
 
   helpButtonRef = createRef<HTMLSpanElement>();
 
@@ -28,8 +31,21 @@ export class PrimaryExpandablePanel extends PureComponent<Props, State> {
     super(props);
     PrimaryExpandablePanel.lastId += 1;
     const { expanded } = this.props;
-    this.state = { expanded: !!expanded, id: PrimaryExpandablePanel.lastId };
+    this.state = {
+      expanded: !!expanded,
+      id: PrimaryExpandablePanel.lastId,
+      toScroll: false,
+    };
     this.onExpandedChange = this.onExpandedChange.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { toScroll } = this.state;
+    if (toScroll && this.containerRef.current) {
+      this.containerRef.current.scrollIntoView();
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ toScroll: false });
+    }
   }
 
   onExpandedChange(event) {
@@ -37,7 +53,8 @@ export class PrimaryExpandablePanel extends PureComponent<Props, State> {
     if (this.helpButtonRef.current?.contains(event.target)) {
       return;
     }
-    this.setState({ expanded: !expanded });
+
+    this.setState({ expanded: !expanded, toScroll: !expanded });
 
     const eventCategory = getEventCategory();
     // eslint-disable-next-line react/destructuring-assignment
@@ -50,7 +67,7 @@ export class PrimaryExpandablePanel extends PureComponent<Props, State> {
     } = this.props;
     const { expanded, id } = this.state;
     return (
-      <div>
+      <div ref={this.containerRef}>
         <div
           aria-controls={`primary-panel${id}-content`}
           aria-disabled="false"

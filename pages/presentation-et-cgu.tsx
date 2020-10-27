@@ -1,6 +1,4 @@
 import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
-import { flow } from "lodash";
 import Head from "next/head";
 import { Fragment, PureComponent } from "react";
 
@@ -9,33 +7,10 @@ import TextePresentationGenerale from "../components/presentation-cgu/texte-pres
 import TextePresentationLeximpactPop from "../components/presentation-cgu/texte-presentation-leximpact-pop";
 import TextePresentationOpenLeximpact from "../components/presentation-cgu/texte-presentation-open-leximpact";
 import withRoot from "../lib/withRoot";
+import styles from "./presentation-et-cgu.module.scss";
 
-const styles = () => ({
-  gridSection: {
-    margin: "0 auto",
-    maxWidth: "800px",
-    paddingBottom: "30px",
-    paddingLeft: "30px",
-    paddingRight: "30px",
-    paddingTop: "10px",
-  },
-
-  griditemOpen: {
-    paddingRight: "10px",
-  },
-
-  griditemPop: {
-    paddingLeft: "10px",
-  },
-});
-
-interface Props {
-  classes: any;
-}
-
-class ExamplePage extends PureComponent<Props> {
+class ExamplePage extends PureComponent {
   render() {
-    const { classes } = this.props;
     return (
       <Fragment>
         <Head>
@@ -46,14 +21,14 @@ class ExamplePage extends PureComponent<Props> {
         <Grid
           container
           alignItems="flex-start"
-          className={classes.gridSection}
+          className={styles.gridSection}
           direction="row"
           justify="space-between">
-          <Grid item className={classes.griditemOpen} xs={6}>
+          <Grid item className={styles.griditemOpen} xs={6}>
             <TextePresentationOpenLeximpact />
           </Grid>
 
-          <Grid item className={classes.griditemPop} xs={6}>
+          <Grid item className={styles.griditemPop} xs={6}>
             <TextePresentationLeximpactPop />
           </Grid>
         </Grid>
@@ -62,7 +37,4 @@ class ExamplePage extends PureComponent<Props> {
   }
 }
 
-export default flow(
-  withStyles(styles),
-  withRoot,
-)(ExamplePage);
+export default withRoot(ExamplePage);

@@ -151,7 +151,7 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
             {!isDisabledEtat && !isLoadingEtat && (
               <GagnantsPerdantsContent
                 amendement={hausseReforme}
-                caption="&nbsp;de foyers entrant dans l&apos;IR"
+                caption="de foyers nouvellement imposables"
                 captionAmendement={hausseZeroReforme}
                 captionPlf={hausseZeroPlf}
                 icon={(
@@ -161,7 +161,7 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
                   />
                 )}
                 plf={haussePlf}
-                title="ayant une augmentation de l&apos;IR"
+                title="ayant une augmentation"
               />
             )}
           </Fragment>
@@ -176,14 +176,14 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
               />
             )}
             plf={baissePlf}
-            title="ayant une baisse de l&apos;IR"
+            title="ayant une baisse"
           />
         ) : null}
         content3={(!isDisabledEtat && !isLoadingEtat) ? (
           <Fragment>
             <GagnantsPerdantsContent
               amendement={neutreReforme}
-              caption="&nbsp;de foyers toujours exonérés d&apos;IR"
+              caption="de foyers toujours exonérés"
               captionAmendement={neutreZeroReforme}
               captionPlf={neutreZeroPlf}
               icon={(
@@ -204,7 +204,7 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
           </Fragment>
         ) : null}
         icon={<Icon height="40" icon={familyManGirlGirl} width="40" />}
-        subTitle="en millions par rapport au droit existant*"
+        subTitle="en millions"
         title="Nombre de foyers fiscaux"
       />
     );

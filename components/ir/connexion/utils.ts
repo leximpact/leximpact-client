@@ -5,7 +5,7 @@ import Config from "./config.json";
 
 export function getDefaultRoleFromConfig() {
   const { roles } = Config;
-  const defaultRoleKey = Object.keys(roles).find(key => roles[key].default);
+  const defaultRoleKey = Object.keys(roles).find(key => roles[key].default) as string;
   const roleObject = { ...roles[defaultRoleKey], key: defaultRoleKey };
   return roleObject;
 }
@@ -35,7 +35,7 @@ export function updateDomainsWhenRoleChange(role) {
 }
 
 export function validateEmailInputField(value) {
-  let formErrorType = null;
+  let formErrorType: string|null = null;
   if (!value) formErrorType = "emptyEmailUsername";
   if (!formErrorType && isemail.validate(value)) formErrorType = "invalidEmail";
   if (!formErrorType) {
