@@ -31,14 +31,15 @@ export class HomeNavigation extends PureComponent {
             </a>
           </div>
         </div>
-        <div className={recrutementStyles.divRecrutement}>
+        <button
+          className={recrutementStyles.buttonRecrutement}
+          type="button"
+          onClick={() => Router.push("/recrutement")}>
           <Icon height="30" icon={womanCurlyHaired} width="30" />
           &nbsp;
-          <a onClick={() => Router.push("/recrutement")}>
-            LexImpact recrute. Rejoignez-nous !
-          </a>
+          LexImpact recrute. Rejoignez-nous !
           <Icon height="30" icon={manCurlyHaired} width="30" />
-        </div>
+        </button>
       </div>
     );
   }
