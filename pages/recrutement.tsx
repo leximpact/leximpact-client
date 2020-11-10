@@ -1,12 +1,10 @@
+import Grid from "@material-ui/core/Grid";
 import Head from "next/head";
 import { Fragment, PureComponent } from "react";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 
 import { AppHeader } from "../components/common";
 import withRoot from "../lib/withRoot";
-
-import styles from "./presentation-et-cgu.module.scss";
+import styles from "./recrutement.module.scss";
 
 
 class RecrutementPage extends PureComponent {
@@ -27,25 +25,27 @@ class RecrutementPage extends PureComponent {
           justify="space-between">
 
           <Grid item className={styles.griditemOpen} xs={6}>
-            <Paper>
-              <h3>Un·e développeu·r·se fullstack</h3>
+            <h3>Un·e développeu·r·se fullstack</h3>
+            <div>
+              En savoir plus ?
               <a
                 download="LexImpact_fiche-de-poste-Developpeur-Developpeuse-.pdf"
                 href="./public/files/LexImpact_fiche-de-poste-Developpeur-Developpeuse-.pdf">
-                Voir l'offre (PDF)
+                Télécharger l&apos;offre (en PDF).
               </a>
-            </Paper>
+            </div>
           </Grid>
 
           <Grid item className={styles.griditemPop} xs={6}>
-            <Paper>
-              <h3>Un·e datascientist</h3>
+            <h3>Un·e datascientist</h3>
+            <div>
+              En savoir plus ?
               <a
                 download="LexImpact_fiche-de-poste-Datascientist-.pdf"
                 href="./public/files/LexImpact_fiche-de-poste-Datascientist-.pdf">
-                Voir l'offre (PDF)
+                Télécharger l&apos;offre (en PDF)
               </a>
-            </Paper>
+            </div>
           </Grid>
         </Grid>
       </Fragment>
