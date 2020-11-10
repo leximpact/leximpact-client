@@ -25,6 +25,11 @@ export class HomeNavigation extends PureComponent {
             Prendre un rendez-vous avec LexImpact
           </a>
         </div>
+        <div>
+          <a onClick={() => Router.push("/recrutement")}>
+            Rejoindre l&apos;équipe LexImpact
+          </a>
+        </div>
       </div>
     );
   }
