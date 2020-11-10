@@ -1,3 +1,6 @@
+import manCurlyHaired from "@iconify/icons-twemoji/man-curly-haired";
+import womanCurlyHaired from "@iconify/icons-twemoji/woman-curly-haired";
+import { Icon } from "@iconify/react";
 import Router from "next/router";
 import { PureComponent } from "react";
 
@@ -26,9 +29,13 @@ export class HomeNavigation extends PureComponent {
           </a>
         </div>
         <div>
+          <Icon height="30" icon={womanCurlyHaired} width="30" />
+          &nbsp;
           <a onClick={() => Router.push("/recrutement")}>
             Rejoindre l&apos;équipe LexImpact
           </a>
+          &nbsp;
+          <Icon height="30" icon={manCurlyHaired} width="30" />
         </div>
       </div>
     );
