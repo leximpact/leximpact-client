@@ -106,7 +106,7 @@ class RecrutementPage extends PureComponent {
                   &nbsp;&nbsp;
                   <a
                     download="LexImpact_fiche-de-poste-Datascientist-.pdf"
-                    href="./public/files/LexImpact_fiche-de-poste-Datascientist-.pdf">
+                    href="./files/LexImpact_fiche-de-poste-Datascientist-.pdf">
                     offre datascience
                   </a>
                 </div>
