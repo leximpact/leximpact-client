@@ -69,7 +69,7 @@ class RecrutementPage extends PureComponent {
                   &nbsp;&nbsp;
                   <a
                     download="LexImpact_fiche-de-poste-Developpeur-Developpeuse-.pdf"
-                    href="./public/files/LexImpact_fiche-de-poste-Developpeur-Developpeuse-.pdf">
+                    href="./files/LexImpact_fiche-de-poste-Developpeur-Developpeuse-.pdf">
                     offre développement
                   </a>
                 </div>
