@@ -69,7 +69,7 @@ class RecrutementPage extends PureComponent {
                   &nbsp;&nbsp;
                   <a
                     download="LexImpact_fiche-de-poste-Developpeur-Developpeuse-.pdf"
-                    href="./files/LexImpact_fiche-de-poste-Developpeur-Developpeuse-.pdf">
+                    href="./files/LexImpact_fiche-de-poste-Developpeur-Developpeuse.pdf">
                     offre développement
                   </a>
                 </div>
@@ -106,7 +106,7 @@ class RecrutementPage extends PureComponent {
                   &nbsp;&nbsp;
                   <a
                     download="LexImpact_fiche-de-poste-Datascientist-.pdf"
-                    href="./files/LexImpact_fiche-de-poste-Datascientist-.pdf">
+                    href="./files/LexImpact_fiche-de-poste-Datascientist.pdf">
                     offre datascience
                   </a>
                 </div>
