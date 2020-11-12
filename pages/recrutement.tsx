@@ -58,8 +58,12 @@ class RecrutementPage extends PureComponent {
                       des simulateurs et outils LexImpact ;
                     </li>
                     <li>
-                      travaillerez en collaboration avec un·e autre développeu·r·se,
-                      un·e datascientist et une designeuse.
+                      travaillerez avec une designeuse pour développer
+                      les composants graphiques des interfaces ;
+                    </li>
+                    <li>
+                      collaborerez avec un·e autre développeu·r·se et un·e datascientist
+                      pour le back-end.
                     </li>
                   </ul>
                 </p>
