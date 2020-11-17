@@ -5,3 +5,34 @@
   font-size: 18px;
   line-height: 1.5;
 }
+
+.container {
+  background-color: #FFFFFF;
+  flex-grow: 1;
+  padding: 4;
+}
+
+.divButton {
+  padding: 10px;
+}
+
+.gridItemButtons {
+  max-width: 600px;
+  padding: 30px;
+}
+
+.gridItemText {
+  max-width: 600px;
+  padding: 30px;
+}
+
+.pAdresseMail {
+  text-align: center;
+}
+
+.spanTitreIntro {
+  color: $dark-grey-text-color;
+  font-family: $default-font-family;
+  font-size: 36px;
+  font-weight: bold;
+}

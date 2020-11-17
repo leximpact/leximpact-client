@@ -1,68 +1,27 @@
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "next/link";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
-import styles2 from "./EnSavoirPlus.module.scss";
-
-const styles = theme => ({
-  alink: {
-    color: "#565656",
-    fontFamily: "Lora",
-    fontSize: "18px",
-  },
-  closeButton: {
-    position: "absolute",
-    right: 10,
-    top: 10,
-  },
-  container: {
-    backgroundColor: "#FFFFFF",
-    flexGrow: 1,
-    padding: theme.spacing(4),
-  },
-  divButton: {
-    padding: "10px",
-  },
-  gridItemButtons: {
-    maxWidth: "600px",
-    padding: "30px",
-  },
-  gridItemText: {
-    maxWidth: "600px",
-    padding: "30px",
-  },
-  pAdresseMail: {
-    textAlign: "center",
-  },
-  spanTitreIntro: {
-    color: "#565656",
-    fontFamily: "Lato",
-    fontSize: "36px",
-    fontWeight: "bold",
-  },
-});
+import styles from "./EnSavoirPlus.module.scss";
 
 class EnSavoirPlus extends PureComponent {
   render() {
-    const { classes } = this.props;
     return (
-      <div className={classes.container}>
+      <div className={styles.container}>
         <Grid
           container
           alignItems="flex-start"
           direction="row"
           justify="space-between">
-          <Grid item className={classes.gridItemText} xs={6}>
+          <Grid item className={styles.gridItemText} xs={6}>
             <Typography>
-              <span className={classes.spanTitreIntro}>
+              <span className={styles.spanTitreIntro}>
                 LexImpact, c&apos;est quoi ?
               </span>
             </Typography>
-            <p className={styles2.paragraph}>
+            <p className={styles.paragraph}>
               LexImpact IR est une interface qui permet de
               {" "}
               <b>
@@ -78,9 +37,9 @@ class EnSavoirPlus extends PureComponent {
               en savoir plus
             </Link>
           </Grid>
-          <Grid item className={classes.gridItemButtons} xs={6}>
+          <Grid item className={styles.gridItemButtons} xs={6}>
             <div>
-              <div className={classes.divButton}>
+              <div className={styles.divButton}>
                 <Link href="/presentation-et-cgu">
                   <Button
                     fullWidth
@@ -92,7 +51,7 @@ class EnSavoirPlus extends PureComponent {
                 </Link>
               </div>
 
-              <div className={classes.divButton}>
+              <div className={styles.divButton}>
                 <Link href="/mentions-legales">
                   <Button
                     fullWidth
@@ -104,7 +63,7 @@ class EnSavoirPlus extends PureComponent {
                 </Link>
               </div>
 
-              <div className={classes.divButton}>
+              <div className={styles.divButton}>
                 <Button
                   fullWidth
                   color="inherit"
@@ -113,7 +72,7 @@ class EnSavoirPlus extends PureComponent {
                   variant="outlined">
                   Une question ? Un bug ? Un avis ?
                 </Button>
-                <p className={classes.pAdresseMail}>
+                <p className={styles.pAdresseMail}>
                   Écrivez-nous à leximpact@an.fr !
                 </p>
               </div>
@@ -125,8 +84,4 @@ class EnSavoirPlus extends PureComponent {
   }
 }
 
-EnSavoirPlus.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
-
-export default withStyles(styles)(EnSavoirPlus);
+export default EnSavoirPlus;
