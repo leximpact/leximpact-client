@@ -1,5 +1,4 @@
 import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
 import withWidth from "@material-ui/core/withWidth";
 import { PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
@@ -9,18 +8,7 @@ import { compose } from "redux";
 import { Button } from "./button";
 import { Legende } from "./legende";
 
-const styles = () => ({
-  container: {
-    marginBottom: "15px",
-  },
-  marginIcon: {
-    marginRight: "15px",
-  },
-  miniIcon: {
-    height: "15px",
-  },
-});
-
+import styles from "./SimulationMenuBar.module.scss";
 
 const mapStateToProps = ({ parameters }, { width }) => {
   const isMobileView = width === "xs" || width === "sm" || width === "md";
@@ -36,7 +24,6 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type Props = PropsFromRedux & {
-  classes: any;
   primaryButtons: {
     onClick: () => void;
     icon?: JSX.Element;
@@ -56,7 +43,6 @@ type Props = PropsFromRedux & {
 class SimulationMenuBar extends PureComponent<Props> {
   render() {
     const {
-      classes,
       isMobileView,
       montrerPLF,
       primaryButtons,
@@ -66,7 +52,7 @@ class SimulationMenuBar extends PureComponent<Props> {
       <Grid
         container
         alignItems="center"
-        className={classes.container}
+        className={styles.container}
         justify="space-between"
         spacing={1}>
         <Grid item>
@@ -131,6 +117,6 @@ class SimulationMenuBar extends PureComponent<Props> {
 const ConnectedSimulationMenuBar = compose(
   withWidth(),
   connector,
-)(withStyles(styles)(SimulationMenuBar));
+)(SimulationMenuBar);
 
 export { ConnectedSimulationMenuBar as SimulationMenuBar };
