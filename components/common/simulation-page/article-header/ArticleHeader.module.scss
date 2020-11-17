@@ -1,7 +1,7 @@
 @import "styles/variables";
 
 .initial, .plf {
-  font-family: law-font-family;
+  font-family: $law-font-family;
   font-weight: bold;
   line-height: 10px;
   margin-left: 8px;
@@ -33,4 +33,24 @@
 
 .ml {
   margin-left: 0.5rem;
+}
+
+.menuItemPaper {
+  background-color: rgba(255, 255, 255, 1) !important;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.refreshIcon {
+  display: flex;
+  float: right !important;
+  margin-left: 10px;
+}
+
+.stylePaperTitreMenu {
+  background-color: rgba(255, 255, 255, 1) !important;
+  font-family: $default-font-family;
+  padding: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
