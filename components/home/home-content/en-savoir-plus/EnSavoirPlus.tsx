@@ -22,9 +22,10 @@ class EnSavoirPlus extends PureComponent {
               </span>
             </Typography>
             <p className={styles.paragraph}>
-              LexImpact est un service de l’Assemblée nationale qui a pour vocation
-              d’aider les parlementaires au chiffrage de leurs amendements et propositions
-              de loi sur les champs de la fiscalité, des finances publiques et des affaires sociales.
+              LexImpact est un service de l&apos;Assemblée nationale qui a pour vocation
+              d&apos;aider les parlementaires au chiffrage de leurs amendements et propositions
+              de loi sur les champs de la fiscalité, des finances publiques et
+              des affaires sociales.
               <br />
               Ce service produit des interfaces permettant de
               {" "}
@@ -32,9 +33,10 @@ class EnSavoirPlus extends PureComponent {
               simuler, de façon rapide, l&apos;impact de réformes paramétriques
               </b>
               {" "}
-              sur des textes de loi relatifs à ces champs.
-              Certaines parties de ces simulateurs sont accès libre (simulation des dotations aux communes).
-              D'autres sont en accès restreint (impact sur le budget de l'Etat d'une réforme de l'IR).
+              sur des textes de loi relatifs à ces champs. Certaines parties de ces
+              simulateurs sont accès libre (simulation des dotations aux communes).
+              D&apos;autres sont en accès restreint (impact sur le budget de
+              l&apos;Etat d&apos;une réforme de l&apos;IR).
             </p>
             <Link href="/presentation-et-cgu">
               en savoir plus
