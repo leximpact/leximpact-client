@@ -12,7 +12,7 @@ class EnSavoirPlus extends PureComponent {
       <div className={styles.container}>
         <Grid
           container
-          alignItems="flex-start"
+          alignItems="center"
           direction="row"
           justify="space-between">
           <Grid item className={styles.gridItemText} xs={6}>
@@ -22,16 +22,19 @@ class EnSavoirPlus extends PureComponent {
               </span>
             </Typography>
             <p className={styles.paragraph}>
-              LexImpact IR est une interface qui permet de
+              LexImpact est un service de l’Assemblée nationale qui a pour vocation
+              d’aider les parlementaires au chiffrage de leurs amendements et propositions
+              de loi sur les champs de la fiscalité, des finances publiques et des affaires sociales.
+              <br />
+              Ce service produit des interfaces permettant de
               {" "}
               <b>
-              simuler, de façon rapide, l&apos;impact des réformes paramétriques de
-              l&apos;impôt sur le revenu.
+              simuler, de façon rapide, l&apos;impact de réformes paramétriques
               </b>
               {" "}
-              L&apos;estimation des impacts sur des foyers fiscaux types est accessible à
-              tous ; les mesures d&apos;impacts sur la population
-              française et les recettes de l&apos;État sont disponibles en accès restreint.
+              sur des textes de loi relatifs à ces champs.
+              Certaines parties de ces simulateurs sont accès libre (simulation des dotations aux communes).
+              D'autres sont en accès restreint (impact sur le budget de l'Etat d'une réforme de l'IR).
             </p>
             <Link href="/presentation-et-cgu">
               en savoir plus
