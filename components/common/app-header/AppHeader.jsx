@@ -4,10 +4,9 @@ import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
+import styles from "./AppHeader.module.scss";
 import LoginButton from "./login-button";
 import HeaderMenuButton from "./menu-button";
-
-import styles from "./AppHeader.module.scss";
 
 class AppHeader extends PureComponent {
   render() {

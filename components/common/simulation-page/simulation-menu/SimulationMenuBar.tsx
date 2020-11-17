@@ -7,7 +7,6 @@ import { compose } from "redux";
 
 import { Button } from "./button";
 import { Legende } from "./legende";
-
 import styles from "./SimulationMenuBar.module.scss";
 
 const mapStateToProps = ({ parameters }, { width }) => {
