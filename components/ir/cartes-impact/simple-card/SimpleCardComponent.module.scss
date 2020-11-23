@@ -19,15 +19,12 @@
   justify-content: space-between;
 }
 
-.residenceIcon {
-  margin: 0;
-  padding: 0;
-}
-
 .revenusMensuelLegend {
   color: #909090;
   font-family: $default-font-family;
   font-size: 0.8rem;
+  line-height: 1.5;
+  margin-bottom: 2px;
 }
 
 .revenusMensuelValue {
@@ -35,8 +32,5 @@
   font-size: 18px;
   font-weight: normal;
   text-transform: none;
-}
-
-.revenusMensuelWrapper {
-  padding: 0;
+  line-height: 1.43;
 }

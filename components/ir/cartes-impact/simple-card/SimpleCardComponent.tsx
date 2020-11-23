@@ -8,9 +8,6 @@ import WomanCurlyHairedIcon from "@iconify/icons-twemoji/woman-curly-haired";
 import WomanWhiteHairedIcon from "@iconify/icons-twemoji/woman-white-haired";
 import { Icon } from "@iconify/react";
 import Badge from "@material-ui/core/Badge";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import { get } from "lodash";
 import React, { Fragment } from "react";
 
@@ -57,10 +54,8 @@ class SimpleCard extends React.Component<Props> {
     const { icon, label } = RESIDENCE_ITEMS[index];
     return (
       <NeutralTooltip placement="top" title={label}>
-        <span>
-          <IconButton disabled classes={{ root: styles.residenceIcon }}>
-            <Icon height="32" icon={icon} width="32" />
-          </IconButton>
+        <span >
+          <Icon height="32" icon={icon} width="32" />
         </span>
       </NeutralTooltip>
     );
@@ -74,17 +69,15 @@ class SimpleCard extends React.Component<Props> {
       <NeutralTooltip
         placement="top"
         title="Revenus nets tels que délarés par le contribuable, divisés par 12">
-        <span>
-          <Typography classes={{ root: styles.revenusMensuelLegend }}>
-            <span>Revenus nets à déclarer</span>
-          </Typography>
-          <Button disabled classes={{ root: styles.revenusMensuelWrapper }}>
-            <span className={styles.revenusMensuelValue}>
-              {formatNumber(revenusMensuel)}
-              &nbsp;€/Mois
-            </span>
-          </Button>
-        </span>
+        <div>
+          <div className={styles.revenusMensuelLegend}>
+            Revenus nets à déclarer
+          </div>
+          <div className={styles.revenusMensuelValue}>
+            {formatNumber(revenusMensuel)}
+            &nbsp;€/Mois
+          </div>
+        </div>
       </NeutralTooltip>
     );
   };
