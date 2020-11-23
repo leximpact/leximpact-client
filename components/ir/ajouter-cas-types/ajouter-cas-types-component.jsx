@@ -12,7 +12,7 @@ import CasTypesComposition from "./form/cas-types-composition";
 import { CasTypesLieuResidence } from "./form/CasTypesLieuResidence";
 import { CasTypesName } from "./form/cas-types-name";
 import CasTypesPerson from "./form/cas-types-person";
-import CasTypesRevenus from "./form/cas-types-revenus";
+import { CasTypesRevenus } from "./form/cas-types-revenus";
 import SubmitButton from "./submit-button";
 
 const styles = () => ({

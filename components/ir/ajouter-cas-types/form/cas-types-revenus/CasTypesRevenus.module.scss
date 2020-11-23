@@ -1,0 +1,41 @@
+@import 'styles/variables';
+
+.flexbox {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.label {
+  color: #B1B1B1;
+  font-family: $default-font-family;
+  font-size: 14;
+  margin-left: 47;
+  padding-top: 6;
+}
+
+.title {
+  color: #565656;
+  font-family: Lato;
+  font-size: 14;
+}
+
+.tooltipButton {
+  &:hover {
+    background-color: transparent;
+  }
+  color: #B1B1B1;
+  padding: 0 6px;
+}
+
+.tooltipContainer {
+  opacity: 1;
+}
+
+.tooltipContent {
+  background-color: #565656;
+  color: #FFFFFF;
+  font-size: 14;
+  padding: 12;
+}
