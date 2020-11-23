@@ -10,7 +10,7 @@ import { PureComponent } from "react";
 
 import request from "../../common/utils/request";
 import ConnexionForm from "./connexion-form";
-import ConnexionSuccess from "./connexion-form-success";
+import { ConnexionFormSuccess } from "./connexion-form-success";
 import MentionsLegales from "./form/mentions-legales-text";
 import { parseFormValuesUserEmail } from "./utils";
 
@@ -93,7 +93,7 @@ class Connexion extends PureComponent {
   renderConnexionSuccess = () => {
     const { hasBeenSubmitWithSuccess } = this.state;
     if (!hasBeenSubmitWithSuccess) return null;
-    return <ConnexionSuccess message={hasBeenSubmitWithSuccess} />;
+    return <ConnexionFormSuccess message={hasBeenSubmitWithSuccess} />;
   };
 
   renderConnexionForm = () => {
