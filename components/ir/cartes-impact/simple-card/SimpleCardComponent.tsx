@@ -10,14 +10,13 @@ import { Icon } from "@iconify/react";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { get } from "lodash";
-import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 
 import { Card, DoublePalmTreeIcon, formatNumber, NeutralTooltip } from "../../../common";
 import SimpleCardImpactImpots from "./impact-impots";
+import styles from "./SimpleCardComponent.module.scss";
 
 const RESIDENCE_ITEMS = [
   // Doit correspondre a ceux definis
@@ -44,52 +43,22 @@ const RESIDENCE_ITEMS = [
   },
 ];
 
-const styles = () => ({
-  badge: {
-    backgroundColor: "#666666",
-    height: 10,
-    right: 3,
-    top: 5,
-    width: 10,
-  },
-  badgeRoot: {
-    verticalAlign: "inherit",
-  },
-  iconsContainer: {
-    display: "flex",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  residenceIcon: {
-    margin: 0,
-    padding: 0,
-  },
-  revenusMensuelLegend: {
-    color: "#909090",
-    fontFamily: "Lato",
-    fontSize: "0.8rem",
-  },
-  revenusMensuelValue: {
-    color: "#000000",
-    fontSize: 18,
-    fontWeight: "normal",
-    textTransform: "none",
-  },
-  revenusMensuelWrapper: {
-    padding: 0,
-  },
-});
+interface Props {
+  descCasType: any;
+  handleRemoveCasType: (index: number) => any;
+  handleShowEditCasTypesPopin: (index: number) => any;
+  index: number;
+}
 
-class SimpleCard extends React.Component {
+class SimpleCard extends React.Component<Props> {
   renderLieuDeResidence = () => {
-    const { classes, descCasType } = this.props;
+    const { descCasType } = this.props;
     const { lieuResidence: index } = descCasType;
     const { icon, label } = RESIDENCE_ITEMS[index];
     return (
       <NeutralTooltip placement="top" title={label}>
         <span>
-          <IconButton disabled classes={{ root: classes.residenceIcon }}>
+          <IconButton disabled classes={{ root: styles.residenceIcon }}>
             <Icon height="32" icon={icon} width="32" />
           </IconButton>
         </span>
@@ -98,7 +67,7 @@ class SimpleCard extends React.Component {
   };
 
   renderRevenuMensuel = () => {
-    const { classes, descCasType } = this.props;
+    const { descCasType } = this.props;
     const { revenusNetMensuel } = descCasType;
     const revenusMensuel = Math.round(revenusNetMensuel);
     return (
@@ -106,11 +75,11 @@ class SimpleCard extends React.Component {
         placement="top"
         title="Revenus nets tels que délarés par le contribuable, divisés par 12">
         <span>
-          <Typography classes={{ root: classes.revenusMensuelLegend }}>
+          <Typography classes={{ root: styles.revenusMensuelLegend }}>
             <span>Revenus nets à déclarer</span>
           </Typography>
-          <Button disabled classes={{ root: classes.revenusMensuelWrapper }}>
-            <span className={classes.revenusMensuelValue}>
+          <Button disabled classes={{ root: styles.revenusMensuelWrapper }}>
+            <span className={styles.revenusMensuelValue}>
               {formatNumber(revenusMensuel)}
               &nbsp;€/Mois
             </span>
@@ -121,7 +90,7 @@ class SimpleCard extends React.Component {
   };
 
   renderPersonsIcons = () => {
-    const { classes, descCasType } = this.props;
+    const { descCasType } = this.props;
     const childs = get(descCasType, "persons.childs");
     const parents = get(descCasType, "persons.parents");
     return (
@@ -147,7 +116,7 @@ class SimpleCard extends React.Component {
                 {isInvalide && (
                   <Badge
                     key={key}
-                    classes={{ badge: classes.badge, root: classes.badgeRoot }}
+                    classes={{ badge: styles.badge, root: styles.badgeRoot }}
                     color="primary"
                     variant="dot">
                     <Icon height="40" icon={icon} width="40" />
@@ -167,7 +136,7 @@ class SimpleCard extends React.Component {
           return (
             <Badge
               key={key}
-              classes={{ badge: classes.badge, root: classes.badgeRoot }}
+              classes={{ badge: styles.badge, root: styles.badgeRoot }}
               color="primary"
               variant="dot">
               <Icon height="30" icon={BabyIcon} width="30" />
@@ -181,7 +150,7 @@ class SimpleCard extends React.Component {
 
   render() {
     const {
-      classes, descCasType, handleRemoveCasType,
+      descCasType, handleRemoveCasType,
       handleShowEditCasTypesPopin, index,
     } = this.props;
     const { name } = descCasType;
@@ -190,7 +159,7 @@ class SimpleCard extends React.Component {
         colored
         content1={(
           <Fragment>
-            <div className={classes.iconsContainer}>
+            <div className={styles.iconsContainer}>
               {this.renderPersonsIcons()}
               {this.renderLieuDeResidence()}
             </div>
@@ -207,12 +176,4 @@ class SimpleCard extends React.Component {
   }
 }
 
-SimpleCard.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  descCasType: PropTypes.shape().isRequired,
-  handleRemoveCasType: PropTypes.func.isRequired,
-  handleShowEditCasTypesPopin: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
-};
-
-export default withStyles(styles)(SimpleCard);
+export default SimpleCard;
