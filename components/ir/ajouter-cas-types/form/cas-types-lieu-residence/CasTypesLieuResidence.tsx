@@ -42,7 +42,7 @@ interface Props {
 export function CasTypesLieuResidence({ name }: Props) {
   return (
     <div>
-      <span className={styles.title}>Lieu de résidence&nbsp;:</span>
+      <span className={styles.title}>Lieu de résidence :</span>
       <div className={styles.flexbox}>
         <Field name={name}>
           {({ input }) => RESIDENCE_ITEMS.map(({

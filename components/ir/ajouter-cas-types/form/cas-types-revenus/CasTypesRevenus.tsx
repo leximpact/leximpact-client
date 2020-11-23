@@ -23,19 +23,17 @@ interface Props {
 
 export const CasTypesRevenus = ({ name }: Props) => (
   <label htmlFor={name}>
-    <div>
+    <div className={styles.titleWrapper}>
       <Tooltip
         classes={{
           popper: styles.tooltipContainer,
           tooltip: styles.tooltipContent,
         }}
         title={REVENUS_HELP}>
-        <IconButton disableRipple className={styles.tooltipButton}>
-          <HelpOutlineIcon fontSize="small" />
-        </IconButton>
+          <HelpOutlineIcon fontSize="small" className={styles.tooltipButton} />
       </Tooltip>
       <span className={styles.title}>
-        Revenus net à déclarer par mois&nbsp;:
+        Revenus net à déclarer par mois :
       </span>
     </div>
     <div className={styles.flexbox}>

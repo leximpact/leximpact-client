@@ -1,14 +1,14 @@
 @import 'styles/variables';
 
 .button {
-  font-size: 14px;
-  margin-right: 24px;
-  margin-top: 11px;
-  text-transform: inherit;
+  font-size: 14px !important;
+  margin-right: 24px !important;
+  margin-top: 11px !important;
+  text-transform: inherit !important;
 }
 
 .buttonDisabled {
-  opacity: 0.45;
+  opacity: 0.45 !important;
 }
 
 .flexbox {

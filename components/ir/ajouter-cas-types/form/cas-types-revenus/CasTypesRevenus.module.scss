@@ -15,6 +15,10 @@
   padding-top: 6px;
 }
 
+.titleWrapper {
+  display: flex;
+}
+
 .title {
   color: #565656;
   font-family: $default-font-family;
@@ -22,20 +26,17 @@
 }
 
 .tooltipButton {
-  &:hover {
-    background-color: transparent;
-  }
   color: #B1B1B1;
-  padding: 0 6px;
+  margin: 0 6px;
 }
 
 .tooltipContainer {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .tooltipContent {
-  background-color: #565656;
-  color: #FFFFFF;
-  font-size: 14px;
-  padding: 12px;
+  background-color: #565656 !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  padding: 12px !important;
 }
