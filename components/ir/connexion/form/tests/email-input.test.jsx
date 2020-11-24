@@ -1,6 +1,6 @@
 import { createShallow } from "@material-ui/core/test-utils";
 
-import EmailInput from "../email-input";
+import { EmailInput } from "../email-input";
 
 describe("components | connexion | email-input", () => {
   let shallow;
