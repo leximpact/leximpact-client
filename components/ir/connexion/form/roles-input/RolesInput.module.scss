@@ -1,0 +1,51 @@
+@import 'styles/variables';
+
+.formControl {
+  // NOTE flex ne s'applique pas au `fieldset`
+  // le component doit donc être une `div` pour profiter de flex
+  display: flex !important;
+  flex-direction: row !important;
+  margin-top: 43px !important;
+
+  @media (max-width: 599.95px) {
+    margin-top: 20px !important;
+  }
+}
+
+.formLegend {
+  color: #000000 !important;
+  flex: 2 !important;
+  font-size: 24px !important;
+  max-width: 130px !important;
+  min-width: 80px !important;
+  @media (max-width: 599.95px) {
+    font-size: 18px !important;
+    max-width: 80px !important;
+  }
+}
+
+.formLegendAsterisk {
+  margin-right: 10px !important;
+  text-align: left !important;
+}
+
+.radioGroup {
+  flex: 1 !important;
+}
+
+.radioItem {
+  padding: 0 12px !important;
+  @media (max-width: 599.95px) {
+    padding: 0 8px !important;
+  }
+}
+
+.radioLabel {
+  color: #565656 !important;
+  font-family: $default-font-family !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  @media (max-width: 599.95px) {
+    font-size: 14px !important;
+  }
+}
