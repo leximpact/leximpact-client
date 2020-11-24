@@ -10,7 +10,7 @@ import {
 import { RootState } from "../../../redux/reducers";
 // eslint-disable-next-line no-unused-vars
 import { CasType } from "../../../redux/reducers/descriptions/ir";
-import AjouterCasTypesComponent from "./ajouter-cas-types-component";
+import { AjouterCasTypes } from "./AjouterCasTypes";
 
 const randomGender = () => (Math.random() < 0.49 ? 1 : 0);
 
@@ -64,4 +64,4 @@ const mapDispatchToProps = (dispatch, { index }) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AjouterCasTypesComponent);
+)(AjouterCasTypes);
