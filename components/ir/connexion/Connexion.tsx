@@ -10,7 +10,7 @@ import request from "../../common/utils/request";
 import ConnexionForm from "./connexion-form";
 import { ConnexionFormSuccess } from "./connexion-form-success";
 import styles from "./Connexion.module.scss";
-import MentionsLegales from "./form/mentions-legales-text";
+import { MentionsLegales } from "./form/mentions-legales";
 import { parseFormValuesUserEmail } from "./utils";
 
 interface Props {
