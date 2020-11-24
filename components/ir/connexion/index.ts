@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { closeCurrentPopin } from "../../../redux/actions";
-import ConnexionComponent from "./connexion-component";
+import { Connexion } from "./Connexion";
 
 const mapStateToProps = null;
 
@@ -12,4 +12,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ConnexionComponent);
+)(Connexion);

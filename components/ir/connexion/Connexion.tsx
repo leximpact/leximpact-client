@@ -1,71 +1,28 @@
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import VPNKeyIcon from "@material-ui/icons/VpnKey";
 import { FORM_ERROR } from "final-form";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
 import request from "../../common/utils/request";
 import ConnexionForm from "./connexion-form";
 import { ConnexionFormSuccess } from "./connexion-form-success";
+import styles from "./Connexion.module.scss";
 import MentionsLegales from "./form/mentions-legales-text";
 import { parseFormValuesUserEmail } from "./utils";
 
-const styles = theme => ({
-  avatar: {
-    backgroundColor: theme.palette.primary.main,
-    height: 80,
-    margin: theme.spacing(1),
-    width: 80,
-    [theme.breakpoints.down("xs")]: {
-      height: 60,
-      width: 60,
-    },
-  },
-  avatarContainer: {
-    alignItems: "center",
-    display: "flex",
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  avatarIcon: {
-    height: 45,
-    width: 45,
-    [theme.breakpoints.down("xs")]: {
-      height: 32,
-      width: 32,
-    },
-  },
-  closeButton: {
-    position: "absolute",
-    right: 10,
-    top: 10,
-  },
-  form: {
-    marginTop: theme.spacing(1),
-    width: "100%", // Fix IE 11 issue.
-  },
-  spanBolder: {
-    fontWeight: "bold",
-  },
-  spanLeximpactLigther: {
-    fontFamily: "Lato",
-    fontSize: 34,
-    fontWeight: "lighter",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 26,
-    },
-  },
-  title: {
-    textAlign: "center",
-  },
-});
+interface Props {
+  onClosePopin: () => any;
+}
 
-class Connexion extends PureComponent {
+interface State {
+  hasBeenSubmitWithSuccess: boolean;
+  isLoading: boolean;
+}
+
+export class Connexion extends PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = { hasBeenSubmitWithSuccess: false, isLoading: false };
@@ -108,21 +65,21 @@ class Connexion extends PureComponent {
   };
 
   render() {
-    const { classes, onClosePopin } = this.props;
+    const { onClosePopin } = this.props;
     return (
-      <div className={classes.container}>
+      <div>
         <IconButton
-          classes={{ root: classes.closeButton }}
+          classes={{ root: styles.closeButton }}
           onClick={onClosePopin}>
           <CloseIcon fontSize="small" />
         </IconButton>
-        <div className={classes.avatarContainer}>
-          <Avatar classes={{ root: classes.avatar }}>
-            <VPNKeyIcon classes={{ root: classes.avatarIcon }} />
+        <div className={styles.avatarContainer}>
+          <Avatar classes={{ root: styles.avatar }}>
+            <VPNKeyIcon classes={{ root: styles.avatarIcon }} />
           </Avatar>
         </div>
-        <Typography classes={{ root: classes.title }}>
-          <span className={classes.spanLeximpactLigther}>CONNEXION</span>
+        <Typography classes={{ root: styles.title }}>
+          <span className={styles.spanLeximpactLigther}>CONNEXION</span>
         </Typography>
         {this.renderConnexionForm()}
         {this.renderConnexionSuccess()}
@@ -131,10 +88,3 @@ class Connexion extends PureComponent {
     );
   }
 }
-
-Connexion.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  onClosePopin: PropTypes.func.isRequired,
-};
-
-export default withStyles(styles)(Connexion);
