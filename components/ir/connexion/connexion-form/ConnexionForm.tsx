@@ -1,15 +1,14 @@
-import { withStyles } from "@material-ui/core/styles";
 import createDecorator from "final-form-calculate";
-import PropTypes from "prop-types";
 import { Fragment, PureComponent } from "react";
 import { Field, Form as FinalForm } from "react-final-form";
 
-import { roles } from "./config.json";
-import ErrorSnackbar from "./error-snackbar";
-import { EmailInput } from "./form/email-input";
-import { RolesInput } from "./form/roles-input";
-import { SubmitButton } from "./submit-button";
-import { getDefaultRoleFromConfig, updateDomainsWhenRoleChange } from "./utils";
+import { roles } from "../config.json";
+import ErrorSnackbar from "../error-snackbar";
+import { EmailInput } from "../form/email-input";
+import { RolesInput } from "../form/roles-input";
+import { SubmitButton } from "../submit-button";
+import { getDefaultRoleFromConfig, updateDomainsWhenRoleChange } from "../utils";
+import styles from "./ConnexionForm.module.scss";
 
 const DEFAULT_ROLES = { ...roles };
 const DEFAULT_ROLE_OBJECT = getDefaultRoleFromConfig();
@@ -23,18 +22,26 @@ const FORM_DECORATORS = createDecorator({
   updates: { domains: updateDomainsWhenRoleChange },
 });
 
-const styles = theme => ({
-  form: {
-    marginTop: theme.spacing(1),
-    width: "100%", // Fix IE 11 issue.
-  },
-});
+interface Props {
+  handleFormSubmit: (...args: any[]) => any;
+  initialValues?: any;
+  isLoading: boolean;
+}
 
-class ConnexionForm extends PureComponent {
+export class ConnexionForm extends PureComponent<Props> {
   render() {
-    const {
-      classes, handleFormSubmit, initialValues, isLoading,
-    } = this.props;
+    const { handleFormSubmit, isLoading } = this.props;
+
+    let { initialValues } = this.props;
+    if (!initialValues) {
+      initialValues = {
+        // valeurs par défaut du form
+        domains: DEFAULT_ROLE_OBJECT.domains,
+        role: DEFAULT_ROLE_OBJECT.key,
+        username: null,
+      };
+    }
+
     return (
       <Fragment>
         <FinalForm
@@ -50,7 +57,7 @@ class ConnexionForm extends PureComponent {
             const { domains } = values;
             const canSubmitForm = isLoading || pristine || invalid;
             return (
-              <form className={classes.form} onSubmit={handleSubmit}>
+              <form className={styles.form} onSubmit={handleSubmit}>
                 <RolesInput
                   defaultValue={initialValues.role}
                   roles={DEFAULT_ROLES}
@@ -68,21 +75,3 @@ class ConnexionForm extends PureComponent {
     );
   }
 }
-
-ConnexionForm.defaultProps = {
-  initialValues: {
-    // valeurs par défaut du form
-    domains: DEFAULT_ROLE_OBJECT.domains,
-    role: DEFAULT_ROLE_OBJECT.key,
-    username: null,
-  },
-};
-
-ConnexionForm.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  handleFormSubmit: PropTypes.func.isRequired,
-  initialValues: PropTypes.shape(),
-  isLoading: PropTypes.bool.isRequired,
-};
-
-export default withStyles(styles)(ConnexionForm);

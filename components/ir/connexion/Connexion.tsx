@@ -7,7 +7,7 @@ import { FORM_ERROR } from "final-form";
 import { PureComponent } from "react";
 
 import request from "../../common/utils/request";
-import ConnexionForm from "./connexion-form";
+import { ConnexionForm } from "./connexion-form";
 import { ConnexionFormSuccess } from "./connexion-form-success";
 import styles from "./Connexion.module.scss";
 import { MentionsLegales } from "./form/mentions-legales";
