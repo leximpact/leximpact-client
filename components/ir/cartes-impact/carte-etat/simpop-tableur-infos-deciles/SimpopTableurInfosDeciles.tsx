@@ -1,4 +1,3 @@
-import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -6,35 +5,14 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
 // eslint-disable-next-line no-unused-vars
-import { RootState } from "../../../../redux/reducers";
-import { formatNumber } from "../../../common";
-import styles2 from "./simpop-tableur-infos-deciles.module.scss";
-
-const styles = {
-  cellStyle: {
-    padding: "0.6em",
-    textAlign: "center",
-  },
-  infinity: {
-    fontSize: "2em",
-    fontWeight: "330",
-    verticalAlign: "sub",
-  },
-  tableHeader: {
-    color: "#565656",
-    fontFamily: "Lato",
-    fontSize: "1.125em",
-    height: "0px",
-    textAlign: "center",
-    verticalAlign: "top",
-  },
-};
+import { RootState } from "../../../../../redux/reducers";
+import { formatNumber } from "../../../../common";
+import styles from "./SimpopTableurInfosDeciles.module.scss";
 
 const NOMBRE_DECILES = 10;
 let id = 0;
 
 interface Props {
-  classes: any;
   deciles: RootState["results"]["totalPop"]["deciles"];
   frontieresDeciles: RootState["results"]["totalPop"]["frontieresDeciles"];
 }
@@ -100,7 +78,7 @@ function imageDecile(decileId) {
   return <img key={imageId} alt="" height="24" src={imagePath} width="24" />;
 }
 
-function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Props) {
+export function SimpopTableurInfosDeciles({ deciles, frontieresDeciles }: Props) {
   const rows = deciles.map(
     (currElement, index) => createFromDeciles(index, currElement, frontieresDeciles[index]),
   );
@@ -109,26 +87,26 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
   return (
     <Table>
       <TableHead>
-        <TableRow classes={{ root: classes.tableHeader }}>
-          <TableCell classes={{ root: classes.cellStyle }}>
+        <TableRow classes={{ root: styles.tableHeader }}>
+          <TableCell classes={{ root: styles.cellStyle }}>
             <b>Décile</b>
           </TableCell>
-          <TableCell classes={{ root: classes.cellStyle }}>
+          <TableCell classes={{ root: styles.cellStyle }}>
             <b>Revenu&nbsp;fiscal de&nbsp;référence</b>
             <br />
             (limite supérieure)
           </TableCell>
-          <TableCell classes={{ root: classes.cellStyle }}>
+          <TableCell classes={{ root: styles.cellStyle }}>
             <b>Impact moyen sur le foyer</b>
             <br />
             (par rapport au code existant)
           </TableCell>
-          <TableCell classes={{ root: classes.cellStyle }}>
+          <TableCell classes={{ root: styles.cellStyle }}>
             <b>Impôt moyen des foyers</b>
             <br />
             (par an)
           </TableCell>
-          <TableCell classes={{ root: classes.cellStyle }}>
+          <TableCell classes={{ root: styles.cellStyle }}>
             <b>Recettes pour l&apos;État</b>
             <br />
             (en Milliards d&apos;euros)
@@ -138,24 +116,24 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
       <TableBody>
         {rows.map(row => (
           <TableRow key={row.id}>
-            <TableCell classes={{ root: classes.cellStyle }}>
+            <TableCell classes={{ root: styles.cellStyle }}>
               {imageDecile(row.decile)}
             </TableCell>
-            <TableCell classes={{ root: classes.cellStyle }}>
+            <TableCell classes={{ root: styles.cellStyle }}>
               &#10877;&nbsp;
               {row.frontiereDecile === "-" ? (
-                <span className={classes.infinity}>∞</span>
+                <span className={styles.infinity}>∞</span>
               ) : (
                 row.frontiereDecile
               )}
               €/an
             </TableCell>
-            <TableCell classes={{ root: classes.cellStyle }}>
+            <TableCell classes={{ root: styles.cellStyle }}>
               {
                 row.impactMoyenFoyerPlf === undefined
                   ? null
                   : (
-                    <span className={styles2.plf}>
+                    <span className={styles.plf}>
                       {row.impactMoyenFoyerPlf === "-"
                         ? NON_APPLICABLE
                         : `${row.impactMoyenFoyerPlf}%`}
@@ -167,7 +145,7 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
                 row.impactMoyenFoyerReforme === undefined
                   ? null
                   : (
-                    <span className={styles2.reform}>
+                    <span className={styles.reform}>
                       {row.impactMoyenFoyerReforme === "-"
                         ? NON_APPLICABLE
                         : `${row.impactMoyenFoyerReforme}%`}
@@ -175,8 +153,8 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
                   )
               }
             </TableCell>
-            <TableCell classes={{ root: classes.cellStyle }}>
-              <span className={styles2.base}>
+            <TableCell classes={{ root: styles.cellStyle }}>
+              <span className={styles.base}>
                 {row.impotMoyenFoyer}
                 €
               </span>
@@ -185,7 +163,7 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
                 row.impotMoyenFoyerPlf === undefined
                   ? null
                   : (
-                    <span className={styles2.plf}>
+                    <span className={styles.plf}>
                       {row.impotMoyenFoyerPlf}
                       €
                     </span>
@@ -196,15 +174,15 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
                 row.impotMoyenFoyerReforme === undefined
                   ? null
                   : (
-                    <span className={styles2.reform}>
+                    <span className={styles.reform}>
                       {row.impotMoyenFoyerReforme}
                       €
                     </span>
                   )
               }
             </TableCell>
-            <TableCell classes={{ root: classes.cellStyle }}>
-              <span className={styles2.base}>
+            <TableCell classes={{ root: styles.cellStyle }}>
+              <span className={styles.base}>
                 {row.recettesEtat}
                 Md€
               </span>
@@ -213,7 +191,7 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
                 row.recettesEtatPlf === undefined
                   ? null
                   : (
-                    <span className={styles2.plf}>
+                    <span className={styles.plf}>
                       {row.recettesEtatPlf}
                       Md€
                     </span>
@@ -224,7 +202,7 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
                 row.recettesEtatReforme === undefined
                   ? null
                   : (
-                    <span className={styles2.reform}>
+                    <span className={styles.reform}>
                       {row.recettesEtatReforme}
                       Md€
                     </span>
@@ -237,5 +215,3 @@ function SimpopTableurInfosDeciles({ classes, deciles, frontieresDeciles }: Prop
     </Table>
   );
 }
-
-export default withStyles(styles as any)(SimpopTableurInfosDeciles);

@@ -22,7 +22,7 @@ import { RootState } from "../../../../redux/reducers";
 import { Card } from "../../../common";
 import BarChart from "./bar-chart";
 import styles2 from "./carte-etat-component.module.scss";
-import SimpopTableurInfosDeciles from "./simpop-tableur-infos-deciles";
+import { SimpopTableurInfosDeciles } from "./simpop-tableur-infos-deciles";
 
 const styles = () => ({
   buttonPosition: {
