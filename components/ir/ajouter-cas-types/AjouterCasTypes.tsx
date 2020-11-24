@@ -5,15 +5,14 @@ import arrayMutators from "final-form-arrays";
 import { PureComponent } from "react";
 import { Form as FinalForm } from "react-final-form";
 
+import styles from "./AjouterCasTypes.module.scss";
 import ErrorSnackbar from "./error-snackbar";
-import CasTypesComposition from "./form/cas-types-composition";
+import { CasTypesComposition } from "./form/cas-types-composition";
 import { CasTypesLieuResidence } from "./form/cas-types-lieu-residence";
 import { CasTypesName } from "./form/cas-types-name";
 import CasTypesPerson from "./form/cas-types-person";
 import { CasTypesRevenus } from "./form/cas-types-revenus";
 import SubmitButton from "./submit-button";
-
-import styles from "./AjouterCasTypes.module.scss";
 
 interface Props {
   casTypesInitialValues: any;
@@ -45,7 +44,7 @@ export class AjouterCasTypes extends PureComponent<Props> {
     return (
       <div>
         <div className={styles.closeButton}>
-          <IconButton  onClick={onClosePopin}>
+          <IconButton onClick={onClosePopin}>
             <CloseIcon fontSize="small" />
           </IconButton>
         </div>
@@ -109,4 +108,3 @@ export class AjouterCasTypes extends PureComponent<Props> {
     );
   }
 }
-

@@ -3,14 +3,13 @@ import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
-import { withStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 import { Field } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";
 
+import styles from "./CasTypesComposition.module.scss";
 import {
   getIconForThisPerson,
   getParentIsoleLabel,
@@ -56,98 +55,15 @@ const COMPOSITION_FIELDS_MAP = [
   },
 ];
 
-const styles = () => ({
-  badge: {
-    backgroundColor: "#666666",
-    height: 10,
-    right: 3,
-    top: 5,
-    width: 10,
-  },
-  cell: {
-    height: 35,
-    maxHeight: 35,
-    minHeight: 35,
-    padding: 0,
-    width: 40,
-  },
-  checkbox: {
-    padding: 0,
-  },
-  checkboxesContainer: {
-    overflowX: "auto",
-    overflowY: "hidden",
-  },
-  container: {},
-  flexColumns: {
-    display: "flex",
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "flex-start",
-  },
-  genderButton: {
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-    height: 24,
-    margin: 0,
-    marginBottom: 7,
-    maxWidth: 24,
-    minWidth: 24,
-    padding: 0,
-    width: 24,
-  },
-  icon: {
-    padding: 0,
-  },
-  labelHidden: {
-    opacity: 0.25,
-    textAlign: "right",
-  },
-  labels: {
-    fontFamily: "Lato",
-    fontSize: 14,
-    height: 35,
-    paddingBottom: 0,
-    paddingTop: 4,
-    textAlign: "right",
-  },
-  labelsContainer: {
-    flex: 0,
-    marginRight: 20,
-    marginTop: 28,
-    maxWidth: 150,
-    minWidth: 150,
-    width: 150,
-  },
-  margedLeft: {
-    marginLeft: 20,
-  },
-  title: {
-    color: "#565656",
-    fontFamily: "Lato",
-    fontSize: 14,
-  },
-  tooltipButton: {
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-    color: "#B1B1B1",
-    padding: "0 6px",
-  },
-  tooltipContainer: {
-    opacity: 1,
-  },
-  tooltipContent: {
-    backgroundColor: "#565656",
-    color: "#FFFFFF",
-    fontSize: 14,
-    padding: 12,
-  },
-});
+interface Props {
+  name: string;
+  persons: {
+    childs: any[];
+    parents: any[];
+  }
+}
 
-class CasTypesComposition extends PureComponent {
+export class CasTypesComposition extends PureComponent<Props> {
   handleCheckboxChange = input => () => {
     const nextValue = Number(input.value) === 0 ? 1 : 0;
     input.onChange(nextValue);
@@ -155,11 +71,10 @@ class CasTypesComposition extends PureComponent {
 
   renderCheckbox = disabled => ({ input }) => {
     const isChecked = input.value === 1;
-    const { classes } = this.props;
     return (
       <Checkbox
         checked={isChecked}
-        classes={{ root: classes.checkbox }}
+        classes={{ root: styles.checkbox }}
         disabled={disabled}
         name={input.name}
         value={String(input.value)}
@@ -169,7 +84,7 @@ class CasTypesComposition extends PureComponent {
   };
 
   renderGenderButton = (showChild, name, index) => {
-    const { classes, persons } = this.props;
+    const { persons } = this.props;
     const { childs, parents } = persons;
     const currentPerson = showChild ? childs[index] : parents[index];
     const icon = getIconForThisPerson(currentPerson);
@@ -180,7 +95,7 @@ class CasTypesComposition extends PureComponent {
         {({ input }) => (
           <Button
             disableRipple
-            className={classes.genderButton}
+            className={styles.genderButton}
             onClick={() => {
               if (showChild) return;
               const nextGender = currentPerson.gender ? 0 : 1;
@@ -188,7 +103,6 @@ class CasTypesComposition extends PureComponent {
             }}>
             {isInvalide && (
               <Badge
-                classes={{ badge: classes.badge }}
                 color="primary"
                 variant="dot">
                 <Icon height="24" icon={icon} width="24" />
@@ -202,12 +116,12 @@ class CasTypesComposition extends PureComponent {
   };
 
   renderCompositionColumn = showChild => (name, index) => {
-    const { classes, persons } = this.props;
+    const { persons } = this.props;
     const { parents } = persons;
     const parentsCount = parents.length;
     return (
-      <div key={name} classes={classes.margedLeft}>
-        <div className={classes.icon}>
+      <div key={name}>
+        <div className={styles.icon}>
           {/*  icone du type de personne (enfant/agé/invalide... ) */}
           {this.renderGenderButton(showChild, name, index)}
         </div>
@@ -216,7 +130,7 @@ class CasTypesComposition extends PureComponent {
           const showCheckbox = shouldShowCheckbox(showChild, key, parentsCount);
           const disableCheckbox = shouldDisableParentIsole(key, parentsCount);
           return (
-            <div key={key} className={classes.cell}>
+            <div key={key} className={styles.cell}>
               {showCheckbox && (
                 <Field name={fname}>
                   {this.renderCheckbox(disableCheckbox)}
@@ -230,17 +144,17 @@ class CasTypesComposition extends PureComponent {
   };
 
   renderColumnLabels = () => {
-    const { classes, persons } = this.props;
+    const { persons } = this.props;
     const { childs, parents } = persons;
     const childsCount = childs.length;
     const parentsCount = parents.length;
     return (
-      <div className={classes.labelsContainer}>
+      <div className={styles.labelsContainer}>
         {COMPOSITION_FIELDS_MAP.map(({ help, key, label }) => {
           const uniqKey = `label::${key}`;
           const showLabel = shouldShowLabel(key, parentsCount, childsCount);
-          let className = classes.labels;
-          if (!showLabel) className = `${className} ${classes.labelHidden}`;
+          let className = styles.labels;
+          if (!showLabel) className = `${className} ${styles.labelHidden}`;
           const columnLabel = getParentIsoleLabel(
             key,
             label,
@@ -252,11 +166,11 @@ class CasTypesComposition extends PureComponent {
               {help && (
                 <Tooltip
                   classes={{
-                    popper: classes.tooltipContainer,
-                    tooltip: classes.tooltipContent,
+                    popper: styles.tooltipContainer,
+                    tooltip: styles.tooltipContent,
                   }}
                   title={help}>
-                  <IconButton disableRipple className={classes.tooltipButton}>
+                  <IconButton disableRipple className={styles.tooltipButton}>
                     <HelpOutlineIcon fontSize="small" />
                   </IconButton>
                 </Tooltip>
@@ -270,20 +184,20 @@ class CasTypesComposition extends PureComponent {
   };
 
   render() {
-    const { classes, name } = this.props;
+    const { name } = this.props;
     return (
       <div>
-        <span className={classes.title}>Composition du foyer&nbsp;:</span>
-        <div className={classes.flexColumns}>
+        <span className={styles.title}>Composition du foyer :</span>
+        <div className={styles.flexColumns}>
           {/* LABELS */}
           {this.renderColumnLabels()}
           {/* PARENTS */}
           <div
-            className={`${classes.flexColumns} ${classes.checkboxesContainer}`}>
+            className={`${styles.flexColumns} ${styles.checkboxesContainer}`}>
             <div>
               <FieldArray name={`${name}.parents`}>
                 {({ fields }) => (
-                  <div className={classes.flexColumns}>
+                  <div className={styles.flexColumns}>
                     {fields.map(this.renderCompositionColumn(false))}
                   </div>
                 )}
@@ -293,7 +207,7 @@ class CasTypesComposition extends PureComponent {
             <div>
               <FieldArray name={`${name}.childs`}>
                 {({ fields }) => (
-                  <div className={classes.flexColumns}>
+                  <div className={styles.flexColumns}>
                     {fields.map(this.renderCompositionColumn(true))}
                   </div>
                 )}
@@ -305,14 +219,3 @@ class CasTypesComposition extends PureComponent {
     );
   }
 }
-
-CasTypesComposition.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  name: PropTypes.string.isRequired,
-  persons: PropTypes.shape({
-    childs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    parents: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  }).isRequired,
-};
-
-export default withStyles(styles)(CasTypesComposition);

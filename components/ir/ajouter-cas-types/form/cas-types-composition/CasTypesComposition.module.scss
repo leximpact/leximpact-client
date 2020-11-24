@@ -1,0 +1,91 @@
+@import 'styles/variables';
+
+.cell {
+  height: 35px;
+  max-height: 35px;
+  min-height: 35px;
+  padding: 0px;
+  width: 40px;
+}
+
+.checkbox {
+  padding: 0px !important;
+}
+
+.checkboxesContainer {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.flexColumns {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.genderButton {
+  &:hover {
+    background-color: transparent !important;
+  }
+  height: 24px !important;
+  margin: 0px !important;
+  margin-bottom: 7px !important;
+  max-width: 24px !important;
+  min-width: 24px !important;
+  padding: 0px !important;
+  width: 24px !important;
+}
+
+.icon {
+  padding: 0px;
+}
+
+.labelHidden {
+  opacity: 0.25;
+  text-align: right;
+}
+
+.labels {
+  font-family: $default-font-family;
+  font-size: 14px;
+  height: 35px;
+  padding-bottom: 0px;
+  padding-top: 4px;
+  text-align: right;
+}
+
+.labelsContainer {
+  flex: 0;
+  margin-right: 20px;
+  margin-top: 28px;
+  max-width: 150px;
+  min-width: 150px;
+  width: 150px;
+}
+
+.title {
+  color: #565656;
+  font-family: $default-font-family;
+  font-size: 14px;
+}
+
+.tooltipButton {
+  &:hover {
+    background-color: transparent !important;
+  }
+  color: #B1B1B1 !important;
+  padding: 0 6px !important;
+}
+
+.tooltipContainer {
+  opacity: 1 !important;
+}
+
+.tooltipContent {
+  background-color: #565656 !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  padding: 12px !important;
+}
