@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import { closeCurrentPopin, connexionTokenLogin } from "../../../redux/actions";
-import LoginPopinComponent from "./login-popin-component";
+import { LoginPopin } from "./LoginPopin";
 
 const mapStateToProps = (state, { router }) => {
   // obtient le token de connexion depuis l'URL
@@ -23,4 +23,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps,
   ),
-)(LoginPopinComponent);
+)(LoginPopin);

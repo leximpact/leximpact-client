@@ -3,35 +3,18 @@ import PartyPopperIcon from "@iconify/icons-twemoji/party-popper";
 import PeopleHoldingHandsIcon from "@iconify/icons-twemoji/people-holding-hands";
 import { Icon } from "@iconify/react";
 import IconButton from "@material-ui/core/IconButton";
-import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
-const styles = {
-  closeButton: {
-    position: "absolute",
-    right: 10,
-    top: 10,
-  },
-  h1Style: {
-    color: "#000000",
-    fontFamily: "Lato",
-    fontSize: "24px",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    textAlign: "center",
-  },
-  pStyle: {
-    color: "#000000",
-    fontFamily: "Lato",
-    fontSize: "18px",
-    marginBottom: "40px",
-    marginLeft: "40px",
-  },
-};
+import styles from "./LoginPopin.module.scss";
 
-class LoginPopinComponent extends PureComponent {
+interface Props {
+  handleUpdateConnexionToken: (token: string) => any;
+  onClosePopin: () => any;
+  token?: string;
+}
+
+export class LoginPopin extends PureComponent<Props> {
   componentDidMount() {
     const { handleUpdateConnexionToken, token } = this.props;
     if (!token) return;
@@ -39,17 +22,17 @@ class LoginPopinComponent extends PureComponent {
   }
 
   render() {
-    const { classes, onClosePopin } = this.props;
+    const { onClosePopin } = this.props;
     return (
       <div>
-        <IconButton className={classes.closeButton} onClick={onClosePopin}>
+        <IconButton className={styles.closeButton} onClick={onClosePopin}>
           <CloseIcon fontSize="small" />
         </IconButton>
-        <h1 className={classes.h1Style}>
+        <h1 className={styles.title}>
           <Icon inline icon={PartyPopperIcon} width="40" />
           &nbsp;Vous êtes bien connecté à LexImpact IR&nbsp;
         </h1>
-        <p className={classes.pStyle}>
+        <p className={styles.text}>
           Vous pouvez désormais
           <b>&nbsp;simuler les impacts macros&nbsp;</b>
           d’une réforme
@@ -64,16 +47,3 @@ class LoginPopinComponent extends PureComponent {
     );
   }
 }
-
-LoginPopinComponent.defaultProps = {
-  token: null,
-};
-
-LoginPopinComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  handleUpdateConnexionToken: PropTypes.func.isRequired,
-  onClosePopin: PropTypes.func.isRequired,
-  token: PropTypes.string,
-};
-
-export default withStyles(styles)(LoginPopinComponent);
