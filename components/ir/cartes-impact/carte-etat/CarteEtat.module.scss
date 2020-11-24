@@ -1,5 +1,25 @@
 @import 'styles/variables';
 
+.buttonPosition {
+  margin-bottom: 90px;
+  margin-top: 83px;
+}
+
+.marginIcon {
+  margin-right: 20px !important;
+}
+
+.miniIcon {
+  height: 15px !important;
+}
+
+.subtitleCarteEtat {
+  color: #565656 !important;
+  font-family: $default-font-family !important;
+  font-size: 0.875em !important;
+  padding: 0 0 10px 10px !important;
+}
+
 .center {
   text-align: center;
 }
@@ -66,7 +86,7 @@
 
 .simpop {
   margin-top: 10px;
-  padding-left: "3px";
+  padding-left: 3px;
 
   > div {
     display: flex;

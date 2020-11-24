@@ -5,7 +5,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import CachedIcon from "@material-ui/icons/Cached";
@@ -21,46 +20,8 @@ import { fetchSimPop, simulateCasTypes } from "../../../../redux/actions";
 import { RootState } from "../../../../redux/reducers";
 import { Card } from "../../../common";
 import BarChart from "./bar-chart";
-import styles2 from "./carte-etat-component.module.scss";
+import styles from "./CarteEtat.module.scss";
 import { SimpopTableurInfosDeciles } from "./simpop-tableur-infos-deciles";
-
-const styles = () => ({
-  buttonPosition: {
-    marginBottom: "90px",
-    marginTop: "83px",
-  },
-  div: {
-    padding: 7,
-  },
-  espaceBouton: {
-    maxHeight: "300px",
-    minHeight: "210px",
-  },
-  iconEtat: {
-    fontSize: "50px",
-  },
-  mainChart: {
-    flex: "1",
-  },
-  marginIcon: {
-    marginRight: "20px",
-  },
-  miniIcon: {
-    height: "15px",
-  },
-  pom_rouge: {
-    color: "#FF0000",
-  },
-  pom_verte: {
-    color: "#00FF00",
-  },
-  subtitleCarteEtat: {
-    color: "#565656",
-    fontFamily: "Lato",
-    fontSize: "0.875em",
-    padding: "0 0 10px 10px",
-  },
-});
 
 function inBillions(value: number): number {
   return Math.round(value / 100000000) / 10;
@@ -90,14 +51,9 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type Props = PropsFromRedux & {
-  classes: any;
-}
-
-class CarteEtat extends PureComponent<Props> {
+class CarteEtat extends PureComponent<PropsFromRedux> {
   render() {
     const {
-      classes,
       deciles,
       frontieresDeciles,
       isDisabledEtat,
@@ -118,47 +74,47 @@ class CarteEtat extends PureComponent<Props> {
           <Fragment>
             {isDisabledEtat && (
               <div>
-                <div className={`${classes.buttonPosition} ${styles2.center}`}>
+                <div className={`${styles.buttonPosition} ${styles.center}`}>
                   <Button
                     color="secondary"
                     size="medium"
                     variant="outlined"
                     onClick={onClickSimPop}>
                     <AccountBalanceIcon />
-                    <FaceIcon className={classes.marginIcon} />
+                    <FaceIcon className={styles.marginIcon} />
                     &nbsp;Estimer ~60&quot;
-                    <CachedIcon className={classes.miniIcon} />
+                    <CachedIcon className={styles.miniIcon} />
                   </Button>
                 </div>
               </div>
             )}
             {!isDisabledEtat && isLoadingEtat && (
-              <div className={`${classes.buttonPosition} ${styles2.center}`}>
+              <div className={`${styles.buttonPosition} ${styles.center}`}>
                 <CircularProgress color="secondary" />
               </div>
             )}
             {!isDisabledEtat && !isLoadingEtat && (
               <div>
-                <div className={styles2.chartWrapper}>
-                  <div className={styles2.mainChart}>
+                <div className={styles.chartWrapper}>
+                  <div className={styles.mainChart}>
                     <BarChart deciles={deciles} />
                   </div>
-                  <div className={styles2.simpop}>
+                  <div className={styles.simpop}>
                     <div className={classNames({
-                      [styles2.montantImpots]: true,
-                      [styles2.noPLF]: !montrerPLF,
+                      [styles.montantImpots]: true,
+                      [styles.noPLF]: !montrerPLF,
                     })}>
                       <Typography
                         className={classNames({
-                          [styles2.impotEtat]: true,
-                          [styles2.avant]: true,
+                          [styles.impotEtat]: true,
+                          [styles.avant]: true,
                         })}>
                         {totalAvant}
                       </Typography>
                       <Typography
                         className={classNames({
-                          [styles2.uniteImpotEtat]: true,
-                          [styles2.avant]: true,
+                          [styles.uniteImpotEtat]: true,
+                          [styles.avant]: true,
                         })}>
                         Md€*
                       </Typography>
@@ -167,20 +123,20 @@ class CarteEtat extends PureComponent<Props> {
                       montrerPLF
                         ? (
                           <div className={classNames({
-                            [styles2.montantImpots]: true,
-                            [styles2.noPLF]: !montrerPLF,
+                            [styles.montantImpots]: true,
+                            [styles.noPLF]: !montrerPLF,
                           })}>
                             <Typography
                               className={classNames({
-                                [styles2.impotEtat]: true,
-                                [styles2.plf]: true,
+                                [styles.impotEtat]: true,
+                                [styles.plf]: true,
                               })}>
                               {totalPLF}
                             </Typography>
                             <Typography
                               className={classNames({
-                                [styles2.uniteImpotEtat]: true,
-                                [styles2.plf]: true,
+                                [styles.uniteImpotEtat]: true,
+                                [styles.plf]: true,
                               })}>
                               Md€*
                             </Typography>
@@ -191,20 +147,20 @@ class CarteEtat extends PureComponent<Props> {
                     {
                       totalApres !== null ? (
                         <div className={classNames({
-                          [styles2.montantImpots]: true,
-                          [styles2.noPLF]: !montrerPLF,
+                          [styles.montantImpots]: true,
+                          [styles.noPLF]: !montrerPLF,
                         })}>
                           <Typography
                             className={classNames({
-                              [styles2.impotEtat]: true,
-                              [styles2.apres]: true,
+                              [styles.impotEtat]: true,
+                              [styles.apres]: true,
                             })}>
                             {totalApres}
                           </Typography>
                           <Typography
                             className={classNames({
-                              [styles2.uniteImpotEtat]: true,
-                              [styles2.apres]: true,
+                              [styles.uniteImpotEtat]: true,
+                              [styles.apres]: true,
                             })}>
                                 Md€*
                           </Typography>
@@ -213,7 +169,7 @@ class CarteEtat extends PureComponent<Props> {
                     }
                   </div>
                 </div>
-                <div className={styles2.sourceInsee}>
+                <div className={styles.sourceInsee}>
                   * Chiffrages indicatifs.
                   <br />
                   Estimation à partir des données de l&apos;Enquête
@@ -225,15 +181,15 @@ class CarteEtat extends PureComponent<Props> {
         )}
         content2={(isLoadingEtat || isDisabledEtat) ? null
           : (
-            <ExpansionPanel className={styles2.expansionPanel}>
+            <ExpansionPanel className={styles.expansionPanel}>
               <ExpansionPanelSummary
-                className={styles2.styleExpansionPanel}
+                className={styles.styleExpansionPanel}
                 expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.subtitleCarteEtat}>
+                <Typography className={styles.subtitleCarteEtat}>
               En savoir plus sur les déciles de population
                 </Typography>
               </ExpansionPanelSummary>
-              <ExpansionPanelDetails className={styles2.styleExpansionPanel}>
+              <ExpansionPanelDetails className={styles.styleExpansionPanel}>
                 <SimpopTableurInfosDeciles
                   deciles={deciles}
                   frontieresDeciles={frontieresDeciles}
@@ -250,4 +206,6 @@ class CarteEtat extends PureComponent<Props> {
   }
 }
 
-export default withStyles(styles)(connector(CarteEtat));
+const ConnectedComponent = connector(CarteEtat);
+
+export { ConnectedComponent as CarteEtat };
