@@ -18,7 +18,7 @@ import {
   Results,
   TrendHelpWindow,
 } from "../components/dotations";
-import PopinManager from "../components/PopinManager";
+import { PopinManager } from "../components/popin-manager";
 import withRoot from "../lib/withRoot";
 import { initCommunesTypes, initFakePlf, simulateDotations } from "../redux/actions";
 

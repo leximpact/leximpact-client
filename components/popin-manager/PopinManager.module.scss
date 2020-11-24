@@ -1,0 +1,30 @@
+.dialog {
+  background-color: rgba(229, 220, 0, 0.5) !important;
+  width: 100% !important;
+}
+
+.dialogContent {
+  padding: 45px 45px 0 45px !important;
+
+  @media(max-width: 599.95px) {
+    padding: 20px 20px 0 20px !important;
+  }
+}
+
+.dialogContentCasTypes {
+  padding: 30px !important;
+  
+  @media (max-width: 599.95px) {
+    padding: 20px 20px 0 20px !important;
+  }
+}
+
+.dialogPaper {
+  background-color: #FFFFFF !important;
+  max-width: 800px !important;
+  min-width: 230px !important;
+}
+
+.dialogPaperCasTypes {
+  width: 580px !important;
+}

@@ -10,7 +10,7 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { Matomo, SimulationPage, trackEvent } from "../components/common";
 import { Articles, CartesImpact as ImpactCards } from "../components/ir";
-import PopinManager from "../components/PopinManager";
+import { PopinManager } from "../components/popin-manager";
 import withRoot from "../lib/withRoot";
 import {
   disabledEtat, fetchMetadataCasTypes,
