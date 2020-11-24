@@ -8,7 +8,7 @@ import { roles } from "./config.json";
 import ErrorSnackbar from "./error-snackbar";
 import EmailInput from "./form/email-input";
 import RolesInput from "./form/roles-input";
-import SubmitButton from "./submit-button";
+import { SubmitButton } from "./submit-button";
 import { getDefaultRoleFromConfig, updateDomainsWhenRoleChange } from "./utils";
 
 const DEFAULT_ROLES = { ...roles };
