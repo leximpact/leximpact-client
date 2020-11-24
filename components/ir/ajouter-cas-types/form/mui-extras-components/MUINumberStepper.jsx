@@ -1,36 +1,12 @@
 import IconButton from "@material-ui/core/IconButton";
-import { withStyles } from "@material-ui/core/styles";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
-const styles = {
-  button: {
-    "&:hover": {
-      background: "transparent",
-    },
-    maxWidth: 41,
-    minWidth: 41,
-    padding: 0,
-    width: 41,
-  },
-  container: {},
-  input: {
-    borderColor: "#B1B1B1",
-    color: "#000000",
-    fontFamily: "Lato",
-    height: 38,
-    maxHeight: 38,
-    maxWidth: 41,
-    minHeight: 38,
-    minWidth: 41,
-    textAlign: "center",
-    width: 41,
-  },
-};
+import styles from "./MUINumberStepper.module.scss";
 
-class MUINumberStepper extends PureComponent {
+export class MUINumberStepper extends PureComponent {
   removeStepHandler = () => {
     const { min, onChange, value } = this.props;
     let nextStep = Number(value) - 1;
@@ -56,7 +32,7 @@ class MUINumberStepper extends PureComponent {
 
   render() {
     const {
-      classes, max, min, name, readOnly, value,
+      max, min, name, readOnly, value,
     } = this.props;
     const isMaxValue = value === max;
     const isMinValue = value === min;
@@ -66,7 +42,7 @@ class MUINumberStepper extends PureComponent {
           <IconButton
             disableRipple
             aria-label="Ajouter"
-            className={classes.button}
+            className={styles.button}
             disabled={isMaxValue}
             onClick={this.addStepHandler}>
             <KeyboardArrowUpIcon fontSize="small" />
@@ -74,7 +50,7 @@ class MUINumberStepper extends PureComponent {
         </div>
         <div>
           <input
-            className={`mui-number-stepper ${classes.input}`}
+            className={`mui-number-stepper ${styles.input}`}
             name={name}
             readOnly={readOnly}
             type="number"
@@ -86,7 +62,7 @@ class MUINumberStepper extends PureComponent {
           <IconButton
             disableRipple
             aria-label="Supprimer"
-            className={classes.button}
+            className={styles.button}
             disabled={isMinValue}
             onClick={this.removeStepHandler}>
             <KeyboardArrowDownIcon fontSize="small" />
@@ -104,7 +80,6 @@ MUINumberStepper.defaultProps = {
 };
 
 MUINumberStepper.propTypes = {
-  classes: PropTypes.shape().isRequired,
   max: PropTypes.number,
   min: PropTypes.number,
   name: PropTypes.string.isRequired,
@@ -112,5 +87,3 @@ MUINumberStepper.propTypes = {
   readOnly: PropTypes.bool,
   value: PropTypes.number.isRequired,
 };
-
-export default withStyles(styles)(MUINumberStepper);

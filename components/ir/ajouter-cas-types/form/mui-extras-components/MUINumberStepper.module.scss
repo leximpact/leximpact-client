@@ -1,0 +1,24 @@
+@import 'styles/variables';
+
+.button {
+  &:hover {
+    background: transparent !important;
+  };
+  max-width: 41px !important;
+  min-width: 41px !important;
+  padding: 0 !important;
+  width: 41px !important;
+}
+
+.input {
+  border-color: #B1B1B1;
+  color: #000000;
+  font-family: $default-font-family;
+  height: 38px;
+  max-height: 38px;
+  max-width: 41px;
+  min-height: 38px;
+  min-width: 41px;
+  text-align: center;
+  width: 41px;
+}
