@@ -1,1 +1,1 @@
-export { DoublePalmTreeIcon } from './DoublePalmTreeIcon';
+export { DoublePalmTreeIcon } from "./DoublePalmTreeIcon";

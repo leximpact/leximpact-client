@@ -1,1 +1,1 @@
-export { ConnexionFormSuccess } from './ConnexionFormSuccess';
+export { ConnexionFormSuccess } from "./ConnexionFormSuccess";

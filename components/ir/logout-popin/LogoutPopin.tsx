@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { PureComponent } from "react";
 
-import styles from './LogoutPopin.module.scss';
+import styles from "./LogoutPopin.module.scss";
 
 interface Props {
   fetchMetadataCasTypesHandler: () => void;

@@ -1,1 +1,1 @@
-export { CasTypesRevenus } from './CasTypesRevenus';
+export { CasTypesRevenus } from "./CasTypesRevenus";

@@ -1,7 +1,7 @@
 import TextField from "@material-ui/core/TextField";
 import { Field } from "react-final-form";
 
-import styles from './CasTypesName.module.scss';
+import styles from "./CasTypesName.module.scss";
 
 interface Props {
   name: string;

@@ -1,4 +1,3 @@
-import IconButton from "@material-ui/core/IconButton";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import Tooltip from "@material-ui/core/Tooltip";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
@@ -30,7 +29,7 @@ export const CasTypesRevenus = ({ name }: Props) => (
           tooltip: styles.tooltipContent,
         }}
         title={REVENUS_HELP}>
-          <HelpOutlineIcon fontSize="small" className={styles.tooltipButton} />
+        <HelpOutlineIcon className={styles.tooltipButton} fontSize="small" />
       </Tooltip>
       <span className={styles.title}>
         Revenus net à déclarer par mois :

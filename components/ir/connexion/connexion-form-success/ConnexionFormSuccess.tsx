@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import { withRouter } from "next/router";
 import { PureComponent } from "react";
 
-import styles from './ConnexionFormSuccess.module.scss';
+import styles from "./ConnexionFormSuccess.module.scss";
 
 class ConnexionFormSuccess extends PureComponent<any> {
   render() {
@@ -23,4 +23,4 @@ class ConnexionFormSuccess extends PureComponent<any> {
 
 const exportedComponent = withRouter(ConnexionFormSuccess);
 
-export { exportedComponent as ConnexionFormSuccess }
+export { exportedComponent as ConnexionFormSuccess };

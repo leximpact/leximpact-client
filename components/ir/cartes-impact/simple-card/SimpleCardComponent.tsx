@@ -11,7 +11,9 @@ import Badge from "@material-ui/core/Badge";
 import { get } from "lodash";
 import React, { Fragment } from "react";
 
-import { Card, DoublePalmTreeIcon, formatNumber, NeutralTooltip } from "../../../common";
+import {
+  Card, DoublePalmTreeIcon, formatNumber, NeutralTooltip,
+} from "../../../common";
 import SimpleCardImpactImpots from "./impact-impots";
 import styles from "./SimpleCardComponent.module.scss";
 
@@ -54,7 +56,7 @@ class SimpleCard extends React.Component<Props> {
     const { icon, label } = RESIDENCE_ITEMS[index];
     return (
       <NeutralTooltip placement="top" title={label}>
-        <span >
+        <span>
           <Icon height="32" icon={icon} width="32" />
         </span>
       </NeutralTooltip>
