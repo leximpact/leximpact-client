@@ -1,9 +1,12 @@
 import IconButton from "@material-ui/core/IconButton";
 import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
-import PropTypes from "prop-types";
 
-const ErrorSnackbar = ({ message }) => (
+interface Props {
+  message?: string;
+}
+
+export const ErrorSnackbar = ({ message }: Props) => (
   <Snackbar
     action={[
       <IconButton key="close" color="inherit" onClick={() => {}}>
@@ -20,13 +23,3 @@ const ErrorSnackbar = ({ message }) => (
     onClose={() => {}}
   />
 );
-
-ErrorSnackbar.defaultProps = {
-  message: null,
-};
-
-ErrorSnackbar.propTypes = {
-  message: PropTypes.string,
-};
-
-export default ErrorSnackbar;
