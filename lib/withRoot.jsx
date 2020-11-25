@@ -16,14 +16,6 @@ function withRoot(Component) {
       pageContext = propsPageContext || getPageContext(process.browser, createPageContext);
     }
 
-    componentDidMount() {
-      // Remove the server-side injected CSS.
-      const jssStyles = document.querySelector("#jss-server-side");
-      if (jssStyles && jssStyles.parentNode) {
-        jssStyles.parentNode.removeChild(jssStyles);
-      }
-    }
-
     render() {
       // MuiThemeProvider makes the theme available down the React tree thanks to React
       // context.
