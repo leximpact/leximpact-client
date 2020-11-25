@@ -1,16 +1,17 @@
 import { createShallow } from "@material-ui/core/test-utils";
 
-import MentionsLegales from "../mentions-legales-text";
+import { roles } from "../../../config.json";
+import { RolesInput } from "../RolesInput";
 
-describe("components | connexion | mentions-legales-text", () => {
+describe("components | connexion | roles-input", () => {
   let shallow;
   beforeAll(() => {
     shallow = createShallow();
   });
   describe("snapshot", () => {
     it("doit correspondre avec les props requises", () => {
-      const props = { classes: {} };
-      const wrapper = shallow(<MentionsLegales {...props} />);
+      const props = { defaultValue: "depute", roles };
+      const wrapper = shallow(<RolesInput {...props} />);
       expect(wrapper).toBeDefined();
       expect(wrapper).toMatchSnapshot();
     });

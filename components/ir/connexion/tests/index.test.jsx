@@ -1,6 +1,6 @@
 import { createShallow } from "@material-ui/core/test-utils";
 
-import ConnexionComponent from "../connexion-component";
+import { Connexion } from "../Connexion";
 
 describe("components | connexion | index", () => {
   let shallow;
@@ -13,7 +13,7 @@ describe("components | connexion | index", () => {
       const props = {
         onClosePopin: jest.fn(),
       };
-      const wrapper = shallow(<ConnexionComponent {...props} />);
+      const wrapper = shallow(<Connexion {...props} />);
       expect(wrapper).toBeDefined();
       expect(wrapper).toMatchSnapshot();
     });

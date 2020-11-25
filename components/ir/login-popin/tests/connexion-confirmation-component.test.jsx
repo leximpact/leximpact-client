@@ -1,6 +1,6 @@
 import { createShallow } from "@material-ui/core/test-utils";
 
-import LoginPopinComponent from "../login-popin-component";
+import { LoginPopin } from "../LoginPopin";
 
 describe("components | login-popin-component", () => {
   let shallow;
@@ -16,7 +16,7 @@ describe("components | login-popin-component", () => {
         onClosePopin: jest.fn(),
         token: "any-string",
       };
-      const wrapper = shallow(<LoginPopinComponent {...props} />);
+      const wrapper = shallow(<LoginPopin {...props} />);
       expect(wrapper).toBeDefined();
       expect(wrapper).toMatchSnapshot();
     });
