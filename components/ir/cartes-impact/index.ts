@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 // eslint-disable-next-line no-unused-vars
 import { RootState } from "../../../redux/reducers";
-import ImpactComponent, { INFORMATION_PANEL_NAME } from "./impact-component";
+import { CartesImpact, INFORMATION_PANEL_NAME } from "./CartesImpact";
 
 const mapStateToProps = ({
   descriptions,
@@ -17,4 +17,4 @@ const mapStateToProps = ({
   };
 };
 
-export default connect(mapStateToProps)(ImpactComponent);
+export default connect(mapStateToProps)(CartesImpact);
