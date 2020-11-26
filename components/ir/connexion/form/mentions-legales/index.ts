@@ -1,0 +1,1 @@
+export { MentionsLegales } from "./MentionsLegales";

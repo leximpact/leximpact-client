@@ -1,0 +1,30 @@
+.circularProgress {
+  margin-top: 41px !important;
+
+  @media (max-width: 599.95px) {
+    margin-top: 20px !important;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.fab {
+  color: #FFFFFF;
+  font-size: 16px !important;
+  letter-spacing: 0.15px !important;
+  margin-top: 41px !important;
+  width: 370px !important;
+
+  @media (max-width: 599.95px) {
+    margin-top: 20px !important;
+    max-width: 180px !important;
+  }
+}
+
+.fabDisabled {
+  background-color: rgba(225, 225, 225, 1) !important;
+}

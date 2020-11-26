@@ -1,0 +1,1 @@
+export { DoublePalmTreeIcon } from "./DoublePalmTreeIcon";

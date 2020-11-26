@@ -1,0 +1,1 @@
+export { CasTypesLieuResidence } from "./CasTypesLieuResidence";

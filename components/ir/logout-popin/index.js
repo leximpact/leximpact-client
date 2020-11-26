@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import { closeCurrentPopin, fetchMetadataCasTypes } from "../../../redux/actions";
-import LogoutPopinComponent from "./logout-popin-component";
+import LogoutPopin from "./LogoutPopin";
 
 const mapStateToProps = null;
 
@@ -20,4 +20,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps,
   ),
-)(LogoutPopinComponent);
+)(LogoutPopin);
