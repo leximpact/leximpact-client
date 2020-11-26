@@ -1,19 +1,32 @@
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
 import styles from "./AppHeader.module.scss";
 import LoginButton from "./login-button";
 import HeaderMenuButton from "./menu-button";
 
-class AppHeader extends PureComponent {
+interface Props {
+  isUserLogged: boolean;
+  showHomeButton?: boolean;
+  showLoginButton: boolean;
+  subTitle1?: string;
+  subTitle2?: string;
+  title?: string;
+  useMobileView: boolean;
+}
+
+class AppHeader extends PureComponent<Props> {
   render() {
     const {
-      isUserLogged, showHomeButton, showLoginButton,
+      isUserLogged, showLoginButton,
       subTitle1, subTitle2, title, useMobileView,
     } = this.props;
+
+    let { showHomeButton } = this.props;
+    showHomeButton = showHomeButton ?? true;
+
     return (
       <AppBar position="relative">
         <Toolbar classes={{ root: styles.toolbarRoot }}>
@@ -51,22 +64,5 @@ class AppHeader extends PureComponent {
     );
   }
 }
-
-AppHeader.defaultProps = {
-  showHomeButton: true,
-  subTitle1: null,
-  subTitle2: null,
-  title: null,
-};
-
-AppHeader.propTypes = {
-  isUserLogged: PropTypes.bool.isRequired,
-  showHomeButton: PropTypes.bool,
-  showLoginButton: PropTypes.bool.isRequired,
-  subTitle1: PropTypes.string,
-  subTitle2: PropTypes.string,
-  title: PropTypes.string,
-  useMobileView: PropTypes.bool.isRequired,
-};
 
 export default AppHeader;
