@@ -1,9 +1,9 @@
 @import 'styles/variables';
 
 .closeButton {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  position: absolute !important;
+  right: 10px !important;
+  top: 10px !important;
 }
 
 .title {
@@ -20,5 +20,6 @@
   font-family: $default-font-family;
   font-size: 18px;
   margin-bottom: 40px;
-  margin-left: 40px;
+  margin-left: 60px;
+  margin-right: 20px;
 }
