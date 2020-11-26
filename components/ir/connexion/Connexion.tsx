@@ -67,7 +67,7 @@ export class Connexion extends PureComponent<Props, State> {
   render() {
     const { onClosePopin } = this.props;
     return (
-      <div>
+      <div className={styles.container}>
         <IconButton
           classes={{ root: styles.closeButton }}
           onClick={onClosePopin}>
