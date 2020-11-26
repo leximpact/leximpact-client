@@ -1,11 +1,19 @@
 // Adapted from https://github.com/eipex2/nivo-cra/tree/master/src/
 import { ResponsiveBar } from "@nivo/bar";
-import PropTypes from "prop-types";
 import { Fragment, PureComponent } from "react";
 
-import styles from "./bar-chart.module.scss";
+import styles from "./BarChart.module.scss";
 
-class BarChart extends PureComponent {
+interface Props {
+  deciles: {
+    apres?: number;
+    avant: number;
+    plf?: number;
+    poids: number;
+  }[];
+}
+
+export class BarChart extends PureComponent<Props> {
   reformatResultat = () => {
     const keycols = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
     const { deciles } = this.props;
@@ -14,7 +22,7 @@ class BarChart extends PureComponent {
       return { ...acc, [keycols[index]]: value };
     };
 
-    const result = [];
+    const result: any[] = [];
 
     const accResAvant = { color: "#ded500", id: "  " };
     const resavant = deciles
@@ -58,7 +66,6 @@ class BarChart extends PureComponent {
         return (
           <image
             key={key}
-            alt=""
             height={imageSize}
             width={imageSize}
             x={imagePosX}
@@ -85,10 +92,7 @@ class BarChart extends PureComponent {
             tickRotation: 0,
             tickSize: 5,
           }}
-          axisLeft={null}
           axisRight={{ tickSize: 0 }}
-          axisTop={null}
-          borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
           borderRadius={4}
           colorBy="index"
           colors={["#E0E0E0", "#E0E0E0", "#E0E0E0"]}
@@ -96,8 +100,6 @@ class BarChart extends PureComponent {
           defs={[]}
           enableGridY={false}
           fill={[]}
-          /*  height={185}
-          width={350} */
           innerPadding={3}
           keys={keycols}
           labelFormat={v => `${v}Md€`}
@@ -111,8 +113,7 @@ class BarChart extends PureComponent {
             Image,
             "markers",
             "legends",
-            "annotations",
-          ]}
+          ] as any}
           layout="horizontal"
           legends={[]}
           margin={{
@@ -155,7 +156,7 @@ class BarChart extends PureComponent {
               {`décile : ${Math.round(content.value * 10) / 10}Md€`}
               <br />
               {`${Math.round(
-                (content.value * 1000000000) / deciles[content.id - 1].poids,
+                (content.value * 1000000000) / deciles[content.id as number - 1].poids,
               )}€ par foyer fiscal`}
             </Fragment>
           )}
@@ -164,16 +165,3 @@ class BarChart extends PureComponent {
     );
   }
 }
-
-BarChart.propTypes = {
-  deciles: PropTypes.arrayOf(
-    PropTypes.shape({
-      apres: PropTypes.number,
-      avant: PropTypes.number.isRequired,
-      plf: PropTypes.number,
-      poids: PropTypes.number.isRequired,
-    }).isRequired,
-  ).isRequired,
-};
-
-export default BarChart;
