@@ -55,7 +55,7 @@ class PopinManager extends PureComponent<Props> {
         classes={{ paper: styles.dialogPaper, root: styles.dialog }}
         open={showPopin}
         onClose={closeCurrentPopin}>
-        <DialogContent classes={{ root: styles.dialogContent }}>
+        <DialogContent>
           <LoginPopin />
         </DialogContent>
       </Dialog>
@@ -69,7 +69,7 @@ class PopinManager extends PureComponent<Props> {
         classes={{ paper: styles.dialogPaper, root: styles.dialog }}
         open={showPopin}
         onClose={closeCurrentPopin}>
-        <DialogContent classes={{ root: styles.dialogContent }}>
+        <DialogContent>
           <LogoutPopin />
         </DialogContent>
       </Dialog>
