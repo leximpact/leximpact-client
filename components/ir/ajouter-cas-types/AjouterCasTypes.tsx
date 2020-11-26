@@ -5,8 +5,8 @@ import arrayMutators from "final-form-arrays";
 import { PureComponent } from "react";
 import { Form as FinalForm } from "react-final-form";
 
+import { ErrorSnackbar } from "../common";
 import styles from "./AjouterCasTypes.module.scss";
-import { ErrorSnackbar } from "./ErrorSnackbar";
 import { CasTypesComposition } from "./form/cas-types-composition";
 import { CasTypesLieuResidence } from "./form/cas-types-lieu-residence";
 import { CasTypesName } from "./form/cas-types-name";

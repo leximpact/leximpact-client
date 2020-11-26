@@ -2,8 +2,8 @@ import createDecorator from "final-form-calculate";
 import { Fragment, PureComponent } from "react";
 import { Field, Form as FinalForm } from "react-final-form";
 
+import { ErrorSnackbar } from "../../common";
 import { roles } from "../config.json";
-import ErrorSnackbar from "../error-snackbar";
 import { EmailInput } from "../form/email-input";
 import { RolesInput } from "../form/roles-input";
 import { SubmitButton } from "../submit-button";
