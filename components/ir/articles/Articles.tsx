@@ -2,8 +2,9 @@ import Grid from "@material-ui/core/Grid";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React, { Fragment } from "react";
-import { RootState } from "../../../redux/reducers";
 
+// eslint-disable-next-line no-unused-vars
+import { RootState } from "../../../redux/reducers";
 import {
   ExpandableText,
   PrimaryExpandablePanel,
@@ -17,7 +18,7 @@ import styles from "./articles.module.scss";
 import { Button } from "./buttons";
 import { Plafonds, ReglesGenerales, ReglesSpecifiques } from "./quotient-familial";
 
-type Parameters =  RootState['parameters'];
+type Parameters = RootState["parameters"];
 
 interface Props extends Parameters {
   handleAddTranche: () => void;
@@ -230,4 +231,3 @@ export class Articles extends React.Component<Props> {
     );
   }
 }
-
