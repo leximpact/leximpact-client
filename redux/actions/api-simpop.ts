@@ -4,7 +4,7 @@ import { formatReforme } from "./format-reforme";
 import { loadingEtatComplete, loadingEtatError, loadingEtatStart } from "./loading-etat";
 import showLogoutPopin from "./popin-logout";
 
-let currentTimestamp = null;
+let currentTimestamp: string|null = null;
 
 const TOKEN_ERROR_POSSIBLE_MESSAGES = [
   "Token invalid : not Decodable",
