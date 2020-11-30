@@ -7,7 +7,7 @@ jest.mock("next/router", () => ({ push: jest.fn() }));
 describe("components | actions | showConnexionPopin", () => {
   describe("teste les appels de methode du router avec les bons arguments", () => {
     afterEach(() => {
-      Router.push.mockClear();
+      (Router.push as any).mockClear();
     });
 
     it("doit avoir appeler la methode push du Router a l'ouverture de la popin 'connection'", () => {
