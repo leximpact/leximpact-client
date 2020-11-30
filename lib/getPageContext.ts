@@ -5,7 +5,7 @@ function hasPageContext(state) {
   return !isEmpty(state) && state.pageContext;
 }
 
-function pageContext(state = {}, { callback }) {
+function pageContext(state: any = {}, { callback }: any) {
   if (!callback) {
     return state;
   }
