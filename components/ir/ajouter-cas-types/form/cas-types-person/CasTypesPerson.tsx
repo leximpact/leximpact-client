@@ -2,14 +2,22 @@ import babyIcon from "@iconify/icons-twemoji/baby";
 import manCurlyHaired from "@iconify/icons-twemoji/man-curly-haired";
 import womanCurlyHaired from "@iconify/icons-twemoji/woman-curly-haired";
 import { Icon } from "@iconify/react";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 import { Field } from "react-final-form";
 
 import { MUINumberStepper } from "../mui-extras-components";
 import styles from "./CasTypesPerson.module.scss";
 
-export class CasTypesPerson extends PureComponent {
+interface Props {
+  isChild?: boolean;
+  max?: number;
+  min?: number;
+  name: string;
+  onPersonAdd: (isChild: boolean) => void;
+  onPersonRemove: (isChild: boolean) => void;
+}
+
+export class CasTypesPerson extends PureComponent<Props> {
   handlerInputChange = input => (nextValue) => {
     const { isChild, onPersonAdd, onPersonRemove } = this.props;
 
@@ -18,8 +26,8 @@ export class CasTypesPerson extends PureComponent {
     if (valueAreEquals) return;
 
     const shouldAddPerson = nextValue > previousValue;
-    if (shouldAddPerson) onPersonAdd(isChild);
-    else onPersonRemove(isChild);
+    if (shouldAddPerson) onPersonAdd(!!isChild);
+    else onPersonRemove(!!isChild);
     input.onChange(nextValue);
   };
 
@@ -36,8 +44,8 @@ export class CasTypesPerson extends PureComponent {
         <Field name={name}>
           {({ input }) => (
             <MUINumberStepper
-              max={max}
-              min={min}
+              max={max ?? Infinity}
+              min={min ?? 0}
               name={input.name}
               value={input.value}
               onChange={this.handlerInputChange(input)}
@@ -51,19 +59,3 @@ export class CasTypesPerson extends PureComponent {
     );
   }
 }
-
-CasTypesPerson.defaultProps = {
-  isChild: false,
-  max: Infinity,
-  min: 0,
-};
-
-CasTypesPerson.propTypes = {
-  isChild: PropTypes.bool,
-  // label: PropTypes.string.isRequired,
-  max: PropTypes.number,
-  min: PropTypes.number,
-  name: PropTypes.string.isRequired,
-  onPersonAdd: PropTypes.func.isRequired,
-  onPersonRemove: PropTypes.func.isRequired,
-};
