@@ -51,7 +51,6 @@
     "next-redux-wrapper": "^3.0.0",
     "node-sass": "^4.13.1",
     "plotly.js": "^1.52.3",
-    "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-final-form": "^6.3.5",
