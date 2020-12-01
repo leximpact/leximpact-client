@@ -25,14 +25,11 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux & {
   primaryButtons: {
     onClick: () => void;
-    icon?: JSX.Element;
     caption: string;
     mobileCaption: string;
-    mobileIcon?: JSX.Element;
   }[],
   secondaryButtons: {
     onClick: () => void;
-    icon?: JSX.Element;
     caption: string;
     mobileCaption: string;
     mobileIcon?: JSX.Element;
@@ -73,7 +70,6 @@ class SimulationMenuBar extends PureComponent<Props> {
                     <Grid key={index} item>
                       <Button
                         caption={button.caption}
-                        icon={button.icon}
                         isMobileView={isMobileView}
                         mobileCaption={button.mobileCaption}
                         mobileIcon={button.mobileIcon}
@@ -95,10 +91,8 @@ class SimulationMenuBar extends PureComponent<Props> {
                     <Grid key={index} item>
                       <Button
                         caption={button.caption}
-                        icon={button.icon}
                         isMobileView={isMobileView}
                         mobileCaption={button.mobileCaption}
-                        mobileIcon={button.mobileIcon}
                         type="primary"
                         onClick={button.onClick} />
                     </Grid>

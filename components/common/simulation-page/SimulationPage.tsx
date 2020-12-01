@@ -24,14 +24,11 @@ interface Props {
   results: JSX.Element;
   primaryButtons: {
     onClick: () => void;
-    icon?: JSX.Element;
     caption: string;
     mobileCaption: string;
-    mobileIcon?: JSX.Element;
   }[];
   secondaryButtons?: {
     onClick: () => void;
-    icon?: JSX.Element;
     caption: string;
     mobileCaption: string;
     mobileIcon?: JSX.Element;
