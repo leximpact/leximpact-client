@@ -1,6 +1,4 @@
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import FaceIcon from "@material-ui/icons/Face";
 import { flow } from "lodash";
 import Head from "next/head";
 import { withRouter } from "next/router";
@@ -38,15 +36,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const populationIcon = (
-  <Fragment>
-    <AccountBalanceIcon />
-    <FaceIcon />
-  </Fragment>
-);
-
-const casTypesIcon = <FaceIcon />;
-
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -69,20 +58,16 @@ class IRPage extends PureComponent<Props> {
 
     const primaryButtons = [
       {
-        caption: "ESTIMER ~5''",
-        icon: casTypesIcon,
-        mobileCaption: "ESTIMER",
-        mobileIcon: casTypesIcon,
+        caption: "ESTIMER CAS TYPES",
+        mobileCaption: "ESTIMER CAS TYPES",
         onClick: simulateCasTypes,
       },
     ];
 
     if (isUserLogged) {
       primaryButtons.push({
-        caption: "ESTIMER ~60''",
-        icon: populationIcon,
-        mobileCaption: "ESTIMER",
-        mobileIcon: populationIcon,
+        caption: "ESTIMER BUDGET & CAS TYPES",
+        mobileCaption: "ESTIMER BUDGET & CAS TYPES",
         onClick: simulatePopulation,
       });
     }
