@@ -1,0 +1,1 @@
+export { CasTypesRevenus } from "./CasTypesRevenus";

@@ -1,0 +1,60 @@
+@import 'styles/variables';
+
+.container {
+  padding: 0 20px;
+}
+
+.avatar {
+  background-color: #DED500 !important;
+  height: 80px !important;
+  margin: 8px !important;
+  width: 80px !important;
+
+  @media (max-width: 599.95px) {
+    height: 60px !important;
+    width: 60px !important;
+  }
+}
+
+.avatarContainer {
+  align-items: center !important;
+  display: flex !important;
+  flex: 1 !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.avatarIcon {
+  height: 45px !important;
+  width: 45px !important;
+
+  @media (max-width: 599.95px) {
+    height: 32px !important;
+    width: 32px !important;
+  }
+}
+
+.closeButton {
+  position: absolute !important;
+  right: 10px !important;
+  top: 10px !important;
+}
+
+.form {
+  margin-top: 8px !important;
+  width: 100% !important; // Fix IE 11 issue.
+}
+
+.spanLeximpactLigther {
+  font-family: $default-font-family;
+  font-size: 34px;
+  font-weight: lighter;
+
+  @media (max-width: 599.95px) {
+    font-size: 26px;
+  }
+}
+
+.title {
+  text-align: center !important;
+}

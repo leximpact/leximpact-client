@@ -1,0 +1,61 @@
+@import 'styles/variables.scss';
+
+.cellStyle {
+  padding: 0.6em !important;
+  text-align: center !important;
+}
+
+.infinity {
+  font-size: 2em;
+  font-weight: 330;
+  vertical-align: sub;
+}
+
+.tableHeader {
+  color: #565656 !important;
+  font-family: $default-font-family !important;
+  font-size: 1.125em !important;
+  height: 0px !important;
+  text-align: center !important;
+  vertical-align: top !important;
+}
+
+// TODO: avoid duplicate code.
+
+.base {
+  color: #000000;
+
+  font-family: $default-font-family;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 10px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 3px;
+}
+
+.plf {
+  color: $plf-color;
+
+  font-family: $default-font-family;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 10px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 3px;
+}
+
+.reform {
+  color: #000000;
+  background-color: $amendement-bg-color;
+
+  border-radius: 0.3em;
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 10px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 3px;
+}

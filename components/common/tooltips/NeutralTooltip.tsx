@@ -1,4 +1,16 @@
-import { neutralColor } from "../colors";
-import { createColoredTooltip } from "./create-colored-tooltip";
+import Tooltip from "@material-ui/core/Tooltip";
 
-export const NeutralTooltip = createColoredTooltip(neutralColor);
+import styles from "./NeutralTooltip.module.scss";
+
+export function NeutralTooltip(props) {
+  return (
+    <Tooltip
+      classes={{
+        tooltip: styles.tooltip,
+        tooltipPlacementBottom: styles.tooltipPlacementBottom,
+      }}
+      enterDelay={300}
+      leaveDelay={200}
+      {...props} />
+  );
+}

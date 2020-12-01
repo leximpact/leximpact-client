@@ -1,0 +1,46 @@
+.fieldsContainer {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.formGroup {
+  margin-top: 28px !important;
+}
+
+.formLabel {
+  color: #000000 !important;
+  font-size: 24px !important;
+  margin-bottom: 20px !important;
+  @media (max-width: 599.95px) {
+    font-size: 18px !important;
+  }
+}
+
+.inputField {
+  font-size: 18px !important;
+  line-height: 2em !important;
+  max-width: 100% !important;
+  @media (max-width: 599.95px) {
+    font-size: 14px !important;
+    width: 120px !important;
+  }
+}
+
+.menuPaper {
+  background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.selectRoot {
+  font-size: 18px !important;
+  line-height: 2em !important;
+  max-width: 230px !important;
+  @media (max-width: 599.95px) {
+    font-size: 14px !important;
+    width: 120px !important;
+  }
+}
+
+  

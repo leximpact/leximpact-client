@@ -2,8 +2,6 @@ import familyManGirlGirl from "@iconify/icons-twemoji/family-man-girl-girl";
 import { Icon } from "@iconify/react";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
@@ -18,36 +16,8 @@ import { fetchSimPop, simulateCasTypes } from "../../../../redux/actions";
 // eslint-disable-next-line no-unused-vars
 import { RootState } from "../../../../redux/reducers";
 import { Card } from "../../../common";
-import styles2 from "./gagnants-perdants-component.module.scss";
+import styles from "./gagnants-perdants-component.module.scss";
 import { GagnantsPerdantsContent } from "./GagnantsPerdantsContent";
-
-const styles = () => ({
-  buttonPosition: {
-    marginBottom: "114px",
-    marginTop: "41px",
-  },
-  sourceInsee: {
-    color: "#B1B1B1",
-    fontFamily: "Lato",
-    fontSize: "12px",
-    fontWeight: "regular",
-    lineHeight: "15px",
-    marginTop: "15px",
-    textAlign: "right",
-  },
-  styleIconGagnant: {
-    color: "#13CC03",
-    verticalAlign: "bottom",
-  },
-  styleIconNeutre: {
-    color: "#B1B1B1",
-    verticalAlign: "bottom",
-  },
-  styleIconPerdant: {
-    color: "#FFAC33",
-    verticalAlign: "bottom",
-  },
-});
 
 const mapStateToProps = ({ loadingEtat, results }: RootState) => {
   const isLoadingEtat = loadingEtat === "loading";
@@ -71,14 +41,9 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-type Props = PropsFromRedux & {
-  classes: any;
-}
-
-class GagnantsPerdantsCard extends PureComponent<Props> {
+class GagnantsPerdantsCard extends PureComponent<PropsFromRedux> {
   render() {
     const {
-      classes,
       foyersFiscauxTouches,
       isDisabledEtat,
       isLoadingEtat,
@@ -129,22 +94,22 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
           <Fragment>
             {isDisabledEtat && (
               <div>
-                <div className={`${classes.buttonPosition} ${styles2.center}`}>
+                <div className={styles.buttonPosition}>
                   <Button
                     color="secondary"
                     size="medium"
                     variant="outlined"
                     onClick={onClickSimPop}>
                     <AccountBalanceIcon />
-                    <FaceIcon className={classes.marginIcon} />
+                    <FaceIcon className={styles.marginIcon} />
                     &nbsp;Estimer ~60&quot;
-                    <CachedIcon className={classes.miniIcon} />
+                    <CachedIcon className={styles.miniIcon} />
                   </Button>
                 </div>
               </div>
             )}
             {!isDisabledEtat && isLoadingEtat && (
-              <div className={`${classes.buttonPosition} ${styles2.center}`}>
+              <div className={styles.buttonPosition}>
                 <CircularProgress color="secondary" />
               </div>
             )}
@@ -156,7 +121,7 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
                 captionPlf={hausseZeroPlf}
                 icon={(
                   <ArrowUpwardIcon
-                    classes={{ root: classes.styleIconPerdant }}
+                    classes={{ root: styles.styleIconPerdant }}
                     fontSize="default"
                   />
                 )}
@@ -171,7 +136,7 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
             amendement={baisseReforme}
             icon={(
               <ArrowDownwardIcon
-                classes={{ root: classes.styleIconGagnant }}
+                classes={{ root: styles.styleIconGagnant }}
                 fontSize="default"
               />
             )}
@@ -188,19 +153,18 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
               captionPlf={neutreZeroPlf}
               icon={(
                 <NotInterestedIcon
-                  classes={{ root: classes.styleIconNeutre }}
+                  classes={{ root: styles.styleIconNeutre }}
                   fontSize="default"
                 />
               )}
               plf={neutrePlf}
               title="non concernés"
             />
-            <Typography className={classes.sourceInsee}>
+            <div className={styles.sourceInsee}>
               * Chiffrages indicatifs.
               <br />
-              {" "}
               Données ERFS-FPR (Insee).
-            </Typography>
+            </div>
           </Fragment>
         ) : null}
         icon={<Icon height="40" icon={familyManGirlGirl} width="40" />}
@@ -211,4 +175,4 @@ class GagnantsPerdantsCard extends PureComponent<Props> {
   }
 }
 
-export default withStyles(styles as any)(connector(GagnantsPerdantsCard));
+export default connector(GagnantsPerdantsCard);

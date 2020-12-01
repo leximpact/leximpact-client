@@ -1,0 +1,27 @@
+@import 'styles/variables';
+
+.button {
+  font-size: 14px !important;
+  margin-right: 24px !important;
+  margin-top: 11px !important;
+  text-transform: inherit !important;
+}
+
+.buttonDisabled {
+  opacity: 0.45 !important;
+}
+
+.flexbox {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.title {
+  color: #565656;
+  font-family: $default-font-family;
+  font-size: 14px;
+}

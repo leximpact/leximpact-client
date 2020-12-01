@@ -1,0 +1,19 @@
+.closeButton {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.divider {
+  margin-bottom: 6px !important;
+  margin-top: 24px !important;
+}
+
+.personsColumns {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-top: 24px;
+}

@@ -1,3 +1,31 @@
-.center {
+@import 'styles/variables';
+
+.buttonPosition {
+  margin-bottom: 114px;
+  margin-top: 41px;
   text-align: center;
+}
+
+.sourceInsee {
+  color: #B1B1B1;
+  font-family: $default-font-family;
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 15px;
+  text-align: right;
+}
+
+.styleIconGagnant {
+  color: #13CC03;
+  vertical-align: bottom;
+}
+
+.styleIconNeutre {
+  color: #B1B1B1;
+  vertical-align: bottom;
+}
+
+.styleIconPerdant {
+  color: #FFAC33;
+  vertical-align: bottom;
 }
