@@ -1,9 +1,10 @@
 import Grid from "@material-ui/core/Grid";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
-import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 
+// eslint-disable-next-line no-unused-vars
+import { RootState } from "../../../redux/reducers";
 import {
   ExpandableText,
   PrimaryExpandablePanel,
@@ -17,14 +18,25 @@ import styles from "./articles.module.scss";
 import { Button } from "./buttons";
 import { Plafonds, ReglesGenerales, ReglesSpecifiques } from "./quotient-familial";
 
-class ArticlesComponent extends React.Component {
+type Parameters = RootState["parameters"];
+
+interface Props extends Parameters {
+  handleAddTranche: () => void;
+  handleArticleChange: (value: number, name: string) => void;
+  handleRemoveTranche: () => void;
+}
+
+export class Articles extends React.Component<Props> {
   gimmeIRPartsOfArticle = (i) => {
     const {
       amendement,
       base,
       handleArticleChange,
-      plf,
     } = this.props;
+
+    let { plf } = this.props;
+    plf = plf ?? null;
+
     const s = amendement.impot_revenu.bareme.seuils;
     const t = amendement.impot_revenu.bareme.taux;
     const bases = base.impot_revenu.bareme.seuils;
@@ -219,36 +231,3 @@ class ArticlesComponent extends React.Component {
     );
   }
 }
-
-ArticlesComponent.defaultProps = {
-  plf: null,
-};
-
-ArticlesComponent.propTypes = {
-  amendement: PropTypes.shape({
-    impot_revenu: PropTypes.shape({
-      bareme: PropTypes.shape({
-        seuils: PropTypes.arrayOf(PropTypes.number),
-      }),
-    }),
-  }).isRequired,
-  base: PropTypes.shape({
-    impot_revenu: PropTypes.shape({
-      bareme: PropTypes.shape({
-        seuils: PropTypes.arrayOf(PropTypes.number),
-      }),
-    }),
-  }).isRequired,
-  handleAddTranche: PropTypes.func.isRequired,
-  handleArticleChange: PropTypes.func.isRequired,
-  handleRemoveTranche: PropTypes.func.isRequired,
-  plf: PropTypes.shape({
-    impot_revenu: PropTypes.shape({
-      bareme: PropTypes.shape({
-        seuils: PropTypes.arrayOf(PropTypes.number),
-      }),
-    }),
-  }),
-};
-
-export default ArticlesComponent;

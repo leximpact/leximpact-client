@@ -7,8 +7,8 @@ const METHOD_POST_VERB = "POST";
 
 const HTTP_SUCCESS_STATUS = [200, 201];
 
-function callEndpoint(method, pathWithStartingSlash, bodyObject = {}) {
-  return new Promise((resolve, reject) => {
+function callEndpoint(method: "GET"|"POST", pathWithStartingSlash: string, bodyObject = {}) {
+  return new Promise<any>((resolve, reject) => {
     const url = `${API_ENDPOINT}${pathWithStartingSlash}`;
     const body = method === METHOD_GET_VERB ? null : JSON.stringify(bodyObject);
     fetch(url, { body, headers: DEFAULT_HEADERS, method })
@@ -29,5 +29,5 @@ function callEndpoint(method, pathWithStartingSlash, bodyObject = {}) {
 
 export default {
   get: path => callEndpoint(METHOD_GET_VERB, path),
-  post: (path, body) => callEndpoint(METHOD_POST_VERB, path, body),
+  post: (path, body = {}) => callEndpoint(METHOD_POST_VERB, path, body),
 };

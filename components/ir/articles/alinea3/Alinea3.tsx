@@ -8,10 +8,6 @@ import { connect, ConnectedProps } from "react-redux";
 import { InformationPanel, ParameterValues } from "../../../common";
 import styles from "./Alinea3.module.scss";
 
-interface Props {
-  classes: any;
-}
-
 const mapStateToProps = ({ token }) => ({
   isUserLogged: Boolean(token),
 });
@@ -20,7 +16,7 @@ const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-class Alinea3 extends PureComponent<PropsFromRedux & Props> {
+class Alinea3 extends PureComponent<PropsFromRedux> {
   render() {
     const {
       isUserLogged,

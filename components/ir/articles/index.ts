@@ -7,7 +7,7 @@ import {
 } from "../../../redux/actions";
 // eslint-disable-next-line no-unused-vars
 import { RootState } from "../../../redux/reducers";
-import ArticlesComponent from "./articles-component";
+import { Articles } from "./Articles";
 
 const mapStateToProps = ({ parameters }: RootState) => parameters;
 
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addTranche());
   },
 
-  handleArticleChange: (value, name) => {
+  handleArticleChange: (value: number, name: string) => {
     dispatch(updateReformeByName(name, value));
   },
 
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ArticlesComponent);
+)(Articles);

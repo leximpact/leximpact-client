@@ -11,10 +11,10 @@ const PALIER_MAP = [
 ];
 const STARTING_VALUE = 500;
 
-function generateRevenusMensuel(startingValue = null) {
+function generateRevenusMensuel(startingValue: number|null = null) {
   const res = PALIER_MAP.reduce(
     (acc, { max, step }) => {
-      const nextAcc = [];
+      const nextAcc: number[] = [];
       const maxWhileLimit = max - step;
       let nextWhileValue = acc[acc.length - 1];
       while (nextWhileValue <= maxWhileLimit) {

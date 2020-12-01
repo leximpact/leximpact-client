@@ -1,16 +1,23 @@
 import Grid from "@material-ui/core/Grid";
-import PropTypes from "prop-types";
 import { PureComponent } from "react";
 
+// eslint-disable-next-line no-unused-vars
+import { CasType } from "../../../redux/reducers/descriptions/ir";
 import { InformationPanel } from "../../common";
 import { CarteEtat } from "./carte-etat";
+import styles from "./CartesImpact.module.scss";
 import { GagnantsPerdantsCard } from "./gagnants-perdants";
-import styles from "./impact-component.module.scss";
 import SimpleCard from "./simple-card";
 
 export const INFORMATION_PANEL_NAME = "ir";
 
-class ImpactComponent extends PureComponent {
+interface Props {
+  casTypes: CasType[];
+  isInformationPanelVisible: boolean;
+  isUserLogged: boolean;
+}
+
+export class CartesImpact extends PureComponent<Props> {
   render() {
     const { casTypes, isInformationPanelVisible, isUserLogged } = this.props;
     return (
@@ -52,19 +59,3 @@ class ImpactComponent extends PureComponent {
     );
   }
 }
-
-ImpactComponent.propTypes = {
-  casTypes: PropTypes.arrayOf(
-    PropTypes.shape({
-      nombre_declarants: PropTypes.number,
-      nombre_declarants_retraites: PropTypes.number,
-      nombre_personnes_a_charge: PropTypes.number,
-      outre_mer: PropTypes.number,
-      revenu: PropTypes.number,
-    }),
-  ).isRequired,
-  isInformationPanelVisible: PropTypes.bool.isRequired,
-  isUserLogged: PropTypes.bool.isRequired,
-};
-
-export default ImpactComponent;

@@ -411,7 +411,7 @@ const DEFAULT_DATA_FROM_CAS_TYPES = [
 
 describe("components | utils | tranform-cas-type-to-data", () => {
   it("doit correspondre a la structure", () => {
-    const datas = DEFAULT_DATA_FROM_CAS_TYPES.reduce((acc, [raw, ct]) => {
+    const datas = DEFAULT_DATA_FROM_CAS_TYPES.reduce((acc: any, [raw, ct]) => {
       const api = [...(acc.api || []), raw];
       const casTypes = [...(acc.casTypes || []), ct];
       return { api, casTypes };

@@ -1,6 +1,5 @@
 import Document, { Head, Main, NextScript } from "next/document";
 import React from "react";
-import JssProvider from "react-jss/lib/JssProvider";
 
 import createPageContext from "../lib/createPageContext";
 import getPageContext from "../lib/getPageContext";
@@ -31,24 +30,11 @@ class MyDocument extends Document<Props> {
     // Get the context of the page to collected side effects.
     const pageContext = getPageContext(process.browser, createPageContext);
     const page = ctx.renderPage(Component => props => (
-      <JssProvider
-        generateClassName={pageContext.generateClassName}
-        registry={pageContext.sheetsRegistry}>
-        <Component pageContext={pageContext} {...props} />
-      </JssProvider>
+      <Component pageContext={pageContext} {...props} />
     ));
     return {
       ...page,
       pageContext,
-      styles: (
-        <style
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: pageContext.sheetsRegistry.toString(),
-          }}
-          id="jss-server-side"
-        />
-      ),
     };
   }
 
