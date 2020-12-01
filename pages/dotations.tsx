@@ -1,4 +1,3 @@
-import HomeIcon from "@material-ui/icons/Home";
 import { flow } from "lodash";
 import Head from "next/head";
 import { withRouter } from "next/router";
@@ -59,9 +58,7 @@ class DotationPage extends PureComponent<PropsFromRedux> {
           primaryButtons={[
             {
               caption: "Estimer",
-              icon: <HomeIcon />,
               mobileCaption: "Estimer",
-              mobileIcon: <HomeIcon />,
               onClick: simulate,
             },
           ]}
