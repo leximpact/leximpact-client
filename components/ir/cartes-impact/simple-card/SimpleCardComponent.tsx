@@ -1,49 +1,22 @@
 import BabyIcon from "@iconify/icons-twemoji/baby";
-import CactusIcon from "@iconify/icons-twemoji/cactus";
-import DeciduousTreeIcon from "@iconify/icons-twemoji/deciduous-tree";
 import ManCurlyHairedIcon from "@iconify/icons-twemoji/man-curly-haired";
 import ManWhiteHairedIcon from "@iconify/icons-twemoji/man-white-haired";
-import PalmTreeIcon from "@iconify/icons-twemoji/palm-tree";
 import WomanCurlyHairedIcon from "@iconify/icons-twemoji/woman-curly-haired";
 import WomanWhiteHairedIcon from "@iconify/icons-twemoji/woman-white-haired";
 import { Icon } from "@iconify/react";
 import Badge from "@material-ui/core/Badge";
-import { get } from "lodash";
 import React, { Fragment } from "react";
+import { CasType } from "../../../../redux/reducers/descriptions/ir";
 
 import {
-  Card, DoublePalmTreeIcon, formatNumber, NeutralTooltip,
+  Card, formatNumber, NeutralTooltip,
 } from "../../../common";
+import { RESIDENCE_ITEMS } from '../../common';
 import SimpleCardImpactImpots from "./impact-impots";
 import styles from "./SimpleCardComponent.module.scss";
 
-const RESIDENCE_ITEMS = [
-  // Doit correspondre a ceux definis
-  // dans /components/ajouter-cas-types/form/cas-types-lieu-residence
-  {
-    icon: DeciduousTreeIcon,
-    key: "metropole",
-    label: "Métropole",
-  },
-  {
-    icon: PalmTreeIcon,
-    key: "guadeloupe_martinique_reunion",
-    label: "Guadeloupe, Martinique ou La Réunion",
-  },
-  {
-    icon: DoublePalmTreeIcon,
-    key: "mayotte_guyane",
-    label: "Mayotte ou Guyane",
-  },
-  {
-    icon: CactusIcon,
-    key: "etranger",
-    label: "Étranger",
-  },
-];
-
 interface Props {
-  descCasType: any;
+  descCasType: CasType;
   handleRemoveCasType: (index: number) => any;
   handleShowEditCasTypesPopin: (index: number) => any;
   index: number;
@@ -52,8 +25,8 @@ interface Props {
 class SimpleCard extends React.Component<Props> {
   renderLieuDeResidence = () => {
     const { descCasType } = this.props;
-    const { lieuResidence: index } = descCasType;
-    const { icon, label } = RESIDENCE_ITEMS[index];
+    const { residence } = descCasType;
+    const { icon, label } = RESIDENCE_ITEMS.get(residence) as { icon: object, label: string };
     return (
       <NeutralTooltip placement="top" title={label}>
         <span>
@@ -65,8 +38,8 @@ class SimpleCard extends React.Component<Props> {
 
   renderRevenuMensuel = () => {
     const { descCasType } = this.props;
-    const { revenusNetMensuel } = descCasType;
-    const revenusMensuel = Math.round(revenusNetMensuel);
+    const { revenuImposable } = descCasType;
+    const revenusMensuel = Math.round(revenuImposable);
     return (
       <NeutralTooltip
         placement="top"
@@ -86,29 +59,28 @@ class SimpleCard extends React.Component<Props> {
 
   renderPersonsIcons = () => {
     const { descCasType } = this.props;
-    const childs = get(descCasType, "persons.childs");
-    const parents = get(descCasType, "persons.parents");
+    const personnesACharge = descCasType.personnesACharge;
+    const declarants = descCasType.declarants;
     return (
       <div>
-        {parents.map((obj, index) => {
-          const { gender, invalide, plus65ans } = obj;
+        {declarants.map((declarant, index) => {
+          const { gender, invalide, retraite } = declarant;
           const key = `parent::person::icon::${index}`;
-          const isMale = Boolean(gender);
-          const isInvalide = Boolean(invalide);
-          const isRetraite = Boolean(plus65ans);
+          const isMale = gender === 'male';
+          
           let icon = isMale ? ManCurlyHairedIcon : WomanCurlyHairedIcon;
-          if (isRetraite && isMale) icon = ManWhiteHairedIcon;
-          if (isRetraite && !isMale) icon = WomanWhiteHairedIcon;
+          if (retraite && isMale) icon = ManWhiteHairedIcon;
+          if (retraite && !isMale) icon = WomanWhiteHairedIcon;
           return (
             <NeutralTooltip
               key={key}
               placement="top"
-              title={isRetraite ? "Plus de 65 ans" : "Moins de 65 ans"}>
+              title={retraite ? "Plus de 65 ans" : "Moins de 65 ans"}>
               <span>
-                {!isInvalide && (
+                {!invalide && (
                   <Icon key={key} height="40" icon={icon} width="40" />
                 )}
-                {isInvalide && (
+                {invalide && (
                   <Badge
                     key={key}
                     classes={{ badge: styles.badge, root: styles.badgeRoot }}
@@ -121,11 +93,10 @@ class SimpleCard extends React.Component<Props> {
             </NeutralTooltip>
           );
         })}
-        {childs.map((obj, index) => {
+        {personnesACharge.map((personneACharge, index) => {
           const key = `child::person::icon::${index}`;
-          const { invalide } = obj;
-          const isInvalide = Boolean(invalide);
-          if (!isInvalide) {
+          const { invalide } = personneACharge;
+          if (!invalide) {
             return <Icon key={key} height="30" icon={BabyIcon} width="30" />;
           }
           return (
