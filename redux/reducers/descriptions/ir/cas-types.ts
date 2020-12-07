@@ -1,30 +1,25 @@
-import { transformDataToCasTypes } from "../../../../components/common/utils/transform-data-to-cas-types";
 // eslint-disable-next-line no-unused-vars
 import { Action } from "../../../actions";
 
-interface Person {
-  /* All are actually booleans. */
-  ancienCombattant: number;
-  chargePartagee: number;
-  gender: number;
-  invalide: number;
-  isChild: number;
-  parentIsole: number;
-  plus65ans: number;
-  veufVeuve: number;
-}
-
 export interface CasType {
+  // Only for frontend
   name: string;
-  // Actually a boolean.
-  lieuResidence: number;
-  nbCouple: number;
-  nbEnfants: number;
-  persons: {
-    childs: Person[];
-    parents: Person[];
-  };
-  revenusNetMensuel: number;
+
+  residence: "metropole"|"GuyMay"|"GuadMarReu";
+  revenuImposable: number;
+  declarants: {
+    veuf: boolean; // previously named veufVeuve
+    retraite: boolean; // previously named plus65ans
+    ancienCombattant: boolean;
+    invalide: boolean;
+    parentIsole: boolean;
+    // Only for frontend
+    gender: 'male'|'female';
+  }[];
+  personnesACharge: {
+    invalide: boolean;
+    chargePartagee: boolean;
+  }[];
 }
 
 // Cet état est initialisé via "redux-cookies-middleware" dans "./pages/_app.jsx".
@@ -37,7 +32,7 @@ export const casTypes = (state: CasType[] = DEFAULT_STATE, action: Action | any)
     return [];
   case "onInitializeCasTypes":
     if (action.token) return state;
-    return transformDataToCasTypes(action.payload);
+    return action.payload;
   case "ADD_CAS_TYPE":
     return [...state, action.casType];
   case "UPDATE_CAS_TYPE":
