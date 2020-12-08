@@ -75,13 +75,11 @@ export class AjouterCasTypes extends PureComponent<Props> {
             form,
             handleSubmit,
             invalid,
-            pristine,
             submitError,
             values,
           }) => {
             const { mutators } = form;
             const { declarants, personnesACharge } = values;
-            const canSubmitForm = pristine || invalid;
             return (
               <form className={styles.form} onSubmit={handleSubmit}>
                 <div>
@@ -115,7 +113,7 @@ export class AjouterCasTypes extends PureComponent<Props> {
                   <CasTypesRevenus name="revenuImposable" />
                 </div>
                 <Divider className={styles.divider} />
-                <SubmitButton disabled={canSubmitForm} />
+                <SubmitButton disabled={invalid} />
                 <ErrorSnackbar message={submitError} />
               </form>
             );
