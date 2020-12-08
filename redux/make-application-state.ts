@@ -31,17 +31,17 @@ const makeApplicationState = (initialState) => {
   }
 
   if (
-    nextState.descriptions &&
-    nextState.descriptions.ir &&
-    nextState.descriptions.ir.casTypes &&
-    nextState.descriptions.ir.casTypes.length > 0 && 
-    nextState.descriptions.ir.casTypes[0].hasOwnProperty('revenusNetMensuel')
+    nextState.descriptions
+    && nextState.descriptions.ir
+    && nextState.descriptions.ir.casTypes
+    && nextState.descriptions.ir.casTypes.length > 0
+    // eslint-disable-next-line no-prototype-builtins
+    && nextState.descriptions.ir.casTypes[0].hasOwnProperty("revenusNetMensuel")
   ) {
     // State stored in cookie uses an old format.
     nextState.descriptions.ir.casTypes = [];
   }
 
-  console.log(JSON.stringify(nextState.descriptions, null, 2))
   const store = createStore(reducers, nextState, enhancer);
   return store;
 };

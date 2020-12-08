@@ -3,6 +3,8 @@ import manCurlyHaired from "@iconify/icons-twemoji/man-curly-haired";
 import manWhiteHaired from "@iconify/icons-twemoji/man-white-haired";
 import womanCurlyHaired from "@iconify/icons-twemoji/woman-curly-haired";
 import womanWhiteHaired from "@iconify/icons-twemoji/woman-white-haired";
+
+// eslint-disable-next-line no-unused-vars
 import { CasType } from "../../../../../redux/reducers/descriptions/ir";
 
 const ALLOWED_FOR_CHILDS = ["invalide", "chargePartagee"];
@@ -14,9 +16,9 @@ const ALLOWED_FOR_PARENTS = [
   "ancienCombattant",
 ];
 
-export const getIconForParentPerson = (declarant: CasType['declarants'][0]) => {
+export const getIconForParentPerson = (declarant: CasType["declarants"][0]) => {
   const { gender, retraite } = declarant;
-  if (gender === 'male') {
+  if (gender === "male") {
     return retraite ? manWhiteHaired : manCurlyHaired;
   }
   return retraite ? womanWhiteHaired : womanCurlyHaired;

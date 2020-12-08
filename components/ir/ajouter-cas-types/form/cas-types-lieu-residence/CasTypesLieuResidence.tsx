@@ -15,17 +15,17 @@ export function CasTypesLieuResidence({ name }: Props) {
       <span className={styles.title}>Lieu de résidence :</span>
       <div className={styles.flexbox}>
         <Field name={name}>
-          {({ input }) => Array.from(RESIDENCE_ITEMS.entries()).map(([ key, { icon, label }]) => {
+          {({ input }) => Array.from(RESIDENCE_ITEMS.entries()).map(([key, { icon, label }]) => {
             const isSelected = input.value === key;
             const variant = !isSelected ? "outlined" : "default";
             return (
               <Chip
-                onClick={() => input.onChange(key)}
                 key={key}
                 className={styles.button}
                 icon={<Icon height="20" icon={icon} width="20" />}
                 label={label}
                 variant={variant}
+                onClick={() => input.onChange(key)}
               />
             );
           })

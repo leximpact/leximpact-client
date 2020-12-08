@@ -75,17 +75,17 @@ export const simulateCasTypes = () => (dispatch, getState) => {
   const body = {
     description_cas_types: descriptions.ir.casTypes.map(casType => ({
       // No name
-      residence: casType.residence,
-      revenuImposable: casType.revenuImposable,
       declarants: casType.declarants.map(declarant => ({
-        veuf: declarant.veuf,
-        retraite: declarant.retraite,
         ancienCombattant: declarant.ancienCombattant,
         invalide: declarant.invalide,
         parentIsole: declarant.parentIsole,
-        // No gende
+        retraite: declarant.retraite,
+        veuf: declarant.veuf,
+        // No gender
       })),
       personnesACharge: casType.personnesACharge,
+      residence: casType.residence,
+      revenuImposable: casType.revenuImposable,
     })),
     reforme: formatReforme(parameters.amendement),
   };

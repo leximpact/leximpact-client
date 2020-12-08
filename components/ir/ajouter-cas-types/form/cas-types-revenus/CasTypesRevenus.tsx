@@ -37,18 +37,16 @@ export const CasTypesRevenus = ({ name }: Props) => (
     </div>
     <div className={styles.flexbox}>
       <Field id={name} name={name}>
-        {({ input }) => {
-          return (
-            <Fragment>
-              <NativeSelect {...input}>
-                {selectOptions}
-              </NativeSelect>
-              <span className={styles.label}>
-                {`Soit ${formatNumber(input.value)} €/an`}
-              </span>
-            </Fragment>
-          );
-        }}
+        {({ input }) => (
+          <Fragment>
+            <NativeSelect {...input}>
+              {selectOptions}
+            </NativeSelect>
+            <span className={styles.label}>
+              {`Soit ${formatNumber(input.value)} €/an`}
+            </span>
+          </Fragment>
+        )}
       </Field>
     </div>
   </label>

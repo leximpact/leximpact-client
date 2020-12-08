@@ -8,8 +8,9 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { PureComponent } from "react";
 import { Field } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";
-import { CasType } from "../../../../../redux/reducers/descriptions/ir";
 
+// eslint-disable-next-line no-unused-vars
+import { CasType } from "../../../../../redux/reducers/descriptions/ir";
 import styles from "./CasTypesComposition.module.scss";
 import {
   getIconForChildPerson,
@@ -58,14 +59,13 @@ const COMPOSITION_FIELDS_MAP = [
 ];
 
 interface Props {
-  declarants: CasType['declarants'];
-  personnesACharge: CasType['personnesACharge'];
+  declarants: CasType["declarants"];
+  personnesACharge: CasType["personnesACharge"];
 }
 
 export class CasTypesComposition extends PureComponent<Props> {
-
   renderGenderButton = (showChild: boolean, name: string, index: number) => {
-    const { personnesACharge, declarants } = this.props;
+    const { declarants, personnesACharge } = this.props;
     const currentPerson = showChild ? personnesACharge[index] : declarants[index];
     const icon = showChild ? getIconForChildPerson() : getIconForParentPerson(declarants[index]);
     const { invalide } = currentPerson;
@@ -77,7 +77,7 @@ export class CasTypesComposition extends PureComponent<Props> {
             className={styles.genderButton}
             onClick={() => {
               if (showChild) return;
-              const nextGender = declarants[index].gender === 'male' ? 'female' : 'male';
+              const nextGender = declarants[index].gender === "male" ? "female" : "male";
               input.onChange(nextGender);
             }}>
             {invalide && (
@@ -94,18 +94,18 @@ export class CasTypesComposition extends PureComponent<Props> {
     );
   };
 
-  renderCompositionColumn = (type: 'declarant'|'personneACharge') => (name: string, index: number) => {
+  renderCompositionColumn = (type: "declarant"|"personneACharge") => (name: string, index: number) => {
     const { declarants } = this.props;
     const parentsCount = declarants.length;
     return (
       <div key={name}>
         <div className={styles.icon}>
           {/*  icone du type de personne (enfant/agé/invalide... ) */}
-          {this.renderGenderButton(type === 'personneACharge', name, index)}
+          {this.renderGenderButton(type === "personneACharge", name, index)}
         </div>
         {COMPOSITION_FIELDS_MAP.map(({ key }) => {
           const fname = `${name}.${key}`;
-          const showCheckbox = shouldShowCheckbox(type === 'personneACharge', key, parentsCount);
+          const showCheckbox = shouldShowCheckbox(type === "personneACharge", key, parentsCount);
           const disableCheckbox = shouldDisableParentIsole(key, parentsCount);
           return (
             <div key={key} className={styles.cell}>
@@ -114,13 +114,13 @@ export class CasTypesComposition extends PureComponent<Props> {
                   {
                     ({ input }) => (
                       <Checkbox
-                        { ...input }
+                        {...input}
                         checked={input.value}
                         classes={{ root: styles.checkbox }}
                         disabled={disableCheckbox}
-                      />    
+                      />
                     )
-                  } 
+                  }
                 </Field>
               )}
             </div>
@@ -131,7 +131,7 @@ export class CasTypesComposition extends PureComponent<Props> {
   };
 
   renderColumnLabels = () => {
-    const { personnesACharge, declarants } = this.props;
+    const { declarants, personnesACharge } = this.props;
     const childsCount = personnesACharge.length;
     const parentsCount = declarants.length;
     return (
@@ -183,7 +183,7 @@ export class CasTypesComposition extends PureComponent<Props> {
               <FieldArray name="declarants">
                 {({ fields }) => (
                   <div className={styles.flexColumns}>
-                    {fields.map(this.renderCompositionColumn('declarant'))}
+                    {fields.map(this.renderCompositionColumn("declarant"))}
                   </div>
                 )}
               </FieldArray>
@@ -193,7 +193,7 @@ export class CasTypesComposition extends PureComponent<Props> {
               <FieldArray name="personnesACharge">
                 {({ fields }) => (
                   <div className={styles.flexColumns}>
-                    {fields.map(this.renderCompositionColumn('personneACharge'))}
+                    {fields.map(this.renderCompositionColumn("personneACharge"))}
                   </div>
                 )}
               </FieldArray>

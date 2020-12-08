@@ -14,7 +14,7 @@ export interface CasType {
     invalide: boolean;
     parentIsole: boolean;
     // Only for frontend
-    gender: 'male'|'female';
+    gender: "male"|"female";
   }[];
   personnesACharge: {
     invalide: boolean;

@@ -6,12 +6,13 @@ import WomanWhiteHairedIcon from "@iconify/icons-twemoji/woman-white-haired";
 import { Icon } from "@iconify/react";
 import Badge from "@material-ui/core/Badge";
 import React, { Fragment } from "react";
-import { CasType } from "../../../../redux/reducers/descriptions/ir";
 
+// eslint-disable-next-line no-unused-vars
+import { CasType } from "../../../../redux/reducers/descriptions/ir";
 import {
   Card, formatNumber, NeutralTooltip,
 } from "../../../common";
-import { RESIDENCE_ITEMS } from '../../common';
+import { RESIDENCE_ITEMS } from "../../common";
 import SimpleCardImpactImpots from "./impact-impots";
 import styles from "./SimpleCardComponent.module.scss";
 
@@ -59,15 +60,15 @@ class SimpleCard extends React.Component<Props> {
 
   renderPersonsIcons = () => {
     const { descCasType } = this.props;
-    const personnesACharge = descCasType.personnesACharge;
-    const declarants = descCasType.declarants;
+    const { personnesACharge } = descCasType;
+    const { declarants } = descCasType;
     return (
       <div>
         {declarants.map((declarant, index) => {
           const { gender, invalide, retraite } = declarant;
           const key = `parent::person::icon::${index}`;
-          const isMale = gender === 'male';
-          
+          const isMale = gender === "male";
+
           let icon = isMale ? ManCurlyHairedIcon : WomanCurlyHairedIcon;
           if (retraite && isMale) icon = ManWhiteHairedIcon;
           if (retraite && !isMale) icon = WomanWhiteHairedIcon;

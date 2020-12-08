@@ -15,33 +15,34 @@ import { AjouterCasTypes } from "./AjouterCasTypes";
 const mapStateToProps = ({ descriptions }: RootState, { index }): { casType: CasType } => {
   if (index >= 0) {
     return {
-      casType: descriptions.ir.casTypes[index]
+      casType: descriptions.ir.casTypes[index],
     };
   }
   return {
     casType: {
-      residence: 'metropole',
-      name: "Foyer fiscal type",
-      personnesACharge: [],
       declarants: [
         {
           ancienCombattant: false,
-          gender: Math.random() < 0.49 ? 'male' : 'female',
+          gender: Math.random() < 0.49 ? "male" : "female",
           invalide: false,
           parentIsole: false,
           retraite: false,
-          veuf: false
-        }
+          veuf: false,
+        },
       ],
+      name: "Foyer fiscal type",
+      personnesACharge: [],
+      residence: "metropole",
       revenuImposable: 1200 * 12,
-    }
-  }
+    },
+  };
 };
 
 const mapDispatchToProps = (dispatch, { index }) => ({
   onFormSubmitHandler: (casType: CasType) => {
     // The select component converts numbers into strings.
-    if (typeof casType.revenuImposable === 'string') {
+    if (typeof casType.revenuImposable === "string") {
+      // eslint-disable-next-line no-param-reassign
       casType.revenuImposable = Number(casType.revenuImposable);
     }
 

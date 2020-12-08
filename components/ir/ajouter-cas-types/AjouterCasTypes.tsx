@@ -4,8 +4,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import arrayMutators from "final-form-arrays";
 import { PureComponent } from "react";
 import { Form as FinalForm } from "react-final-form";
-import { CasType } from "../../../redux/reducers/descriptions/ir";
 
+// eslint-disable-next-line no-unused-vars
+import { CasType } from "../../../redux/reducers/descriptions/ir";
 import { ErrorSnackbar } from "../common";
 import styles from "./AjouterCasTypes.module.scss";
 import { CasTypesComposition } from "./form/cas-types-composition";
@@ -22,36 +23,35 @@ interface Props {
 }
 
 export class AjouterCasTypes extends PureComponent<Props> {
-
-  onDeclarantsChange({ push, pop }: any, previousLength: number, newLength: number): void {
+  onDeclarantsChange({ pop, push }: any, previousLength: number, newLength: number): void {
     if (newLength > previousLength) {
-      const declarant: CasType['declarants'][0] = {
-        veuf: false,
-        retraite: false,
+      const declarant: CasType["declarants"][0] = {
         ancienCombattant: false,
+        gender: Math.random() < 0.49 ? "male" : "female",
         invalide: false,
         parentIsole: false,
-        gender: Math.random() < 0.49 ? 'male' : 'female',
-      }
-      push('declarants', declarant);
+        retraite: false,
+        veuf: false,
+      };
+      push("declarants", declarant);
     }
 
     if (newLength < previousLength) {
-      pop('declarants');
+      pop("declarants");
     }
   }
 
-  onPersonnesAChargeChange({ push, pop }: any, previousLength: number, newLength: number): void {
+  onPersonnesAChargeChange({ pop, push }: any, previousLength: number, newLength: number): void {
     if (newLength > previousLength) {
-      const personneACharge: CasType['personnesACharge'][0] = {
-        invalide: false,
+      const personneACharge: CasType["personnesACharge"][0] = {
         chargePartagee: false,
-      }
-      push('personnesACharge', personneACharge);
+        invalide: false,
+      };
+      push("personnesACharge", personneACharge);
     }
 
     if (newLength < previousLength) {
-      pop('personnesACharge');
+      pop("personnesACharge");
     }
   }
 
@@ -87,22 +87,26 @@ export class AjouterCasTypes extends PureComponent<Props> {
                 </div>
                 <div className={styles.personsColumns}>
                   <CasTypesPerson
-                    value={declarants.length}
                     max={2}
                     min={1}
+                    value={declarants.length}
                     onChange={value => this.onDeclarantsChange(mutators, declarants.length, value)}
                   />
                   <CasTypesPerson
                     isChild
-                    value={personnesACharge.length}
                     max={9}
                     min={0}
-                    onChange={value => this.onPersonnesAChargeChange(mutators, personnesACharge.length, value)}
+                    value={personnesACharge.length}
+                    onChange={(value) => {
+                      this.onPersonnesAChargeChange(mutators, personnesACharge.length, value);
+                    }}
                   />
                 </div>
                 <Divider className={styles.divider} />
                 <div>
-                  <CasTypesComposition declarants={declarants} personnesACharge={personnesACharge} />
+                  <CasTypesComposition
+                    declarants={declarants}
+                    personnesACharge={personnesACharge} />
                 </div>
                 <Divider className={styles.divider} />
                 <div>
