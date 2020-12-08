@@ -114,7 +114,7 @@ export class CasTypesComposition extends PureComponent<Props> {
                   {
                     ({ input }) => (
                       <Checkbox
-                      { ...input }
+                        { ...input }
                         checked={input.value}
                         classes={{ root: styles.checkbox }}
                         disabled={disableCheckbox}

@@ -40,6 +40,11 @@ const mapStateToProps = ({ descriptions }: RootState, { index }): { casType: Cas
 
 const mapDispatchToProps = (dispatch, { index }) => ({
   onFormSubmitHandler: (casType: CasType) => {
+    // The select component converts numbers into strings.
+    if (typeof casType.revenuImposable === 'string') {
+      casType.revenuImposable = Number(casType.revenuImposable);
+    }
+
     if (index >= 0) {
       dispatch(updateCasType(index, casType));
     } else {
