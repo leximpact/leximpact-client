@@ -49,7 +49,7 @@ class SimpleCard extends React.Component<Props> {
             Revenus nets à déclarer
           </div>
           <div className={styles.revenusMensuelValue}>
-            {formatNumber(revenusMensuel)}
+            {formatNumber(revenusMensuel / 12, { decimals: 0 })}
             &nbsp;€/Mois
           </div>
         </div>

@@ -33,7 +33,7 @@ const mapStateToProps = ({ descriptions }: RootState, { index }): { casType: Cas
           veuf: false
         }
       ],
-      revenuImposable: 1200,
+      revenuImposable: 1200 * 12,
     }
   }
 };

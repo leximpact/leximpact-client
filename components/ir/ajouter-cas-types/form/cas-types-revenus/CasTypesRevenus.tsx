@@ -11,7 +11,7 @@ import styles from "./CasTypesRevenus.module.scss";
 const REVENUS_MENSUEL = generateRevenusMensuel(500);
 const selectOptions = REVENUS_MENSUEL.map((value) => {
   const uniqKey = `revenu_mensuel_${value}`;
-  return <option key={uniqKey} value={value}>{`${formatNumber(value)} €/mois`}</option>;
+  return <option key={uniqKey} value={value * 12}>{`${formatNumber(value)} €/mois`}</option>;
 });
 
 const REVENUS_HELP = "Somme des traitements, salaires nets et pensions que le foyer fiscal déclare par an sur sa feuille d'impôt, divisé par le nombre de mois d’une année.";
@@ -38,18 +38,13 @@ export const CasTypesRevenus = ({ name }: Props) => (
     <div className={styles.flexbox}>
       <Field id={name} name={name}>
         {({ input }) => {
-          const revenuMensuel = input.value;
-          const revenuAnnuel = input.value * 12;
           return (
             <Fragment>
-              <NativeSelect
-                name={input.name}
-                value={revenuMensuel}
-                onChange={input.onChange}>
+              <NativeSelect {...input}>
                 {selectOptions}
               </NativeSelect>
               <span className={styles.label}>
-                {`Soit ${formatNumber(revenuAnnuel)} €/an`}
+                {`Soit ${formatNumber(input.value)} €/an`}
               </span>
             </Fragment>
           );
