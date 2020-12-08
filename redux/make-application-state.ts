@@ -29,6 +29,19 @@ const makeApplicationState = (initialState) => {
   if (process.env.NODE_ENV === "development") {
     enhancer = composeWithDevTools(enhancer);
   }
+
+  if (
+    nextState.descriptions &&
+    nextState.descriptions.ir &&
+    nextState.descriptions.ir.casTypes &&
+    nextState.descriptions.ir.casTypes.length > 0 && 
+    nextState.descriptions.ir.casTypes[0].hasOwnProperty('revenusNetMensuel')
+  ) {
+    // State stored in cookie uses an old format.
+    nextState.descriptions.ir.casTypes = [];
+  }
+
+  console.log(JSON.stringify(nextState.descriptions, null, 2))
   const store = createStore(reducers, nextState, enhancer);
   return store;
 };
