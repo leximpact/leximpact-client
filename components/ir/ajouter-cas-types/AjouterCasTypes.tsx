@@ -4,6 +4,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import arrayMutators from "final-form-arrays";
 import { PureComponent } from "react";
 import { Form as FinalForm } from "react-final-form";
+import { CasType } from "../../../redux/reducers/descriptions/ir";
 
 import { ErrorSnackbar } from "../common";
 import styles from "./AjouterCasTypes.module.scss";
@@ -15,29 +16,48 @@ import { CasTypesRevenus } from "./form/cas-types-revenus";
 import { SubmitButton } from "./submit-button";
 
 interface Props {
-  casTypesInitialValues: any;
-  defaultPersonValue: any;
+  casType: CasType;
   onClosePopin: () => void;
-  onFormSubmitHandler: () => void;
+  onFormSubmitHandler: (casType: CasType) => void;
 }
 
 export class AjouterCasTypes extends PureComponent<Props> {
-  handlePersonAdd = ({ push }: any) => (isChild) => {
-    const { defaultPersonValue } = this.props;
-    const childValue = isChild ? 1 : 0;
-    const nextValue = { ...defaultPersonValue, isChild: childValue };
-    const arrayKey = (isChild && "childs") || "parents";
-    push(`persons.${arrayKey}`, nextValue);
-  };
 
-  handlePersonRemove = ({ pop }: any) => (isChild) => {
-    const arrayKey = (isChild && "childs") || "parents";
-    pop(`persons.${arrayKey}`);
-  };
+  onDeclarantsChange({ push, pop }: any, previousLength: number, newLength: number): void {
+    if (newLength > previousLength) {
+      const declarant: CasType['declarants'][0] = {
+        veuf: false,
+        retraite: false,
+        ancienCombattant: false,
+        invalide: false,
+        parentIsole: false,
+        gender: Math.random() < 0.49 ? 'male' : 'female',
+      }
+      push('declarants', declarant);
+    }
+
+    if (newLength < previousLength) {
+      pop('declarants');
+    }
+  }
+
+  onPersonnesAChargeChange({ push, pop }: any, previousLength: number, newLength: number): void {
+    if (newLength > previousLength) {
+      const personneACharge: CasType['personnesACharge'][0] = {
+        invalide: false,
+        chargePartagee: false,
+      }
+      push('personnesACharge', personneACharge);
+    }
+
+    if (newLength < previousLength) {
+      pop('personnesACharge');
+    }
+  }
 
   render() {
     const {
-      casTypesInitialValues,
+      casType,
       onClosePopin,
       onFormSubmitHandler,
     } = this.props;
@@ -49,7 +69,7 @@ export class AjouterCasTypes extends PureComponent<Props> {
           </IconButton>
         </div>
         <FinalForm
-          initialValues={casTypesInitialValues}
+          initialValues={casType}
           mutators={{ ...arrayMutators }}
           render={({
             form,
@@ -60,7 +80,7 @@ export class AjouterCasTypes extends PureComponent<Props> {
             values,
           }) => {
             const { mutators } = form;
-            const { persons } = values;
+            const { declarants, personnesACharge } = values;
             const canSubmitForm = pristine || invalid;
             return (
               <form className={styles.form} onSubmit={handleSubmit}>
@@ -69,32 +89,30 @@ export class AjouterCasTypes extends PureComponent<Props> {
                 </div>
                 <div className={styles.personsColumns}>
                   <CasTypesPerson
+                    value={declarants.length}
                     max={2}
                     min={1}
-                    name="nbCouple"
-                    onPersonAdd={this.handlePersonAdd(mutators)}
-                    onPersonRemove={this.handlePersonRemove(mutators)}
+                    onChange={value => this.onDeclarantsChange(mutators, declarants.length, value)}
                   />
                   <CasTypesPerson
                     isChild
+                    value={personnesACharge.length}
                     max={9}
                     min={0}
-                    name="nbEnfants"
-                    onPersonAdd={this.handlePersonAdd(mutators)}
-                    onPersonRemove={this.handlePersonRemove(mutators)}
+                    onChange={value => this.onPersonnesAChargeChange(mutators, personnesACharge.length, value)}
                   />
                 </div>
                 <Divider className={styles.divider} />
                 <div>
-                  <CasTypesComposition name="persons" persons={persons} />
+                  <CasTypesComposition declarants={declarants} personnesACharge={personnesACharge} />
                 </div>
                 <Divider className={styles.divider} />
                 <div>
-                  <CasTypesLieuResidence name="lieuResidence" />
+                  <CasTypesLieuResidence name="residence" />
                 </div>
                 <Divider className={styles.divider} />
                 <div>
-                  <CasTypesRevenus name="revenusNetMensuel" />
+                  <CasTypesRevenus name="revenuImposable" />
                 </div>
                 <Divider className={styles.divider} />
                 <SubmitButton disabled={canSubmitForm} />

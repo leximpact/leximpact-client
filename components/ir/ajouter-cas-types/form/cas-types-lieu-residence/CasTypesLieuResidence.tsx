@@ -18,10 +18,9 @@ export function CasTypesLieuResidence({ name }: Props) {
           {({ input }) => Array.from(RESIDENCE_ITEMS.entries()).map(([ key, { icon, label }]) => {
             const isSelected = input.value === key;
             const variant = !isSelected ? "outlined" : "default";
-            const chipProps = { onClick: () => input.onChange(key) };
             return (
               <Chip
-                {...chipProps}
+                onClick={() => input.onChange(key)}
                 key={key}
                 className={styles.button}
                 icon={<Icon height="20" icon={icon} width="20" />}

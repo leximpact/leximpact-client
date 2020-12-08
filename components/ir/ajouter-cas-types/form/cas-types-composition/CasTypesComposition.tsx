@@ -8,10 +8,12 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { PureComponent } from "react";
 import { Field } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";
+import { CasType } from "../../../../../redux/reducers/descriptions/ir";
 
 import styles from "./CasTypesComposition.module.scss";
 import {
-  getIconForThisPerson,
+  getIconForChildPerson,
+  getIconForParentPerson,
   getParentIsoleLabel,
   shouldDisableParentIsole,
   shouldShowCheckbox,
@@ -56,40 +58,17 @@ const COMPOSITION_FIELDS_MAP = [
 ];
 
 interface Props {
-  name: string;
-  persons: {
-    childs: any[];
-    parents: any[];
-  }
+  declarants: CasType['declarants'];
+  personnesACharge: CasType['personnesACharge'];
 }
 
 export class CasTypesComposition extends PureComponent<Props> {
-  handleCheckboxChange = input => () => {
-    const nextValue = Number(input.value) === 0 ? 1 : 0;
-    input.onChange(nextValue);
-  };
 
-  renderCheckbox = disabled => ({ input }) => {
-    const isChecked = input.value === 1;
-    return (
-      <Checkbox
-        checked={isChecked}
-        classes={{ root: styles.checkbox }}
-        disabled={disabled}
-        name={input.name}
-        value={String(input.value)}
-        onChange={this.handleCheckboxChange(input)}
-      />
-    );
-  };
-
-  renderGenderButton = (showChild, name, index) => {
-    const { persons } = this.props;
-    const { childs, parents } = persons;
-    const currentPerson = showChild ? childs[index] : parents[index];
-    const icon = getIconForThisPerson(currentPerson);
+  renderGenderButton = (showChild: boolean, name: string, index: number) => {
+    const { personnesACharge, declarants } = this.props;
+    const currentPerson = showChild ? personnesACharge[index] : declarants[index];
+    const icon = showChild ? getIconForChildPerson() : getIconForParentPerson(declarants[index]);
     const { invalide } = currentPerson;
-    const isInvalide = Boolean(invalide);
     return (
       <Field name={`${name}.gender`}>
         {({ input }) => (
@@ -98,10 +77,10 @@ export class CasTypesComposition extends PureComponent<Props> {
             className={styles.genderButton}
             onClick={() => {
               if (showChild) return;
-              const nextGender = currentPerson.gender ? 0 : 1;
+              const nextGender = declarants[index].gender === 'male' ? 'female' : 'male';
               input.onChange(nextGender);
             }}>
-            {isInvalide && (
+            {invalide && (
               <Badge
                 color="primary"
                 variant="dot">
@@ -115,25 +94,32 @@ export class CasTypesComposition extends PureComponent<Props> {
     );
   };
 
-  renderCompositionColumn = showChild => (name, index) => {
-    const { persons } = this.props;
-    const { parents } = persons;
-    const parentsCount = parents.length;
+  renderCompositionColumn = (type: 'declarant'|'personneACharge') => (name: string, index: number) => {
+    const { declarants } = this.props;
+    const parentsCount = declarants.length;
     return (
       <div key={name}>
         <div className={styles.icon}>
           {/*  icone du type de personne (enfant/agé/invalide... ) */}
-          {this.renderGenderButton(showChild, name, index)}
+          {this.renderGenderButton(type === 'personneACharge', name, index)}
         </div>
         {COMPOSITION_FIELDS_MAP.map(({ key }) => {
           const fname = `${name}.${key}`;
-          const showCheckbox = shouldShowCheckbox(showChild, key, parentsCount);
+          const showCheckbox = shouldShowCheckbox(type === 'personneACharge', key, parentsCount);
           const disableCheckbox = shouldDisableParentIsole(key, parentsCount);
           return (
             <div key={key} className={styles.cell}>
               {showCheckbox && (
                 <Field name={fname}>
-                  {this.renderCheckbox(disableCheckbox)}
+                  {
+                    ({ input }) => (
+                      <Checkbox
+                        { ...input }
+                        classes={{ root: styles.checkbox }}
+                        disabled={disableCheckbox}
+                      />    
+                    )
+                  } 
                 </Field>
               )}
             </div>
@@ -144,10 +130,9 @@ export class CasTypesComposition extends PureComponent<Props> {
   };
 
   renderColumnLabels = () => {
-    const { persons } = this.props;
-    const { childs, parents } = persons;
-    const childsCount = childs.length;
-    const parentsCount = parents.length;
+    const { personnesACharge, declarants } = this.props;
+    const childsCount = personnesACharge.length;
+    const parentsCount = declarants.length;
     return (
       <div className={styles.labelsContainer}>
         {COMPOSITION_FIELDS_MAP.map(({ help, key, label }) => {
@@ -184,7 +169,6 @@ export class CasTypesComposition extends PureComponent<Props> {
   };
 
   render() {
-    const { name } = this.props;
     return (
       <div>
         <span className={styles.title}>Composition du foyer :</span>
@@ -195,20 +179,20 @@ export class CasTypesComposition extends PureComponent<Props> {
           <div
             className={`${styles.flexColumns} ${styles.checkboxesContainer}`}>
             <div>
-              <FieldArray name={`${name}.parents`}>
+              <FieldArray name="declarants">
                 {({ fields }) => (
                   <div className={styles.flexColumns}>
-                    {fields.map(this.renderCompositionColumn(false))}
+                    {fields.map(this.renderCompositionColumn('declarant'))}
                   </div>
                 )}
               </FieldArray>
             </div>
             {/* CHILDS */}
             <div>
-              <FieldArray name={`${name}.childs`}>
+              <FieldArray name="personnesACharge">
                 {({ fields }) => (
                   <div className={styles.flexColumns}>
-                    {fields.map(this.renderCompositionColumn(true))}
+                    {fields.map(this.renderCompositionColumn('personneACharge'))}
                   </div>
                 )}
               </FieldArray>

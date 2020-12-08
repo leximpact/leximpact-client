@@ -3,6 +3,7 @@ import manCurlyHaired from "@iconify/icons-twemoji/man-curly-haired";
 import manWhiteHaired from "@iconify/icons-twemoji/man-white-haired";
 import womanCurlyHaired from "@iconify/icons-twemoji/woman-curly-haired";
 import womanWhiteHaired from "@iconify/icons-twemoji/woman-white-haired";
+import { CasType } from "../../../../../redux/reducers/descriptions/ir";
 
 const ALLOWED_FOR_CHILDS = ["invalide", "chargePartagee"];
 const ALLOWED_FOR_PARENTS = [
@@ -13,21 +14,15 @@ const ALLOWED_FOR_PARENTS = [
   "ancienCombattant",
 ];
 
-export const getIconForParentPerson = (person) => {
-  const { gender, plus65ans } = person;
-  const isMale = Boolean(gender);
-  const isPlus65Ans = Boolean(plus65ans);
-  if (isMale) return isPlus65Ans ? manWhiteHaired : manCurlyHaired;
-  return isPlus65Ans ? womanWhiteHaired : womanCurlyHaired;
+export const getIconForParentPerson = (declarant: CasType['declarants'][0]) => {
+  const { gender, retraite } = declarant;
+  if (gender === 'male') {
+    return retraite ? manWhiteHaired : manCurlyHaired;
+  }
+  return retraite ? womanWhiteHaired : womanCurlyHaired;
 };
 
 export const getIconForChildPerson = () => babyIcon;
-
-export const getIconForThisPerson = (person) => {
-  const { isChild } = person;
-  if (isChild) return getIconForChildPerson();
-  return getIconForParentPerson(person);
-};
 
 export const getParentIsoleLabel = (key, label, parentsCount, childsCount) => {
   if (key !== "parentIsole") return label;
