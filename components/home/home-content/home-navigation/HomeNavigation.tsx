@@ -1,10 +1,6 @@
-import manCurlyHaired from "@iconify/icons-twemoji/man-curly-haired";
-import womanCurlyHaired from "@iconify/icons-twemoji/woman-curly-haired";
-import { Icon } from "@iconify/react";
 import Router from "next/router";
 import { PureComponent } from "react";
 
-import recrutementStyles from "../../../../pages/recrutement.module.scss";
 import styles from "./HomeNavigation.module.scss";
 
 export class HomeNavigation extends PureComponent {
@@ -31,15 +27,6 @@ export class HomeNavigation extends PureComponent {
             </a>
           </div>
         </div>
-        <button
-          className={recrutementStyles.buttonRecrutement}
-          type="button"
-          onClick={() => Router.push("/recrutement")}>
-          <Icon height="30" icon={womanCurlyHaired} width="30" />
-          &nbsp;
-          LexImpact recrute. Rejoignez-nous !
-          <Icon height="30" icon={manCurlyHaired} width="30" />
-        </button>
       </div>
     );
   }
