@@ -21,7 +21,13 @@ import {
   shouldShowLabel,
 } from "./utils";
 
-const COMPOSITION_FIELDS_MAP = [
+export type FieldKey = keyof CasType["declarants"][0] | keyof CasType["personnesACharge"][0];
+
+const COMPOSITION_FIELDS_MAP: {
+  help?: string;
+  key: FieldKey;
+  label: string;
+}[] = [
   {
     help:
       "Personne remplissant les conditions d'invalidité selon l'Article 195 du CGI.",
@@ -37,11 +43,11 @@ const COMPOSITION_FIELDS_MAP = [
   {
     help:
       "Contribuable âgé de plus de soixante-cinq ans. Voir l'Article 157 bis du CGI.",
-    key: "plus65ans",
+    key: "retraite",
     label: "+65 ans",
   },
   {
-    key: "veufVeuve",
+    key: "veuf",
     label: "Veuf / Veuve",
   },
   {
