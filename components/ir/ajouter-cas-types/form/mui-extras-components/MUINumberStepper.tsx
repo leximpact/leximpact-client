@@ -9,7 +9,7 @@ interface Props {
   max?: number;
   min?: number;
   name: string;
-  onChange: Function;
+  onChange: (value: number) => void;
   readOnly?: boolean;
   value: number;
 }

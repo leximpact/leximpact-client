@@ -12,49 +12,44 @@ import { RootState } from "../../../redux/reducers";
 import { CasType } from "../../../redux/reducers/descriptions/ir";
 import { AjouterCasTypes } from "./AjouterCasTypes";
 
-const randomGender = () => (Math.random() < 0.49 ? 1 : 0);
-
-const DEFAULT_PERSON_VALUES = {
-  ancienCombattant: 0,
-  chargePartagee: 0,
-  gender: randomGender(),
-  invalide: 0,
-  isChild: 0,
-  parentIsole: 0,
-  plus65ans: 0,
-  veufVeuve: 0,
-};
-
-const DEFAULT_CAS_TYPES: CasType = {
-  lieuResidence: 0,
-  name: "Foyer fiscal type",
-  nbCouple: 1,
-  nbEnfants: 0,
-  persons: {
-    childs: [],
-    parents: [{ ...DEFAULT_PERSON_VALUES, gender: randomGender() }],
-  },
-  revenusNetMensuel: 1200,
-};
-
-const mapStateToProps = ({ descriptions }: RootState, { index }) => {
-  const defaultPersonValue = { ...DEFAULT_PERSON_VALUES };
-  let casTypesInitialValues = { ...DEFAULT_CAS_TYPES };
+const mapStateToProps = ({ descriptions }: RootState, { index }): { casType: CasType } => {
   if (index >= 0) {
-    casTypesInitialValues = descriptions.ir.casTypes[index];
+    return {
+      casType: descriptions.ir.casTypes[index],
+    };
   }
   return {
-    casTypesInitialValues,
-    defaultPersonValue,
+    casType: {
+      declarants: [
+        {
+          ancienCombattant: false,
+          gender: Math.random() < 0.49 ? "male" : "female",
+          invalide: false,
+          parentIsole: false,
+          retraite: false,
+          veuf: false,
+        },
+      ],
+      name: "Foyer fiscal type",
+      personnesACharge: [],
+      residence: "metropole",
+      revenuImposable: 1200 * 12,
+    },
   };
 };
 
 const mapDispatchToProps = (dispatch, { index }) => ({
-  onFormSubmitHandler: (values) => {
+  onFormSubmitHandler: (casType: CasType) => {
+    // The select component converts numbers into strings.
+    if (typeof casType.revenuImposable === "string") {
+      // eslint-disable-next-line no-param-reassign
+      casType.revenuImposable = Number(casType.revenuImposable);
+    }
+
     if (index >= 0) {
-      dispatch(updateCasType(index, values));
+      dispatch(updateCasType(index, casType));
     } else {
-      dispatch(addCasType(values));
+      dispatch(addCasType(casType));
     }
     dispatch(closeCurrentPopin());
     dispatch(simulateCasTypes());

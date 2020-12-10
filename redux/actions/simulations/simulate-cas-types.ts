@@ -1,5 +1,4 @@
 import request from "../../../components/common/utils/request";
-import { transformCasTypesToData } from "../../../components/common/utils/transform-cas-types-to-data";
 // eslint-disable-next-line no-unused-vars
 import { RootState } from "../../reducers";
 import { formatReforme } from "../format-reforme";
@@ -74,7 +73,20 @@ export const simulateCasTypes = () => (dispatch, getState) => {
 
   const { descriptions, parameters } = getState() as RootState;
   const body = {
-    description_cas_types: transformCasTypesToData(descriptions.ir.casTypes),
+    description_cas_types: descriptions.ir.casTypes.map(casType => ({
+      // No name
+      declarants: casType.declarants.map(declarant => ({
+        ancienCombattant: declarant.ancienCombattant,
+        invalide: declarant.invalide,
+        parentIsole: declarant.parentIsole,
+        retraite: declarant.retraite,
+        veuf: declarant.veuf,
+        // No gender
+      })),
+      personnesACharge: casType.personnesACharge,
+      residence: casType.residence,
+      revenuImposable: casType.revenuImposable,
+    })),
     reforme: formatReforme(parameters.amendement),
   };
 
