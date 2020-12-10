@@ -31,7 +31,7 @@ export const casTypes = (state: CasType[] = DEFAULT_STATE, action: Action | any)
   case "onConnexionTokenLogout":
     return [];
   case "onInitializeCasTypes":
-    if (action.token) return state;
+    if (action.token && state.length > 0) return state;
     return action.payload;
   case "ADD_CAS_TYPE":
     return [...state, action.casType];
