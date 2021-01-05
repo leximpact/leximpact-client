@@ -6,6 +6,7 @@ import { connect, ConnectedProps } from "react-redux";
 // eslint-disable-next-line no-unused-vars
 import { RootState } from "../../../redux/reducers";
 import { InformationPanel } from "../../common";
+import { CommuneMap } from "./commune-map";
 import { CommuneSearch } from "./commune-search";
 import { CommuneStrateDetails } from "./commune-strate-details";
 import { CommuneSummary } from "./commune-summary";
@@ -47,6 +48,9 @@ class Results extends PureComponent<Props> {
         <Grid container spacing={3}>
           <Grid item lg={12} xl={8}>
             <CommuneStrateDetails />
+          </Grid>
+          <Grid item lg={12} xl={8}>
+            <CommuneMap />
           </Grid>
           <Grid item lg={8} md={12} sm={12} xl={4} xs={12}>
             <CommuneSummary />
