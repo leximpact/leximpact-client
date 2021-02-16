@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "Simuler l'impact d'une réforme socio-fiscale en moins d'une minute.",
   "main": "app.js",
-  "repository": "https://github.com/betagouv/leximpact-client",
+  "repository": "https://github.com/leximpact/leximpact-client",
   "author": {
     "name": "LexImpact",
-    "email": "leximpact@openfisca.org"
+    "email": "leximpact@an.fr"
   },
   "keywords": [],
   "license": "AGPL-3.0-or-later",
