@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+
+  leximpact_client:
+    build: .
+    networks:
+      - leximpact_net
+    ports:
+    - published: 9001
+      target: 9001
+
+networks:
+  leximpact_net:
+    name: leximpact_network
