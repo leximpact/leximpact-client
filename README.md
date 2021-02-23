@@ -1,5 +1,6 @@
 # LexImpact Client
 
+
 ## Introduction
 
 LexImpact est un service de l'Assemblée nationale fournissant des outils de simulations fiscales, financières et sociales à destination des députés, administrateurs et collaborateurs. Ils sont accessibles via l'URL [https://leximpact.an.fr](https://leximpact.an.fr).
