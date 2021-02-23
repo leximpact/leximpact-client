@@ -77,7 +77,7 @@ function TextePresentationGenerale() {
 
       <p>
         <a
-          href="https://github.com/betagouv/leximpact-client"
+          href="https://github.com/leximpact/leximpact-client"
           rel="noopener noreferrer"
           target="_blank">
           Le code de LexImpact est libre

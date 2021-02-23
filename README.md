@@ -143,7 +143,7 @@ export { Component as Foobar };
 A file name `.env` is necessary for the client to work properly. The file `.env.example` can be copied into it.
 
 Here ate the environment variables that you have to set:
-- `API_URL`: leximpact-client is just a web interface that does not do computations by itself, but needs to be provided a working [leximpact-server](https://github.com/betagouv/leximpact-server/) Web API to fetch results. As of v`1.0.0`, a working API example can be found on: https://api.leximpact.an.fr
+- `API_URL`: leximpact-client is just a web interface that does not do computations by itself, but needs to be provided a working [leximpact-server](https://github.com/leximpact/leximpact-server/) Web API to fetch results. As of v`1.0.0`, a working API example can be found on: https://api.leximpact.an.fr
 - `PORT`: describes the port that the client will be setup to (e.g. the website will be accessible from http://127.0.0.1:<PORT> if the client is run locally). If ommited, defaults to `9001`
 
 ## Snapshot testing with Jest
