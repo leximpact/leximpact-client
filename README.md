@@ -168,3 +168,17 @@ npm run test --updateSnapshots
 ```
 
 This is similar to: `./node_modules/.bin/jest --updateSnapshots`
+
+# Use with Docker
+
+Build with:
+
+```shell
+docker build . -t leximpact-client:local
+```
+
+Run with:
+
+```shell
+docker run -v $PWD:/opt/leximpact-client leximpact-client:local
+```
