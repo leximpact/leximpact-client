@@ -180,5 +180,5 @@ docker build . -t leximpact-client:local
 Run with:
 
 ```shell
-docker run -v $PWD:/opt/leximpact-client leximpact-client:local
+docker run -v $PWD:/opt/leximpact-client -p 9001:9001 leximpact-client:local
 ```
