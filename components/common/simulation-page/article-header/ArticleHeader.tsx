@@ -1,6 +1,9 @@
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Switch from "@material-ui/core/Switch";
+import Typography from "@material-ui/core/Typography";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { PureComponent } from "react";
 // eslint-disable-next-line no-unused-vars
@@ -57,6 +60,15 @@ class ArticleHeader extends PureComponent<ConnectedProps<typeof connector> & Pro
     const { anchorEl } = this.state;
     return (
       <div className={styles.resetParams}>
+        <Typography component="div">
+          <Grid container alignItems="center" component="label" spacing={1}>
+            <Grid item>Droit existant 2021</Grid>
+            <Grid item>
+              <Switch name="checkedC" />
+            </Grid>
+            <Grid item>Droit existant 2020 + PLF 2021</Grid>
+          </Grid>
+        </Typography>
         <Button
           aria-haspopup="true"
           aria-owns={anchorEl ? "simple-menu" : undefined}
