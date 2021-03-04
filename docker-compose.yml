@@ -1,14 +1,17 @@
+# Client only, to use the local server, see the leximpact-server project.
 version: '3.7'
 services:
-
-  leximpact_client:
-    build: .
+  leximpact_client_only:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
     networks:
       - leximpact_net
     ports:
-    - published: 9001
-      target: 9001
+      - 9080:9001
+    volumes:
+      - .:/opt/leximpact-client
 
 networks:
   leximpact_net:
-    name: leximpact_network
+    name: leximpact_client_only_network
