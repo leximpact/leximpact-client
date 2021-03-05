@@ -168,3 +168,7 @@ npm run test --updateSnapshots
 ```
 
 This is similar to: `./node_modules/.bin/jest --updateSnapshots`
+
+# Use with Docker
+
+For Docker, see [docker/README.md](docker/README.md).
