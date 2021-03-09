@@ -3,7 +3,7 @@ import { IRState } from "../interfaces";
 
 export const BASE_IR_DEFAULT_STATE: IRState = {
   bareme: {
-    seuils: [10064, 25659, 73369, 157806],
+    seuils: [10084, 25710, 73516, 158122],
     taux: [11, 30, 41, 45],
   },
   calculNombreParts: {
