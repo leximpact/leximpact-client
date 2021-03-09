@@ -54,11 +54,11 @@ export const BASE_IR_DEFAULT_STATE: IRState = {
       taux_GuadMarReu: 30,
       taux_GuyMay: 40,
     },
-    celib: 936,
-    celib_enf: 3697,
-    maries_ou_pacses: 1567,
-    reduc_postplafond: 1562,
-    reduc_postplafond_veuf: 1745,
+    celib: 938,
+    celib_enf: 3704,
+    maries_ou_pacses: 1570,
+    reduc_postplafond: 1565,
+    reduc_postplafond_veuf: 1748,
   },
 };
 
