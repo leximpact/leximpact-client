@@ -43,8 +43,8 @@ export const BASE_IR_DEFAULT_STATE: IRState = {
     ],
   },
   decote: {
-    seuil_celib: 777,
-    seuil_couple: 1286,
+    seuil_celib: 779,
+    seuil_couple: 1289,
     taux: 45.25,
   },
   plafond_qf: {
