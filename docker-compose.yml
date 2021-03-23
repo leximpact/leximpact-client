@@ -11,6 +11,8 @@ services:
       - 9080:9001
     volumes:
       - .:/opt/leximpact-client
+      - /opt/leximpact-client/node_modules
+      - /opt/leximpact-client/build
 
 networks:
   leximpact_net:
