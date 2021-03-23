@@ -41,6 +41,9 @@ class EnSavoirPlus extends PureComponent {
             <Link href="/presentation-et-cgu">
               en savoir plus
             </Link>
+            <Link href="/stats">
+              statistiques d'usage
+            </Link>
           </Grid>
           <Grid item className={styles.gridItemButtons} xs={6}>
             <div>
