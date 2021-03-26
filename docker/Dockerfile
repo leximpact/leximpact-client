@@ -9,7 +9,6 @@ RUN echo "API_URL=https://api.leximpact.an.fr/" > .env
 RUN rm -rf node_modules build
 # Install dependencies
 RUN npm install
-RUN npm install --save-dev jest-cli
 RUN npm run test
 RUN npm run code:check
 RUN npm run build
