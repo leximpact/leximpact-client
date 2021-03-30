@@ -11,8 +11,9 @@ services:
       - 9080:9001
     volumes:
       - .:/opt/leximpact-client
-      - /opt/leximpact-client/node_modules
+      - /opt/leximpact-client/node_modules # exclude node_modules from mount : keep it in container
+      - /opt/leximpact-client/build # exclude build from mount : keep it in container
 
 networks:
   leximpact_net:
-    name: leximpact_client_only_network
+    name: leximpact_network

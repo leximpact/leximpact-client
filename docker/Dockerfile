@@ -1,16 +1,16 @@
-FROM node:12-alpine
+FROM node:12
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
-
+WORKDIR /opt
+RUN git clone https://github.com/leximpact/leximpact-client.git
 WORKDIR /opt/leximpact-client
 
-COPY package.json .
+RUN echo "API_URL=https://api.leximpact.an.fr/" > .env
+# Clean just to be sure
+RUN rm -rf node_modules build
 # Install dependencies
-RUN npm update
 RUN npm install
-# Copy everything
-COPY . .
+RUN npm run test
+RUN npm run code:check
+RUN npm run build
 EXPOSE 9001
 CMD ["npm", "run", "dev"]
-#ENTRYPOINT ["watch", "-n", "60", "echo 'Client is in debug...'"]
