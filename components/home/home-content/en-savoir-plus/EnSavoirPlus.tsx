@@ -41,6 +41,7 @@ class EnSavoirPlus extends PureComponent {
             <Link href="/presentation-et-cgu">
               en savoir plus
             </Link>
+            <br/>
             <Link href="/stats">
               statistiques d'usage
             </Link>
