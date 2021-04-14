@@ -14,6 +14,32 @@ class StatsPage extends PureComponent {
                   <Matomo />
                 </Head>
                 <AppHeader showLoginButton={false} />
+                <div>
+                    <p>
+                    x amendements citent leximpact dans l'exposé des motifs
+                    </p>
+                    <p>
+                    x citations en commissions + verbatim ou lien
+                    </p>
+                    <p> 
+                    nombre de simulations (date)
+                    </p>
+                    <p>
+                    IR cas types et population
+                    </p>
+                    <p>
+                    dotations avec texte explicatif sur la répartition des activités d'évaluation dans les gpes parlementaires
+                    </p>
+                    <p>
+                    entonnoir : 1) visites / index > page IR / dotations > nb simulations > nb amendements
+                    </p>
+                    <p>
+                    périmètre des lois
+                    </p>
+                    <p>
+                    temps d'évaluation 
+                    </p>
+                </div>
             </Fragment>
         )
     }
