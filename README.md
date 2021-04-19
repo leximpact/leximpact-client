@@ -20,6 +20,8 @@ Installez les dépendances.
 npm install
 ```
 
+/!\ Ne surtout pas faire _npm update_ comme conseillé cela entrainera des erreurs, visible par un message _InvalidCharacterError: String contains an invalid character_ dans le navigateur. [En savoir plus](https://github.com/leximpact/leximpact-client/issues/129).
+
 Exécutez les tests.
 
 ```
