@@ -29,12 +29,12 @@ function MyComponent() {
       <h2>Hébergeur</h2>
       <hr />
 
-      <p>Hébergé sur Scalingo SAS</p>
+      <p>Hébergé par Scaleway SAS</p>
 
       <p>
-        15 avenue du Rhin
+        BP 438
         <br />
-        67100 Strasbourg
+        75366 Paris cedex 08
         <br />
         France
       </p>
