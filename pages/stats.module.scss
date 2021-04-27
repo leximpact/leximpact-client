@@ -1,0 +1,15 @@
+
+//src : components/presentation-cgu/texte-presentation-generale.module.scsscomponents/presentation-cgu/texte-presentation-generale.module.scss
+.sectionText {
+  margin: 0 auto;
+  max-width: 800px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+
+  //src : components/home/home-content/home-navigation/HomeNavigation.module.scss
+  > img {
+    height: 50px;
+    margin: 0 10px;
+  }
+}

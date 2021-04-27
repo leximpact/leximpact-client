@@ -6,6 +6,8 @@ import { AppHeader } from "../components/common";
 import { Matomo } from "../components/common";
 import withRoot from "../lib/withRoot";
 
+import styles from "./stats.module.scss";
+
 class StatsPage extends PureComponent {
     render() {
         return (
@@ -15,13 +17,13 @@ class StatsPage extends PureComponent {
                   <Matomo />
                 </Head>
                 <AppHeader showLoginButton={false} />
-                <div>
+                <section className={styles.sectionText}>
                     <p>
                     <Link href="https://www.assemblee-nationale.fr/dyn/15/amendements?recherche_textuelle=leximpact">
                         Plus de 40 amendements</Link> de l'Assemblée nationale ont cité "leximpact".
                         Ce groupe d'amendements peut contenir des doublons.
                     </p>
-                    <p>
+                    <div>
                         Les calculs de l'application IR ont été repris en commission au débat de loi de finances pour 2021
                         <Link href="https://www.assemblee-nationale.fr/dyn/15/comptes-rendus/seance/session-ordinaire-de-2020-2021/deuxieme-seance-du-lundi-12-octobre-2020#P2220670">
                         Echanges en séance du lundi 12 octobre 2020
@@ -48,36 +50,38 @@ class StatsPage extends PureComponent {
                                 la priorité, durant cette crise.
                             </li>
                         </ul> 
-                    </p>
+                    </div>
                     <p>
                         visites pages d'accueil : 1040 du 1er octobre au 7 décembre 2020
                     </p>
                     <p> 
-                    nombre de simulations (date)
-                    Ces statistiques sont à lire au regard du public d’usagers visé 
-                    et de la répartition des tâches d'évaluation des amendements entre les parlementaires 
-                    au sein des groupes politiques.
+                        nombre de simulations (date)
+                        Ces statistiques sont à lire au regard du public d’usagers visé 
+                        et de la répartition des tâches d'évaluation des amendements entre les parlementaires 
+                        au sein des groupes politiques.
+                    </p>
+                    <div>
+                        <img alt="" src="/icons/picto-impot-sur-le-revenu.png" />
+                        IR cas types et population
+                        Depuis la naissance du simulateur IR, nous mesurons le nombre de simulation sur la population.
+                        Depuis octobre 2020, nous qualifions les visites.
+                        Clics sur "Estimer" mesurés depuis le 27 octobre 2020 : 100 (au 7 décembre 2020)
+                    </div>
+                    <div>
+                        <img alt="" src="/icons/picto-dotations-communes.png" />
+                        dotations avec texte explicatif sur la répartition des activités d'évaluation dans les gpes parlementaires
+                        Clics sur "Estimer" mesurés depuis le 27 octobre 2020 : 140 (au 7 décembre 2020)
+                    </div>
+                    <p>
+                        entonnoir : 1) visites / index > page IR / dotations > nb simulations > nb amendements
                     </p>
                     <p>
-                    IR cas types et population
-                    Depuis la naissance du simulateur IR, nous mesurons le nombre de simulation sur la population.
-                    Depuis octobre 2020, nous qualifions les visites.
-                    Clics sur "Estimer" mesurés depuis le 27 octobre 2020 : 100 (au 7 décembre 2020)
+                        périmètre des lois
                     </p>
                     <p>
-                    dotations avec texte explicatif sur la répartition des activités d'évaluation dans les gpes parlementaires
-                    Clics sur "Estimer" mesurés depuis le 27 octobre 2020 : 140 (au 7 décembre 2020)
+                        temps d'évaluation 
                     </p>
-                    <p>
-                    entonnoir : 1) visites / index > page IR / dotations > nb simulations > nb amendements
-                    </p>
-                    <p>
-                    périmètre des lois
-                    </p>
-                    <p>
-                    temps d'évaluation 
-                    </p>
-                </div>
+                </section>
             </Fragment>
         )
     }
