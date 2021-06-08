@@ -11,7 +11,7 @@ import styles from "./SimulationMenuBar.module.scss";
 
 const mapStateToProps = ({ parameters }, { width }) => {
   const isMobileView = width === "xs" || width === "sm" || width === "md";
-  const montrerPLF = !!parameters.plf;
+  const montrerPLF = false;
   return {
     isMobileView,
     montrerPLF,
